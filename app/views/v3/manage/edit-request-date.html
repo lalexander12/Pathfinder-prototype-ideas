@@ -1,0 +1,130 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+        {% if data['new'] == 'true' %}
+        {% else %}
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+        </li>
+        {% endif %}
+
+  </ol>
+</div> -->
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" action="cya">
+
+    <!-- <form method="post" action="edit-search-answer"> -->
+
+      {% if data['new'] == 'true' %}
+      <h1 class="govuk-heading-l">What date did the person request the new user?</h1>
+          {% else %}
+          <h1 class="govuk-heading-l">What date did the person request the change?</h1>
+          {% endif %}
+
+
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" role="group" aria-describedby="requested-hint">
+    <!-- <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <label class="govuk-label" for="username">
+        Date of approval
+      </label>
+    </legend> -->
+    <div id="requested-hint" class="govuk-hint">
+      For example, 27 3 2007
+    </div>
+    <div class="govuk-date-input" id="requested">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="requested-day">
+            Day
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="requested-day" name="requested-day" type="text" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="requested-month">
+            Month
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="requested-month" name="requested-month" type="text" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="requested-year">
+            Year
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="requested-year" name="requested-year" type="text" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+
+
+
+<!-- <div class="govuk-form-group">
+  <label class="govuk-label" for="username">
+    Date of approval
+  </label>
+
+<input class="govuk-input govuk-input--width-20" id="username" name="username" type="text">
+</div> -->
+
+<!-- <div class="govuk-form-group">
+  <label class="govuk-label" for="more-detail">
+    Notes (optional)
+  </label>
+  <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5"></textarea>
+</div> -->
+
+
+
+
+<div class="govuk-button-group">
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+  <a class="govuk-link" href="search">Cancel</a>
+</div>
+
+</form>
+
+</div>
+</div>
+{% endblock %}

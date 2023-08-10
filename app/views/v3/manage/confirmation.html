@@ -1,0 +1,97 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title govuk-!-static-padding-9">
+            {% if data['new'] == 'true'%}
+            User added
+
+            {% elif data['deactivated'] == 'true'%}
+            User deactivated
+            {% elif data['deactivated'] == 'false'%}
+            User reactivated
+            {% else %}
+            Access changed
+            {% endif%}
+          </h1>
+         <div class="govuk-panel__body">
+           {% if data['new'] == 'true'%}
+           {{ data['name'] }} has been added to Pathfinder
+
+           {% elif data['deactivated'] == 'true'%}
+            {{ data['name'] }}'s Pathfinder account has been deactivated
+            {% elif data['deactivated'] == 'false'%}
+            {{ data['name'] }}'s account has been reactivated
+            {% else %}
+            {{ data['name'] }}'s access has been changed from <strong>Read profile only</strong> to <strong>Read all, limited update</strong>. 
+           {% endif%}
+
+          </div>
+        </div>
+        <!-- {% if data['role'] == 'admin'%}
+        <p>A confirmation email has been sent to group.owner@justice.gov.uk, with further details.</p>
+
+
+        {% endif%} -->
+
+
+        
+          {% if data['new'] == 'true'%}
+
+
+              <p>Please send a confirmation email to the person who requested this change and {{data['name']}}.</p>
+
+          {% else %}
+
+          {% endif%}
+
+
+            {% if data['deactivated'] == 'true'%}
+
+              {% else %}
+
+
+
+
+               <p class="govuk-body">
+                 <a href="./manage-home">Back to manage users and groups</a>
+               </p>
+
+
+
+          {% endif %}
+
+          <!-- <a href="search?new=false" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+          Go back to manage users and groups
+          </a> -->
+        </form>
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

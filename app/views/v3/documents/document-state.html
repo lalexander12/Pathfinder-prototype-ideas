@@ -1,0 +1,93 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+
+{% include "../includes/nominal-snippet.html" %}
+
+
+
+
+<div class="govuk-width-container">
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <form action="document-complete-date" method="post" novalidate>
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+
+
+                  {% if data['document-type'] == 'erg' %}
+                  Is this the first (initial) ERG for this sentence? 
+
+                  {% else %}
+                  <!-- Is this the first (initial) PGF for this sentence?  -->
+                  Is this an initial or review PGF?
+                  {% endif %}
+
+                </h1>
+              </legend>
+
+              <!-- <div id="email-hint" class="govuk-hint">
+                This is often refered to as an initial
+                {% if data['document-type'] == 'erg' %}
+                ERG
+                {% else %}
+                PGF
+                {% endif %}
+                </div> -->
+
+
+              <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="document-state" name="document-state" type="radio" value="initial">
+                  <label class="govuk-label govuk-radios__label" for="document-state">
+                    {% if data['document-type'] == 'erg' %}
+                    Yes
+                    {% else %}
+                    Initial
+                    {% endif %}
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="document-state-2" name="document-state" type="radio" value="review">
+                  <label class="govuk-label govuk-radios__label" for="document-state-2">
+                    {% if data['document-type'] == 'erg' %}
+                    No
+                    {% else %}
+                    Review
+                    {% endif %}
+                  </label>
+                </div>
+              </div>
+
+
+
+            </fieldset>
+          </div>
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+{% endblock %}

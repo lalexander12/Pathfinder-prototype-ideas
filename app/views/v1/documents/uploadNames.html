@@ -1,0 +1,130 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container ">
+    <div class="govuk-breadcrumbs govuk-!-display-none-print govuk-breadcrumbs--collapse-on-mobile">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="https://pathfinder-prototype-main.apps.live.cloud-platform.service.justice.gov.uk/">Digital Prison Services</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="/">Pathfinder</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="/v1/view-caseload">my caseload</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="/v1/nominal">TEST, TEST</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="/v1/nominal/documents">uploaded documents</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="/v1/nominal/documents/uploadMulti">upload documents</a>
+        </li>
+      </ol>
+    </div>
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+        <div class="govuk-grid-row govuk-body">
+            <div class="govuk-grid-column-full">
+                <div class="basic-details">
+                    <div class="govuk-!-margin-right-6">
+                        <img src="/public/images/image.png" alt="Headshot of TEST, TEST" style="float:left" height="110" width="90" data-qa="offender-image">
+                    </div>
+                    <div id="basic-details-content">
+                        <div>
+                            <p>
+                                <span class="govuk-!-font-weight-bold">Name</span>
+                                <span data-qa="displayName">TEST, TEST</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                <span class="govuk-!-font-weight-bold">Prison No.</span>
+                                <span data-qa="nomsId">TEST</span>
+                            </p>
+                        </div>
+                        <div class="hide-mobile">
+                            <p>
+                                <span class="govuk-!-font-weight-bold">Date of Birth</span>
+                                <span data-qa="dob">01/01/1970</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="govuk-!-margin-bottom-0">
+                                <span class="govuk-!-font-weight-bold">Location</span>
+                                    <span data-qa="prison-description">Moorland (HMP &amp; YOI)</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="govuk-width-container">
+            <h1 class="govuk-heading-l">Document names</h1>
+            <p>These are the document names as uploaded. Check the names and amend them if necessary.</p>
+    
+            <form method="post">
+                <table id="view-caseload" class="govuk-table view-caseload">
+                    <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header sortable">Document name</th>
+                        <th scope="col" class="govuk-table__header sortable">Original name</th>
+                        <th scope="col" class="govuk-table__header sortable">Document type</th>
+                        <th scope="col" class="govuk-table__header sortable">File type</th>
+                        <th scope="col" class="govuk-table__header sortable">File size</th>
+                    </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">
+                                <div class="govuk-form-group">
+                                    <input class="govuk-input govuk-!-font-size-16" id="documentNames-0" 
+                                        name="documentNames" type="text" 
+                                        value="ApplicationInsights.png" maxlength="50" data-qa="documentNames">
+                                </div>
+                            </td>
+                            <td class="govuk-table__cell govuk-!-padding-top-4">ApplicationInsights.png</td>
+                            <td class="govuk-table__cell govuk-!-padding-top-4">
+                            {{ govukSelect({
+                                id: "documentType",
+                                name: "documentType",
+                                items: [
+                                    {
+                                        value: "SelectDocumentType",
+                                        text: "Select document type",
+                                        selected: true
+                                    },
+                                    {
+                                        value: "erginitial",
+                                        text: "ERG Initial"
+                                    },
+                                    {
+                                        value: "ergreview",
+                                        text: "ERG Review"
+                                    },
+                                    {
+                                        value: "other",
+                                        text: "Other"
+                                    }
+                                ]
+                            }) }}
+                            </td>
+                            <td class="govuk-table__cell govuk-!-padding-top-4">Image png</td>
+                            <td class="govuk-table__cell govuk-!-padding-top-4">3.61 kB</td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <button data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" id="saveButton">
+                Save and continue
+                </button>
+            </form>
+        </div>
+    </main>
+</div>
+{% endblock %}

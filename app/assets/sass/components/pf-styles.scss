@@ -1,0 +1,94 @@
+// Search and refer warning text in box on the view and manage caseload page
+.thin-border-message {
+    border: 3px solid #5694ca;
+}
+.button-as-link {
+    color: #1d70b8;
+}
+
+.govuk-warning-text__text {
+    padding-left: 0; 
+}
+
+.button-as-link, .button-as-link-disabled {
+    font-size: 16px;
+    border: none;
+    text-decoration: underline;
+    font-family: "GDS Transport",Arial,sans-serif;
+    cursor: pointer;
+    background-color: #fff;
+}
+.rightAlignedButton {
+    float: right;
+    padding-right: 10px;
+}
+
+// Filters
+.filter-box-color {
+    background-color: #f3f2f1;
+}
+
+// Modal window
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear .25s,opacity .25s 0s,transform .25s;
+}
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+.modal-with-guidance {
+  font-family: inherit;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 40rem;
+  border-radius: 0.5rem;
+  border-style: solid;
+}
+// Download CSV and print buttons
+.spread-items {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+.csv-link-disabled, .csv-link {
+    display: inline-block;
+    margin: 0 0 0px -10px;
+    position: relative;
+    padding: 0.5em 15px 0.5em 43px;
+    background: url('/public/images/download_icon.png') no-repeat 10px 0.5em;
+    background-size: 1.2em;
+    border: none;
+    font-size: inherit;
+    text-decoration: underline;
+    font-family: "GDS Transport",Arial,sans-serif;
+    cursor: pointer;
+    color: #1d70b8;
+}
+.print-link {
+    display: inline-block;
+    position: relative;
+    padding: 0.5em 0em 0.5em 38px;
+    background: url('/public/images/printer_icon.png') no-repeat 10px 0.5em;
+    background-size: 16px 18px;
+    color: #1d70b8;
+}
+
+// Table
+.govuk-table {
+    font-size: 16px;
+}

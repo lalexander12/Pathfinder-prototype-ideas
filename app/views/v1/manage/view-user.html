@@ -1,0 +1,214 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Manage Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+<div class="govuk-grid-row">
+   <div class="govuk-grid-column-full">
+
+     <div class="moj-page-header-actions">
+
+       <div class="moj-page-header-actions__title">
+         <h1 class="govuk-heading-l">Bob Brown</h1>
+       </div>
+
+       <div class="moj-page-header-actions__actions">
+
+         <div class="moj-button-menu">
+           <div class="moj-button-menu__wrapper">
+
+          <!--   <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+               Change details
+             </a>-->
+
+             {% if data['deactivated'] == 'true'%}
+
+
+             {% elif data['new'] == 'true'%}
+
+             <a href="edit-permissions" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+               Add permissions
+             </a>
+
+
+             {% else %}
+
+             <a href="edit-permissions" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+               Change permissions
+             </a>
+             {% endif %}
+
+             {% if data['deactivated'] == 'true'%}
+             <a href="areyousure" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+               Activate user
+             </a>
+             {% else %}
+             <a href="areyousure" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+               Deactivate user
+             </a>
+             {% endif %}
+
+           </div>
+         </div>
+
+       </div>
+
+     </div>
+
+
+
+
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Name
+           </dt>
+           <dd class="govuk-summary-list__value">
+             Bob Brown
+
+           </dd>
+         </div>
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Email address
+           </dt>
+           <dd class="govuk-summary-list__value">
+             bob.brown@justice.gov.uk
+           </dd>
+         </div>
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Username
+           </dt>
+           <dd class="govuk-summary-list__value">
+             BBROWN_GEN
+           </dd>
+         </div>
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             User ID
+           </dt>
+           <dd class="govuk-summary-list__value">
+             2365466
+           </dd>
+         </div>
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Pathfinder role
+           </dt>
+           <dd class="govuk-summary-list__value">
+             Pathfinder - user
+           </dd>
+         </div>
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Permissions
+           </dt>
+           <dd class="govuk-summary-list__value">
+             {% if data['deactivated'] == 'true'%}
+             <span class="moj-badge moj-badge--red">Deactivated</span>
+             {% elif data['new'] == 'true'%}
+             {% else %}
+             Read limited
+             {% endif %}
+           </dd>
+         </div>
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Permission add ons
+           </dt>
+           <dd class="govuk-summary-list__value">
+
+           </dd>
+         </div>
+
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             User group
+           </dt>
+           <dd class="govuk-summary-list__value">
+             Prisons - North East
+           </dd>
+         </div>
+
+</dl>
+
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      View history of changes
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+    <table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m"></caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Permission</th>
+      <th scope="col" class="govuk-table__header">Add on</th>
+      <th scope="col" class="govuk-table__header ">Name of authoriser</th>
+      <th scope="col" class="govuk-table__header ">Method</th>
+      <th scope="col" class="govuk-table__header ">Date of authorisation</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell ">Disabled</td>
+      <td class="govuk-table__cell "></td>
+      <td class="govuk-table__cell">Ermintrude Jones</td>
+      <td class="govuk-table__cell">Email</td>
+      <td class="govuk-table__cell ">12/10/2022</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">Read all</td>
+      <td class="govuk-table__cell ">Approver</td>
+      <td class="govuk-table__cell">Ermintrude Jones</td>
+      <td class="govuk-table__cell">Email</td>
+      <td class="govuk-table__cell">22/10/2022</td>
+    </tr>
+
+  </tbody>
+</table>
+  </div>
+</details>
+
+
+
+
+
+<a href="search" role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+  Go back to manage users
+</a>
+
+</div>
+</div>
+{% endblock %}

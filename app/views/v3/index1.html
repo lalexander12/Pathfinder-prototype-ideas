@@ -1,0 +1,104 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<div id="phase-banner" class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__tag">alpha</strong><span class="govuk-phase-banner__text">This is a new service - your <a class="govuk-link" href="https://eu.surveymonkey.com/r/GYB8Y9Q?source=dev.pathfinder.service.justice.gov.uk/">feedback</a> will help us to improve it.</span></p>
+  </div>
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Home</a>
+    </li>
+ 
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-l">TACT cases</h1>
+</div>
+
+<div class="govuk-grid-row search-box-color govuk-!-padding-bottom-5">
+  <div class="gov-uk-width-container homepage-search">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="moj-search">
+
+      <form action="#" method="post">
+
+        <div class="govuk-form-group search-box-color">
+          <label class="govuk-label moj-search__label govuk-!-font-weight-bold" for="search">
+        Find a nominal
+         </label>
+
+         <div id="search-hint" class="govuk-hint moj-search__hint ">
+        Search by name, prison number or CRN
+        </div>
+
+        <input class="govuk-input moj-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
+
+        </div>
+
+      <button class="govuk-button moj-search__button" data-module="govuk-button">
+      Search
+      </button>
+
+    </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="gov-uk-width-container homepage-content">
+  
+    <ul class="govuk-grid-row card-group">              
+
+      <li class="govuk-grid-column-one-third card-group__item">
+
+        <div class="card card--clickable" data-test="build">
+            <h2 class="govuk-heading-m card__heading">
+                <a class="govuk-link govuk-link--no-visited-state card__link" href="./view-caseload">Your caseload</a>
+            </h2>
+            
+        </div>
+  
+        </li>
+      <li class="govuk-grid-column-one-third card-group__item">
+
+        <div class="card card--clickable" data-test="refer">
+            <h2 class="govuk-heading-m card__heading">
+                <a class="govuk-link govuk-link--no-visited-state card__link" href="">Refer from prison</a>
+            </h2>
+            
+        </div>
+
+      </li>
+
+     
+
+          <li class="govuk-grid-column-one-third card-group__item">
+
+    <div class="card card--clickable" data-test="recat">
+        <h2 class="govuk-heading-m card__heading">
+            <a class="govuk-link govuk-link--no-visited-state card__link" href="">View recategorisations</a>
+        </h2>
+        
+    </div>
+
+           </li>
+    </ul>
+
+
+  </div>
+</div>
+
+{% endblock %}

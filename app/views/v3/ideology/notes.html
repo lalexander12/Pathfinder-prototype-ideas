@@ -1,0 +1,134 @@
+{% extends "layout_moj.html" %}
+
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="../view-caseload">My caseload</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="../nominal">Jones, Bob</a>
+          </li>
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="basic-details govuk-!-margin-bottom-6">
+            <div class="govuk-!-margin-right-6">
+                <img src="/public/images/image.png" alt="Headshot of Jones, Bob" style="float:left" height="110" width="90" data-qa="offender-image">
+            </div>
+
+            <div id="basic-details-content">
+                <div>
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Name</span>
+                        <span data-qa="displayName">Jones, Bob</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Prison No.</span>
+                        <span data-qa="nomsId">G0928GG</span>
+                    </p>
+                </div>
+
+                <div class="hide-mobile">
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Date of Birth</span>
+                        <span data-qa="dob">18/02/1978</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="govuk-!-margin-bottom-0">
+                        <span class="govuk-!-font-weight-bold">Location</span>
+                        <span data-qa="prison-description">Outside</span>
+                    </p>
+                </div>
+            </div>
+</div>
+
+<div class="govuk-width-container">
+  <div class="govuk-grid-row govuk-!-display-none-print govuk-!-margin-bottom-4">
+
+
+        <div class="govuk-grid-column-three-quarters">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+
+                <h1 class="govuk-fieldset__heading">
+                  Add a note
+                </h1>
+
+
+              </legend>
+
+              <p>Adding a note helps other users of the system understand the reasons or justifications behind why you assigned the ideology to this person. </p>
+
+
+    <form method="post" enctype='multipart/form-data'>
+
+<div class="govuk-form-group">
+  <div id="more-detail-hint" class="govuk-hint">
+  </div>
+  <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+</div>
+
+
+
+  </fieldset>
+</div>
+
+{% if data['view'] == 'true'%}
+
+{{ govukButton({
+  text: "Save",
+  href: "view?notes=true"
+}) }}
+
+{% else %}
+
+{{ govukButton({
+  text: "Save",
+  href: "update?notes=true"
+}) }}
+
+{% endif %}
+
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}

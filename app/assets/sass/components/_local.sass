@@ -1,0 +1,535 @@
+#global-header #logo .logo-img
+  margin-right: 10px
+
+.govuk-main-wrapper
+  min-height: 600px
+
+// Header
+
+.govuk-breadcrumbs
+  margin-top: 25px
+
+div.govuk-width-container
+  max-width: 1150px
+
+
+// Task list pattern
+
+.app-task-list
+  list-style-type: none
+  padding-left: 0
+  margin-top: 0
+  margin-bottom: 0
+  @include govuk-media-query($from: tablet)
+    min-width: 550px
+
+.app-task-list__section
+  display: table
+  @include govuk-font($size: 24, $weight: bold)
+
+.app-task-list__section-number
+  display: table-cell
+
+  @include govuk-media-query($from: tablet)
+    min-width: govuk-spacing(6)
+    padding-right: 0
+
+.app-task-list__items
+  @include govuk-font($size: 19)
+  @include govuk-responsive-margin(9, "bottom")
+  list-style: none
+  padding-left: 0
+  @include govuk-media-query($from: tablet)
+    padding-left: govuk-spacing(6)
+
+.app-task-list__item
+  border-bottom: 1px solid $govuk-border-colour
+  margin-bottom: 0 !important
+  padding-top: govuk-spacing(2)
+  padding-bottom: govuk-spacing(2)
+  @include govuk-clearfix
+
+.app-task-list__item:first-child
+  border-top: 1px solid $govuk-border-colour
+
+.app-task-list__task-name
+  display: block
+  @include govuk-media-query($from: 450px)
+    float: left
+    width: 75%
+
+.app-task-list__task-completed
+  margin-top: govuk-spacing(2)
+  margin-bottom: govuk-spacing(1)
+
+  @include govuk-media-query($from: 450px)
+    float: right
+    margin-top: 0
+    margin-bottom: 0
+
+// override multiUpload styles
+div.moj-multi-file-upload__dropzone
+  outline: 3px dashed #979797
+  width: 50%
+
+div.moj-multi-file-upload__dropzone
+  padding: 40px 15px
+
+.moj-multi-file-upload__upload label.govuk-label
+  margin-bottom: 40px
+
+.clear-both
+  clear: both
+
+.incidents
+  .govuk-table__body .govuk-table__cell
+    padding-top: govuk-spacing(3)
+    padding-bottom: govuk-spacing(2)
+
+  tbody .govuk-button
+    margin-bottom: govuk-spacing(0)
+
+.float-left
+  float: left
+
+.float-right
+  float: right
+
+.float-right-desktop
+  float: right
+  @include govuk-media-query($until: tablet)
+    float: none
+
+.rightAlignedButton
+  float: right
+  padding-right: 10px
+
+.grey-button
+  background-color: govuk-colour("light-grey", $legacy: "grey-3")
+  color: govuk-colour("black") !important
+
+  &:hover
+    background-color: govuk-colour("mid-grey", $legacy: "grey-2")
+
+.bold
+  font-weight: bold
+
+.block
+  display: block
+
+p.offender-details-paragraph
+  margin-top: 1em
+  margin-bottom: 0em
+
+.center
+  width: 89.5%
+  text-align: center
+  float: left
+
+.button-tasklist-padding
+  padding-top: 20px
+
+.pathfinder-blue-button, .pathfinder-blue-button:hover
+  background-color: #1d70b8
+
+.panel-blue
+  padding: 10px
+  background-color: #208CEA
+  @media (max-width: 40.0525em)
+    .govuk-panel
+      padding: 8px
+
+a.no-underline
+  color: white
+  text-decoration: none
+
+.dashed-border-case-list
+  width: 110%
+  float: left
+  border-style: dashed
+  border-color: #5694ca
+
+%tasklist-highlight
+  height: 28px
+  text-align: center
+  border-style: solid
+  margin-top: 5px
+  line-height: 28px
+
+.dashed-border-task-list
+  @extend %tasklist-highlight
+  color: white
+  background: #1d70b8
+  border-style: dashed
+  border-color: white
+
+.pink-tasklist-highlight
+  @extend %tasklist-highlight
+  color: govuk-colour("pink")
+  background: white
+  border-color: govuk-colour("pink")
+
+.dashed-border
+  border-style: dashed
+
+.blue-tasklist-highlight
+  @extend %tasklist-highlight
+  color: white
+  background: govuk-colour("blue")
+  border-color: govuk-colour("blue")
+
+.dark-blue-tasklist-highlight
+  @extend %tasklist-highlight
+  color: white
+  background: govuk-colour("dark-blue")
+  border-color: govuk-colour("dark-blue")
+  height: auto
+  padding-left: 1em
+  padding-right: 1em
+
+
+.green-tasklist-highlight
+  @extend %tasklist-highlight
+  background: white
+  color: govuk-colour("green")
+  border-color: govuk-colour("green")
+
+.rp-tasklist-highlight
+  @extend %tasklist-highlight
+  border: 3px solid #005F9E
+  font-size: 19px
+  color: #005F9E
+
+p.show-carriage-returns
+  white-space: pre-wrap
+
+tr.light-blue-row
+  background-color: rgba(86, 148, 202, 0.1)
+
+p.line-headings
+  margin-top: 1em
+  margin-bottom: 0em
+
+.nominal-home-line-break
+  height: 2px
+  background-color: #979797
+
+.nominal-home-section-container
+  padding-bottom: 20px
+  a:link, .govuk-link:link
+    color: #1d2db8
+  .govuk-link--no-visited-state:link
+    color: #1d2db8
+
+.nominal-home-panel
+  > h2
+    background: govuk-tint(#5694CA, 70)
+    color: #1d70b8
+    padding: 15px
+
+  > h2 a
+    &:hover
+      background: govuk-tint(#5694CA, 60)
+
+  > div
+    background: govuk-tint(#5694CA, 90)
+
+.id-input-width
+  max-width: 20ex
+  width: 20ex
+
+.name-input-width
+  max-width: 28ex
+  width: 28ex
+
+.inline-field
+  display: inline-block
+
+.control-warning-text
+  background-color: #fff0de
+
+table tr.odd
+  background-color: #ffffff
+
+table tr.even
+  background-color: #f3f2f1
+
+.thin-border-message
+  border: 3px solid #5694CA
+
+  div
+    position: relative
+
+    span.govuk-warning-text__text
+      font-weight: normal
+
+.centralised-div
+  width: 600px
+  margin: 0 auto
+
+.light-blue-background
+  background-color: govuk-tint(#2e8aca, 90)
+
+.no-background
+  background: none
+
+.select-light-background
+  font-size: inherit
+  background-color: #ffffff
+  color: #0c0b0a
+
+select option
+  font-size: inherit
+  background-color: #ffffff
+  color: #0c0b0a
+
+.trigger
+  font-size: inherit
+  text-align: right
+
+.modal
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, 0.5)
+  opacity: 0
+  visibility: hidden
+  transform: scale(1.1)
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s
+
+.modal-label
+  font-family: inherit
+  background-color: white
+  font-size: inherit
+  font-weight: bold
+  text-align: left
+  width: 28ch
+  border: none
+
+.modal-content
+  font-family: inherit
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  background-color: white
+  padding: 1rem 1.5rem
+  width: 24rem
+  border-radius: 0.5rem
+
+.close-icon
+  float: right
+  width: 1.5rem
+  line-height: 1.5rem
+  text-align: center
+  cursor: pointer
+  border-radius: 0.25rem
+  background-color: lightgray
+
+.close-button
+  float: left
+  font-family: inherit
+  font-size: smaller
+  line-height: 1.8rem
+  text-align: center
+  cursor: pointer
+  background-color: lightgray
+
+.close-icon:hover
+  background-color: darkgray
+
+.show-modal
+  opacity: 1
+  visibility: visible
+  transform: scale(1.0)
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s
+
+.govuk-checkboxes__label
+  &:before
+    background: white
+
+.hide-mobile
+  @include govuk-media-query($until: tablet)
+    display: none !important
+
+.mobile-only
+  @include govuk-media-query($from: tablet)
+    display: none
+
+
+.text-align-right
+  text-align: right
+
+.text-align-center
+  text-align: center
+
+.underlined
+  border-bottom: 1px solid #979797
+
+.border-top
+  border-top: 1px solid #979797
+
+.auto-overflow
+  overflow: auto
+
+.underlined-section
+  border-bottom: 1px solid #979797
+
+  &:last-of-type
+    border-bottom: none
+
+.thick-underlined-section
+  border-bottom: 3px solid #979797
+
+  &:last-of-type
+    border-bottom: none
+
+.bordered-list-item
+  border-top: 1px solid #979797
+
+  &:last-of-type
+    border-bottom: 1px solid #979797
+
+.fill-vertical-space
+  display: flex
+
+  div
+    flex-grow: 1
+
+.govuk-table
+  font-size: 16px
+
+.spread-items
+  display: flex
+  justify-content: space-between
+  align-content: center
+
+.button-width
+  width: 120px
+
+.grid-column-one-fifth
+  box-sizing: border-box
+  width: 100%
+  padding: 0 15px
+  @include govuk-media-query($from: 450px)
+    width: 20%
+    float: left
+
+.notification-unread
+  background-color: #faeae8
+
+.notification-col
+  display: table
+  height: 100%
+
+.notification-cell
+  height: 100%
+  vertical-align: middle
+  display: table-cell
+
+.notification-section
+  margin: 0
+
+.search-box-color
+  background-color: lighten(#2b88c8, 45%)
+
+.filter-box-color
+  background-color: #f3f2f1
+
+.inline-filter-range
+  display: flex
+  align-items: flex-end
+  flex-wrap: wrap
+
+  div
+    margin-right: 8px
+    min-width: 150px
+
+.mobile-x-scroll
+  @include govuk-media-query($until: tablet)
+    overflow-x: auto
+
+.modal-with-guidance
+  font-family: inherit
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  background-color: white
+  padding: 1rem 1.5rem
+  width: 40rem
+  border-radius: 0.5rem
+  border-style: solid
+
+.govuk-table__cell.remove-bottom-border
+  border-bottom: none
+
+.incomplete-profile-label
+  float: right
+  padding: .4em
+  background-color: #ffdd00
+  font-weight: bold
+
+.manage-profile
+  float: right
+  padding: .4em
+
+.view-dps
+  position: relative
+  top: -6px
+
+.soc-label
+  margin-bottom: 5px
+
+  span
+    padding: 7px 15px
+    background-color: govuk-tint(#28A197, 75%)
+    font-size: 1rem
+
+
+.reference-input
+  height: 35px
+  padding: 0 5px 0 5px
+  margin-bottom: 4px
+
+.button-as-link, .button-as-link-disabled
+  font-size: 16px
+  border: none
+  text-decoration: underline
+  font-family: "GDS Transport", Arial, sans-serif
+  cursor: pointer
+  background-color: white
+
+.button-as-link
+  color: #1d70b8
+
+.button-as-link:hover
+  color: #003078
+
+.button-as-link:focus
+  background-color: #ffdd00
+  border-bottom: 3px solid #0b0c0c
+  outline: none
+
+// needed by firefox
+.li-inline
+  list-style-position: inside
+
+.feedback-banner
+  background: $govuk-brand-colour
+  padding: govuk-spacing(4)
+  max-width: 1170px
+  margin: 0 auto
+
+// Override for notification banner to allow content to fill the width
+.govuk-notification-banner__content
+  > *
+    max-width: none
+
+.govuk-form-group--important
+  padding-left: 15px
+  border-left: 5px solid $govuk-brand-colour
+
+

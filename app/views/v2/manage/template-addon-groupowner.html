@@ -1,0 +1,66 @@
+
+{% extends "layout_dps-signedout.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+</div>
+<div style="height:120px; background-color:#e0eef8" class="moj-filter__selected govuk-!-padding-left-5 govuk-!-padding-right-5 govuk-!-padding-top-5  govuk-!-margin-bottom-3 filter-box-color">
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-s">Select an add on and page to view what users with that add on can see and do  or <a href="template-tiles">view what templates can see or do</a>.</h1>
+
+
+<div style="float:left">
+  <label class="govuk-label" for="sort">
+Add on
+  </label>
+  <select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+    {% if data['template'] == 'approver' %}
+    <option value="template-addon-approver?template=approver" selected>Approver</option>
+    <option value="template-addon-groupowner?template=groupowner">Group owner</option>
+    {% elif data['template'] == 'groupowner' %}
+    <option value="template-addon-approver?template=approver">Approver</option>
+    <option value="template-addon-groupowner?template=groupowner" selected>Group owner</option>
+    {% else %}
+    <option value="template-addon-approver?template=approver" selected>Approver</option>
+    <option value="template-addon-groupowner?template=groupowner">Group owner</option>
+    {% endif %}
+  </select>
+</div>
+
+
+<div style="float:left" class="govuk-!-margin-left-9">
+<label class="govuk-label" for="sort">
+Page
+</label>
+<select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+  <option value="#"  selected>Pathfinder tiles page</option>
+  <option value="#" >View my Pathfinder user groups</option>
+  <option value="#" >View a Pathfinder user group</option>
+  <option value="#" >View a Pathfinder user</option>
+</select>
+</div>
+</div>
+
+
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+<div class="govuk-grid-row">
+<div style="clear: both" class="govuk-grid-column-full">
+
+<p>This functionality is coming soon and has not yet been released.</p>
+
+
+
+</div>
+</div>
+</div>
+{% endblock %}

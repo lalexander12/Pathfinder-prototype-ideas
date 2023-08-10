@@ -1,0 +1,84 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+
+
+{% endblock %}
+
+{% block content %}
+
+{% include "../includes/nominal-snippet.html" %}
+
+
+
+
+
+
+
+<div class="govuk-width-container">
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+
+        {% if data['documentupload2'] == "true" %}
+        <form action="confirmation?documentupload3=true" method="post" novalidate>
+      {% elseif data['documentupload1'] == "true" %}
+      <form action="confirmation?documentupload2=true" method="post" novalidate>
+      {% else %}
+      <form action="confirmation?documentupload1=true" method="post" novalidate>
+      {% endif %}
+
+
+
+
+
+
+
+
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  Upload the document
+
+                </h1>
+              </legend>
+
+              <!-- <div id="file-upload-hint" class="govuk-hint">
+                You can upload documents. Each file must be smaller than
+                    100MB.
+                  </div>
+
+                    <div id="file-upload-hint" class="govuk-hint">
+
+                  A new file name will be created once the file is uploaded.
+              </div> -->
+              <!-- <p>You can upload documents. Each file must be smaller than
+                  100MB.</p> -->
+              <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" aria-describedby="file-upload-hint">
+
+
+
+            </fieldset>
+          </div>
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+
+{% endblock %}

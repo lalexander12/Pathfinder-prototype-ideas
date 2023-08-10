@@ -1,0 +1,426 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    {% if data['role'] == 'admin'%}
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="manage-home">Manage  users and groups</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+        {% else %}
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="manage-groups">Manage groups</a>
+        </li>
+
+              <li class="govuk-breadcrumbs__list-item">
+                  <a class="govuk-breadcrumbs__link" href="view-group">{{ data['groupname'] }}</a>
+                </li>
+    {% endif %}
+
+
+
+
+
+<!--
+{% if data['owner'] == 'true'%}
+{% else %}
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+{% endif %}
+    {% if data['admingroups'] == 'true' %}
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-groups">Manage groups</a>
+      </li>
+
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="view-group">{{ data['groupname'] }}</a>
+        </li>
+
+    {% else %}
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+          </li>
+    {% endif %} -->
+
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+<div class="govuk-grid-row">
+   <div class="govuk-grid-column-two-thirds">
+
+     <div class="moj-page-header-actions">
+
+       <div class="moj-page-header-actions__title">
+         <h1 class="govuk-heading-l">{{ data['name'] }}</h1>
+       </div>
+
+       <div class="moj-page-header-actions__actions">
+
+         <div class="moj-button-menu">
+           <div class="moj-button-menu__wrapper">
+
+            <!-- <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+               Change details
+             </a> -->
+{% if data['owner'] == 'true'%}
+
+{% if data['deactivated'] == 'true'%}
+{% else %}
+<!-- {% if data['admin-lite'] == 'yes' %}
+
+             <a href="edit-permissions" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+               Change permissions or group
+             </a>
+{% endif %} -->
+
+<a href="areyousure-remove-user" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+  Access removed
+</a>
+{% endif %}
+{% else %}
+
+
+             <!-- {% if data['new'] == 'true'%}
+
+             <a href="edit-permissions?deactivated=no" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+               Add permissions or group
+             </a>
+
+
+             {% else %}
+
+             <a href="edit-permissions?deactivated=no&role=Pathfinder+user" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+               Change permissions or group
+             </a>
+             {% endif %} -->
+
+
+          <!--   <a href="areyousure" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+               Delete user
+             </a>-->
+
+ {% endif %}
+           </div>
+         </div>
+
+       </div>
+
+     </div>
+</div>
+ <div class="govuk-grid-column-two-thirds">
+
+
+
+<dl class="govuk-summary-list govuk-!-margin-bottom-9">
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Full name
+           </dt>
+           <dd class="govuk-summary-list__value">
+             {{ data['name'] }}
+
+           </dd>
+           <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+              </a>
+            </dd>
+         </div>
+
+         {% if data['deactivated'] == 'true'%}
+         {% else %}
+
+
+         {% if data['role'] == 'admin'%}
+
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Email address
+           </dt>
+           <dd class="govuk-summary-list__value">
+             {% include "../includes/email.html" %}
+
+           </dd>
+           <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+              </a>
+            </dd>
+         </div>
+         {% endif %}
+
+         {% endif %}
+
+         {% if data['role'] == 'admin'%}
+
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Username
+           </dt>
+           <dd class="govuk-summary-list__value">
+
+             {% include "../includes/username.html" %}
+
+           </dd>
+           <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+              </a>
+            </dd>
+         </div>
+
+         {% endif %}
+         {% if data['deactivated'] == 'true'%}
+         {% else %}
+         {% if data['role'] == 'admin'%}
+
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             User ID
+           </dt>
+           <dd class="govuk-summary-list__value">
+             2365466
+           </dd>
+           <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+              </a>
+            </dd>
+         </div>
+         {% endif %}
+         {% endif %}
+
+      <!-- <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Pathfinder role
+           </dt>
+           <dd class="govuk-summary-list__value">
+             Pathfinder - user
+           </dd>
+         </div> -->
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Access
+           </dt>
+           <dd class="govuk-summary-list__value">
+             {% if data['permission'] == 'Suspend access to Pathfinder'%}
+             <strong class="govuk-tag govuk-tag--red">
+              Access suspended
+              </strong>
+             {% elif data['deactivated'] == 'true' and data['name'] == 'Bob Brown'%}
+             <strong class="govuk-tag govuk-tag--red">
+              Access suspended
+              </strong>
+
+
+
+             {% elif data['new'] == 'true'%}
+             {% else %}
+             {% if data['name'] == 'Carl Cooper' %}
+             Full operational use
+             {% elif data['permission'] == null %}
+
+               View profile page only
+             {% else %}
+             {{ data['permission'] }}
+
+             {% endif %}
+
+             {% endif %}
+
+             {% if data['addon'] == 'Owner' or data['name'] == 'Carl Cooper' %}
+            <br>User group owner
+
+            {% else %}
+
+
+             {% endif %}
+
+           </dd>
+           <dd class="govuk-summary-list__actions">
+            {% if data['deactivated'] == 'true'%}
+
+             {% else %}
+
+             <a class="govuk-link" href="edit-permissions">
+               Change<span class="govuk-visually-hidden"> name</span>
+             </a>
+              {% endif %}
+
+            </dd>
+         </div>
+
+
+
+
+ {% if data['deactivated'] == 'true'%}
+
+ {% else %}
+          {% if data['addon'] == 'Owner' or data['name'] == 'Carl Cooper' %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Group (owner)
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['group'] == null %}
+              Prison - East Midlands South
+              {% else %}
+
+              {{ data['group'] }}
+              {% endif %}
+
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              {% if data['role'] == 'admin'%}
+
+              <a class="govuk-link" href="edit-group-owner?deactivated=no">
+                Change<span class="govuk-visually-hidden"> name</span>
+              </a>
+              {% endif %}
+
+            </dd>
+          </div>
+
+          {% else %}
+
+
+         <div class="govuk-summary-list__row">
+           <dt class="govuk-summary-list__key">
+             Group (member)
+           </dt>
+           <dd class="govuk-summary-list__value">
+             {% if data['group'] == null%}
+             Prison - North East
+
+             {% else %}
+             {{ data['group'] }}
+
+             {% endif %}
+           </dd>
+           <dd class="govuk-summary-list__actions">
+             {% if data['role'] == 'admin'%}
+
+            {% if data['new'] == 'true'%}
+                 <a class="govuk-link" href="edit-group?deactivated=no">
+                   Add<span class="govuk-visually-hidden"> name</span>
+                 </a>
+             {% else %}
+                 <a class="govuk-link" href="edit-group?deactivated=no">
+                   Change<span class="govuk-visually-hidden"> name</span>
+                 </a>
+             {% endif %}
+             {% endif %}
+
+            </dd>
+         </div>
+         {% endif %}
+
+{% endif %}
+</dl>
+
+
+<!-- {% if data['role'] == 'admin'%}
+
+ <details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      View history of changes
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+    <p>Changes made on <strong>12/12/2022</strong> by <strong>Ermintrude Jones</strong></p>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+             <div class="govuk-summary-list__row">
+               <dt class="govuk-summary-list__key">
+                 Changes
+               </dt>
+               <dd class="govuk-summary-list__value">
+              Added to Pathfinder as user<br>
+              Read only permission
+               </dd>
+             </div>
+             <div class="govuk-summary-list__row">
+               <dt class="govuk-summary-list__key">
+                 Name of authoriser
+               </dt>
+               <dd class="govuk-summary-list__value">
+              Bob Brown
+               </dd>
+             </div>
+             <div class="govuk-summary-list__row">
+               <dt class="govuk-summary-list__key">
+                 Method of authorisation
+               </dt>
+               <dd class="govuk-summary-list__value">
+            Email
+               </dd>
+             </div>
+             <div class="govuk-summary-list__row">
+               <dt class="govuk-summary-list__key">
+                 Date of authorisation
+               </dt>
+               <dd class="govuk-summary-list__value">
+              12/12/2022
+               </dd>
+             </div>
+             <div class="govuk-summary-list__row">
+               <dt class="govuk-summary-list__key">
+                 Notes
+               </dt>
+               <dd class="govuk-summary-list__value">
+                 Neutra enamel pin photo booth blog. Tbh kitsch tumblr mlkshk chambray subway tile biodiesel. Meh kogi wolf iPhone air plant ramps quinoa Brooklyn yr.
+               </dd>
+             </div>
+  </dl>
+
+
+  </div>
+</details>
+
+{% endif %} -->
+{% if data['role'] == 'admin' %}
+<p class="govuk-body"><a href="manage-users" class="govuk-link">Manage users</a></p>
+{% else %}
+
+<p class="govuk-body"><a href="view-group" class="govuk-link">Back to group</a></p>
+{% endif %}
+
+<!--
+  {% if data['admingroups'] == 'true' %}
+  <a href="view-group" role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+    Go back to group
+  </a>
+
+  {% else %}
+<a href="search" role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+  Manage users
+</a>
+  {% endif %} -->
+
+</div>
+</div>
+{% endblock %}

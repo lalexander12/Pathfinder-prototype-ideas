@@ -1,0 +1,630 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+
+
+{% block beforeContent %}
+
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">View caseload</a>
+        </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container">
+    <div class="govuk-heading-l">View and manage caseload
+    </div>
+    <div class="govuk-grid-row govuk-!-display-none-print govuk-!-margin-bottom-4">
+
+        <div class="govuk-grid-column-full">
+            <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 filter-box-color">
+                <form id="view-caseload-filters">
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-one-third  govuk-!-padding-top-1">
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="nameNomsIdCrn">
+                                    Name, Prison Number or CRN
+                                </label>
+                                <input class="govuk-input govuk-!-padding-right-0" id="nameNomsIdCrn" name="nameNomsIdCrn" type="text" value="" maxlength="50" data-qa="name-or-id-filter">
+                            </div>
+                        </div>
+                        <div class="govuk-grid-column-one-quarter">
+                            <div class="govuk-!-padding-top-6 govuk-!-padding-left-0 govuk-!-margin-left-0">
+                                <button data-prevent-double-click="true" class="govuk-button govuk-button--primary govuk-!-margin-top-1" data-module="govuk-button" data-qa="apply-button">
+                                Apply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <details id="view-filters" class="govuk-details" data-module="govuk-details">
+                        <summary class="govuk-details__summary">
+                            <span class="govuk-details__summary-text" data-qa="view-filters-link">
+                            View more filters
+                            </span>
+                        </summary>
+                        <div class="govuk-grid-row">
+                            <div class="govuk-grid-column-one-quarter govuk-!-padding-right-2">
+                                <div class="govuk-form-group">
+                                    <label class="govuk-label" for="prisons">Prison</label>
+                                    <select class="govuk-select select-light-background govuk-!-width-full" id="prisons" name="prisons">
+
+                                            <option value="">All in my caseload</option>
+
+                                            <option value="HDI">Hatfield (HMP &amp; YOI)</option>
+
+                                            <option value="HLI">Hull (HMP)</option>
+
+                                            <option value="HMI">Humber (HMP)</option>
+
+                                            <option value="LEI">Leeds (HMP)</option>
+
+                                            <option value="LHI">Lindholme (HMP)</option>
+
+                                            <option value="MDI">Moorland (HMP &amp; YOI)</option>
+
+                                            <option value="WEI">Wealstun (HMP)</option>
+
+                                        </select>
+                                </div>
+
+                            <div class="govuk-form-group">
+                                <label class="govuk-label" for="probationAreas">Probation area</label>
+                                <select class="govuk-select select-light-background govuk-!-width-full" id="probationAreas" name="probationAreas">
+
+                                        <option value="ALL_PROBATION_AREAS" selected="">All in my caseload</option>
+
+                                        <option value="CRS">Commissioned Rehab Services</option>
+
+                                        <option value="C13">CPA BeNCH</option>
+
+                                        <option value="C15">CPA Brist Gloucs Somerset Wilts</option>
+
+                                        <option value="C07">CPA Cheshire and Gtr Manchester</option>
+
+                                        <option value="C02">CPA Cumbria and Lancashire</option>
+
+                                        <option value="C08">CPA Derby Leics Notts Rutland</option>
+
+                                        <option value="C19">CPA Dorset Devon and Cornwall</option>
+
+                                        <option value="C03">CPA Durham Tees Valley</option>
+
+                                        <option value="C18">CPA Essex</option>
+
+                                        <option value="C20">CPA Hampshire and Isle of Wight</option>
+
+                                        <option value="C04">CPA Humber Lincs &amp; N Yorks</option>
+
+                                        <option value="C21">CPA Kent Surrey and Sussex</option>
+
+                                        <option value="C17">CPA London</option>
+
+                                        <option value="C14">CPA Norfolk and Suffolk</option>
+
+                                        <option value="C09">CPA South Yorkshire</option>
+
+                                </select>
+                                </div>
+                                <a class="govuk-link--no-visited-state govuk-!-display-inline-block govuk-!-margin-top-2" href="view-caseload?reset=true">Default filters</a>
+                            </div>
+                                <div class="govuk-grid-column-two-thirds govuk-!-padding-0">
+                                    <div class="govuk-grid-column-one-third">
+                                    <span class="govuk-!-font-weight-bold">Location</span>
+                                        <div class="govuk-form-group">
+                                            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                                <div class="govuk-checkboxes__item">
+                                                <input class="govuk-checkboxes__input" id="location" name="location[]" type="checkbox" value="prison" checked="" data-qa="prison-check-box">
+                                                <label class="govuk-label govuk-checkboxes__label" for="location">
+                                                Inside prison
+                                                </label>
+                                                </div>
+                                                <div class="govuk-checkboxes__item">
+                                                    <input class="govuk-checkboxes__input" id="location-2" name="location[]" type="checkbox" value="community" data-qa="community-check-box">
+                                                    <label class="govuk-label govuk-checkboxes__label" for="location-2">
+                                                    Community
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="govuk-grid-column-one-third">
+                                            <span class="govuk-!-font-weight-bold">Status</span>
+                                                <div class="govuk-form-group">
+                                                    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="status" name="status[]" type="checkbox" value="REFERRED" checked="">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="status">
+                                                            Referred
+                                                            </label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="status-2" name="status[]" type="checkbox" value="ACTIVE" checked="">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="status-2">
+                                                            Active
+                                                            </label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="status-3" name="status[]" type="checkbox" value="REVIEW" checked="">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="status-3">
+                                                            Dormant Review
+                                                            </label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="status-4" name="status[]" type="checkbox" value="DORMANT">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="status-4">
+                                                            Dormant
+                                                            </label>
+                                                        </div>
+                                                        <div class="govuk-checkboxes__item">
+                                                            <input class="govuk-checkboxes__input" id="status-5" name="status[]" type="checkbox" value="NOT_ADOPTED">
+                                                            <label class="govuk-label govuk-checkboxes__label" for="status-5">
+                                                            Not adopted
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        </div>
+                    </details>
+                </form>
+            </div>
+            <div class="spread-items hide-mobile govuk-!-margin-bottom-3">
+                <div>
+                    <p class="govuk-!-margin-bottom-2">
+                        <span class="govuk-!-font-weight-bold">67</span> cases need approval
+                    </p>
+
+                </div>
+                <div class="spread-items">
+                    <div class="govuk-!-margin-top-0">
+                        <button id="caseload-link" class="csv-link">Download this table (CSV)</button>
+                    </div>
+                    <script>
+                        const link = $("#caseload-link");
+                        link.on("click", function(event) {
+                            window.location = "/view-caseload/csv-download";
+                        });
+                    </script>
+                    <a href="javascript:window.print()" class="govuk-link print-link govuk-!-display-none-print">Print</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="caseload-container">
+
+      <table class="govuk-table" data-module="moj-sortable-table" style="font-size: 18px">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Name</th>
+            <th scope="col" class="govuk-table__header">User group</th>
+            <th scope="col" class="govuk-table__header">Request type</th>
+            <th scope="col" class="govuk-table__header">Requested by</th>
+            <th scope="col" class="govuk-table__header">Date due by</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+
+              <td class="govuk-table__cell govuk-!-font-weight-bold">
+                <a href="approve-cya?name=Jones,+Bob">Jones, Bob</a>
+            <td class="govuk-table__cell">G8845UR</td>
+            <td class="govuk-table__cell">Review due</td>
+            <td class="govuk-table__cell">E. Smith</td>
+            <td class="govuk-table__cell">20/09/2022<br>
+            <span class="moj-badge moj-badge--orange govuk-!-margin-bottom-0">Due in 8 days</span></td>
+
+          </tr>
+          <tr class="govuk-table__row">
+
+            <td class="govuk-table__cell govuk-!-font-weight-bold">
+              <a href="approve-cya?name=William,+Roger">William, Roger</a></td>
+
+            <td class="govuk-table__cell">G8545UG</td>
+            <td class="govuk-table__cell">New user</td>
+            <td class="govuk-table__cell">E. Smith</td>
+            <td class="govuk-table__cell">21/09/2022<br>
+            <span class="moj-badge moj-badge--orange govuk-!-margin-bottom-0">Due in 11 days</span></td>
+
+          </tr>
+          <tr class="govuk-table__row">
+
+            <td class="govuk-table__cell govuk-!-font-weight-bold">
+              <a href="approve-cya?name=Parira,+Ommeshain">Parira, Ommeshain</a></td>
+
+            <td class="govuk-table__cell">G8545UG</td>
+            <td class="govuk-table__cell">New group</td>
+            <td class="govuk-table__cell">E. Smith</td>
+            <td class="govuk-table__cell  govuk-!-padding-bottom-6 ">28/09/2022</td>
+
+          </tr>
+
+
+          <tr class="govuk-table__row">
+
+              <td class="govuk-table__cell govuk-!-font-weight-bold">
+                <a href="approve-cya?name=Abold,+Ymynneumar">Abold, Ymynneumar</a>
+            <td class="govuk-table__cell">G8845UR</td>
+            <td class="govuk-table__cell">New user</td>
+            <td class="govuk-table__cell">E. Smith</td>
+            <td class="govuk-table__cell">20/09/2022<br>
+            <span class="moj-badge moj-badge--orange govuk-!-margin-bottom-0">Due in 8 days</span></td>
+
+          </tr>
+          <tr class="govuk-table__row">
+
+            <td class="govuk-table__cell govuk-!-font-weight-bold">
+              <a href="approve-cya?name=Zieroth,+Arthur">Zieroth, Arthur</a></td>
+
+            <td class="govuk-table__cell">G8545UG</td>
+            <td class="govuk-table__cell">New user</td>
+            <td class="govuk-table__cell">E. Smith</td>
+            <td class="govuk-table__cell">21/09/2022<br>
+            <span class="moj-badge moj-badge--orange govuk-!-margin-bottom-0">Due in 11 days</span></td>
+
+          </tr>
+          <tr class="govuk-table__row">
+
+            <td class="govuk-table__cell govuk-!-font-weight-bold">
+              <a href="approve-cya?name=Majette,+Elric">Majette, Elric</a></td>
+
+            <td class="govuk-table__cell">G8545UG</td>
+            <td class="govuk-table__cell">New group</td>
+            <td class="govuk-table__cell">E. Smith</td>
+            <td class="govuk-table__cell  govuk-!-padding-bottom-6 ">28/09/2022</td>
+
+          </tr>
+
+
+        </tbody>
+      </table>
+
+
+        <!-- <table id="view-caseload" class="govuk-table view-caseload tablesorter tablesorter-default tablesorterf4469144cd29a" role="grid">
+            <thead class="govuk-table__head">
+            <tr class="govuk-table__row tablesorter-headerRow" role="row">
+                <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="0" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Name: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Name<i class="tablesorter-icon"></i></div></th>
+                <th scope="col" class="govuk-table__header sortable hide-mobile tablesorter-header tablesorter-headerUnSorted" data-column="1" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="LED/SED/PSS: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Change request<i class="tablesorter-icon"></i></div></th>
+                <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="2" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Prison number or CRN: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Prison number or CRN<i class="tablesorter-icon"></i></div></th>
+                <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="3" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Location: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Location<i class="tablesorter-icon"></i></div></th>
+                <th scope="col" class="govuk-table__header sortable hide-mobile tablesorter-header tablesorter-headerUnSorted" data-column="4" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Banding: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Banding<i class="tablesorter-icon"></i></div></th>
+                <th scope="col" class="govuk-table__header sortable hide-mobile tablesorter-header tablesorter-headerUnSorted" data-column="5" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Status: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Status<i class="tablesorter-icon"></i></div></th>
+            </tr>
+            </thead>
+
+            <tbody class="govuk-table__body" aria-live="polite" aria-relevant="all">
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="approve-cya" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Jones, Bob</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+                    <td class="govuk-table__cell">TEST</td>
+                    <td class="govuk-table__cell hide-mobile">TEST</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">TEST</span></td>
+                    <td class="govuk-table__cell hide-mobile">TEST</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/263" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">William, Roger</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+                    <td class="govuk-table__cell">A8139DY / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Dormant Review</td>
+                </tr>
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/216" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Parira, Ommeshain</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">Move group</td>
+                    <td class="govuk-table__cell">G4630UU / N/A</td>
+                    <td class="govuk-table__cell">Guys Marsh (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/221" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Abold, Ymynneumar</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New group</td>
+                    <td class="govuk-table__cell">G4485UD / N/A</td>
+                    <td class="govuk-table__cell">Belmarsh (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/168" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Zieroth, Arthur</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+                    <td class="govuk-table__cell">G3881VF / N/A</td>
+                    <td class="govuk-table__cell">Belmarsh (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Active</td>
+                </tr>
+
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/191" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Majette, Elric</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">Group owner</td>
+                    <td class="govuk-table__cell">G1045GE / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/253" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Johneh, Uhialsek</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user)</td>
+                    <td class="govuk-table__cell">G9985GJ / N/A</td>
+                    <td class="govuk-table__cell">Kirkham (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/234" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Nuffer, Chariot</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user)</td>
+                    <td class="govuk-table__cell">G7243UJ / N/A</td>
+                    <td class="govuk-table__cell">Leeds (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Dormant Review</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/232" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Novelli, Benton</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user)</td>
+                    <td class="govuk-table__cell">G6470UD / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/53" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Aalyle, Demesnder</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+                    <td class="govuk-table__cell">G7731VR / N/A</td>
+                    <td class="govuk-table__cell">Wandsworth (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Dormant Review</td>
+                </tr>
+
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/115" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Quattlebaum, Adolph</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New group</td>
+                    <td class="govuk-table__cell">G9640GV / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/112" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Zechecca, Biznaths</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">User change</td>
+                    <td class="govuk-table__cell">G4877UN / N/A</td>
+                    <td class="govuk-table__cell">Leeds (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/139" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Zechecca, Uanrd</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">User change</td>
+                    <td class="govuk-table__cell">G1103VT / N/A</td>
+                    <td class="govuk-table__cell">Leeds (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/83" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Perazzo, Adam</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">User change</td>
+                    <td class="govuk-table__cell">G1159GG / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Active</td>
+                </tr>
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/182" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Monda, Clemens</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">User change</td>
+                    <td class="govuk-table__cell">G5765VH / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Active</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/158" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Quilter, Roger</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">User change</td>
+                    <td class="govuk-table__cell">A5156DY / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/218" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Amble, Garvey</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">User change</td>
+                    <td class="govuk-table__cell">G9786GC / X344165</td>
+                    <td class="govuk-table__cell">New Hall (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/196" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Mccartney, Paul</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">User change</td>
+
+                    <td class="govuk-table__cell">A5197DY / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Active</td>
+                </tr>
+
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/251" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Dool, Curt</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">User change</td>
+
+                    <td class="govuk-table__cell">G6190UD / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/68" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Smith, Jimbo</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">User change</td>
+                    <td class="govuk-table__cell">A5021DY / X467199</td>
+                    <td class="govuk-table__cell">Deerbolt (HMPYOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Active</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/135" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Yabut, Beauregard</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+                    <td class="govuk-table__cell">G3607UQ / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Active</td>
+                </tr>
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/74" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Porpoise, Stephen</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+                    <td class="govuk-table__cell">A5124DY / N/A</td>
+                    <td class="govuk-table__cell">Albany (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Active</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/47" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Saunders, John</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+                    <td class="govuk-table__cell">G6123VU / N/A</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Active</td>
+                </tr>
+
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/93" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Andrews, Mark</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+                    <td class="govuk-table__cell">A5001DY / N/A</td>
+                    <td class="govuk-table__cell">Albany (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Dormant Review</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/104" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Bell, Pete</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+                    <td class="govuk-table__cell">G3481VL / N/A</td>
+                    <td class="govuk-table__cell">Wandsworth (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Active</td>
+                </tr>
+
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/81" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">John, Madden</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+
+                    <td class="govuk-table__cell">A4554DY / N/A</td>
+                    <td class="govuk-table__cell">Styal (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Active</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/77" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Jones, David</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+                    <td class="govuk-table__cell">A5049DY / N/A</td>
+                    <td class="govuk-table__cell">Werrington (HMPYOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row even" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/148" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Jones, Troy</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+
+                    <td class="govuk-table__cell">N/A / D008434</td>
+                    <td class="govuk-table__cell">Moorland (HMP &amp; YOI)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/245" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Kily, Cemstoire</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+
+                    <td class="govuk-table__cell">G6500UH / N/A</td>
+                    <td class="govuk-table__cell">Belmarsh (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+
+                <tr class="govuk-table__row odd" role="row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/138" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Yvygsee, Atcenury</a>
+                    </td>
+                    <td class="govuk-table__cell hide-mobile">New user</td>
+
+                    <td class="govuk-table__cell">G0232GG / N/A</td>
+                    <td class="govuk-table__cell">Wakefield (HMP)</td>
+                    <td class="govuk-table__cell hide-mobile"><span align="center">Hidden</span></td>
+                    <td class="govuk-table__cell hide-mobile">Referred</td>
+                </tr>
+            </tbody>
+        </table> -->
+    </div>
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full"></div>
+    </div>
+</div>
+
+{% endblock %}

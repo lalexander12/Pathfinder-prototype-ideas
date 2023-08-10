@@ -1,0 +1,74 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-l">Pathfinder admin</h1>
+</div>
+
+<div class="homepage-content">
+<div class="govuk-width-container">
+  <ul class="govuk-grid-row card-group">
+
+      <li class="govuk-grid-column-one-third card-group__item">
+
+          <div class="card card--clickable" data-test="view">
+              <h2 class="govuk-heading-m card__heading">
+                  <a class="govuk-link govuk-link--no-visited-state card__link" href="search?Owner=false">Manage Pathfinder users</a>
+              </h2>
+              <p class="govuk-body card__description">Search for users to view and manage their permissions and add them to groups</p>
+          </div>
+
+      </li>
+
+      <li class="govuk-grid-column-one-third card-group__item">
+
+        <div class="card card--clickable" data-test="refer">
+            <h2 class="govuk-heading-m card__heading">
+                <a class="govuk-link govuk-link--no-visited-state card__link" href="manage-groups?Owner=false">Manage Pathfinder user groups</a>
+            </h2>
+            <p class="govuk-body card__description">View, add, edit and delete user groups</p>
+        </div>
+
+    </li>
+
+<!--    <li class="govuk-grid-column-one-third card-group__item">
+
+        <div class="card card--clickable" data-test="search">
+            <h2 class="govuk-heading-m card__heading">
+                <a class="govuk-link govuk-link--no-visited-state card__link" href="">Manage permission templates</a>
+            </h2>
+            <p class="govuk-body card__description">View and edit the templates that you can use to assign permissions to a user</p>
+        </div>
+
+    </li>-->
+
+
+
+
+  </ul>
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,279 @@
+{% extends "layout_moj.html" %}
+
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="../view-caseload">My caseload</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="../nominal">Jones, Bob</a>
+          </li>
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="basic-details govuk-!-margin-bottom-6">
+            <div class="govuk-!-margin-right-6">
+                <img src="/public/images/image.png" alt="Headshot of Jones, Bob" style="float:left" height="110" width="90" data-qa="offender-image">
+            </div>
+
+            <div id="basic-details-content">
+                <div>
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Name</span>
+                        <span data-qa="displayName">Jones, Bob</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Prison No.</span>
+                        <span data-qa="nomsId">G0928GG</span>
+                    </p>
+                </div>
+
+                <div class="hide-mobile">
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Date of Birth</span>
+                        <span data-qa="dob">18/02/1978</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="govuk-!-margin-bottom-0">
+                        <span class="govuk-!-font-weight-bold">Location</span>
+                        <span data-qa="prison-description">Outside</span>
+                    </p>
+                </div>
+            </div>
+</div>
+
+{% if data['ideologytype'] == 'Unclear yet if they have an ideology'%}
+
+<div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+      Important
+    </h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <p class="govuk-notification-banner__heading">
+      You have not updated this person's ideology yet. All adopted nominals that have an active, dormant review, or dormant status must have on ideology on their profile.</p>
+      <p>If you do not know their ideology yet, select 'It is unclear yet if they have an ideology'.</p>
+  </div>
+</div>
+
+{% elif data['update'] == 'true'%}
+
+
+{% else %}
+
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Important
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            You have not updated this person's ideology yet. All adopted nominals that have an active, dormant review, or dormant status must have on ideology on their profile.</p>
+            <p>If you do not know their ideology yet, select 'It is unclear yet if they have an ideology'.</p>
+        </div>
+      </div>
+
+{% endif %}
+
+
+
+<div class="govuk-width-container">
+  <div class="govuk-grid-row govuk-!-display-none-print govuk-!-margin-bottom-4">
+
+        <div class="govuk-grid-column-three-quarters">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  View ideology
+                </h1>
+              </legend>
+
+              <p>Migas gatekeep seitan aesthetic succulents kale chips cardigan salvian. Raclette salvia raw denim, whatever distillery schlitz coloring book try-hard slow-carb beard marfa sus echo park. </p>
+
+             <p>The ideology you assign to a person may change as you know more.</p>
+
+
+             <h2 class="govuk-heading-m">Ideology</h2>
+
+             <p>You can add a maximum of 4 ideologies.</p>
+
+
+
+           {% if data['unknown'] == 'true'%}
+
+           <p>Not yet identified</p>
+
+           {{ govukButton({
+             text: "Update",
+             href: "type-multiple?unknown=false"
+           }) }}
+
+
+            {% elif data['type'] == 'true'%}
+
+            <table class="govuk-table" style="font-size: 18px">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header"></th>
+                  <th scope="col" class="govuk-table__header"></th>
+                  <th scope="col" class="govuk-table__header"></th>
+
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">{{ data['ideology'] }} - {{ data['sub-ideology'] }}</td>
+                  <td class="govuk-table__cell"><a href="type-multiple?update=true%unknown=false">Change</a></td>
+                  <td class="govuk-table__cell"><a href="areyousure">Remove</a></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+           {{ govukButton({
+             text: "Add another ideology",
+             classes: "govuk-button--secondary",
+             href: "type-multiple?unknown=false"
+           }) }}
+
+            {% elif data['update'] == 'true'%}
+
+            <table class="govuk-table" style="font-size: 18px">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header"></th>
+                  <th scope="col" class="govuk-table__header"></th>
+                  <th scope="col" class="govuk-table__header"></th>
+
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">{{ data['ideologytype'] }}</td>
+                  <td class="govuk-table__cell"><a href="type-multiple?update=true">Change</a></td>
+                  <td class="govuk-table__cell"><a href="areyousure">Remove</a></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+           {{ govukButton({
+             text: "Add another ideology",
+             classes: "govuk-button--secondary",
+             href: "type-multiple?unknown=false"
+           }) }}
+
+             {% else %}
+
+             <p>Not yet identified</p>
+
+             {{ govukButton({
+               text: "Update",
+               href: "type-multiple?unknown=false"
+             }) }}
+
+             {% endif %}
+
+
+                </form>
+
+                <hr>
+
+                <h2 class="govuk-heading-m">Notes</h2>
+
+                {% if data['notes'] == 'true'%}
+
+                {{ govukButton({
+                  text: "Add note",
+                  classes: "govuk-button--secondary",
+                  href: "notes?view=true"
+                }) }}
+
+                <p><strong>Ermintrude Jones</strong> on <strong>12/08/2022</strong></p>
+                <p>Leggings kickstarter biodiesel four loko. Crucifix ennui four dollar toast paleo microdosing. Offal letterpress asymmetrical authentic Brooklyn gochujang cred biodiesel you probably haven't heard of them next level. Taiyaki lyft butcher helvetica, photo booth iceland banh mi shaman unicorn kombucha small batch truffaut pok pok. Biodiesel tumblr big mood chillwave seitan heirloom.</p>
+
+
+
+                {% else %}
+
+                <p>No previous notes recorded.</p>
+
+                {{ govukButton({
+                  text: "Add note",
+                  classes: "govuk-button--secondary",
+                  href: "notes?view=true"
+                }) }}
+
+                {% endif %}
+
+                <hr>
+
+                <h2 class="govuk-heading-m">Ideology history</h2>
+
+                {% if data['update'] == 'true'%}
+
+                <table class="govuk-table" style="font-size: 18px">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Type and subtype</th>
+                      <th scope="col" class="govuk-table__header">Date updated</th>
+                      <th scope="col" class="govuk-table__header">Updated by</th>
+
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">{{ data['ideology'] }} - {{ data['sub-ideology'] }}</td>
+                      <td class="govuk-table__cell">14/08/2022</td>
+                      <td class="govuk-table__cell">Ermintrude Jones</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+                {% else %}
+
+                <p>No previous ideology recorded.</p>
+
+                {% endif %}
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}

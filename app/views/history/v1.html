@@ -1,0 +1,46 @@
+{% extends "layout_dps.html" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <a href="../index-history.html" class="govuk-back-link">Back to design history</a>
+
+      <h1 class="govuk-heading-xl govuk-!-margin-bottom-1">Baseline prototype - version 1</h1>
+      <p class="govuk-body-s">21 November 2022</p>
+
+    <p class="govuk-body">Initial prototype of the Pathfinder service.</p>
+    <p>The prototype contains:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Pathfinder home page</li>
+        <li>View and manage caseload page</li>
+        <li>Basic Nominal Documents</li>
+        <li>Update ideology (concepts)</li>
+        <li>Manage Pathfinder (concepts)</li>
+        <li><a href="../v1/manage/read-all">Manage granular permissions (descoped)</a></li>
+      </ul>
+      <p>The prototype has been whitelisted in Ingress so it is not viewable on machines outside of the Global Protect VPN. For future usability testing, IP addresses can be added.</p>
+    <p><a href="../v1" class="govuk-button govuk-button--secondary">Start prototype journey V1</a></p>
+
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related" role="complementary" style="border-top: 2px solid #1d70b8; padding-top:15px">
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-2" id="-title">Links to related content</h2>
+    <nav role="navigation" aria-labelledby="-title">
+      <ul class="app-related__list" style="padding-left: 0;">
+        <li class="app-related__list-item govuk-!-margin-bottom-3" style="list-style-type:none;">
+        <a class="govuk-link" href="../index?page=clear">Prototype start page</a>
+        </li>
+        <li class="app-related__list-item govuk-!-margin-bottom-3" style="list-style-type:none;">
+        <a href="../v2/manage/template-tiles">View permissions help / guide</a>
+        </li>
+        <li class="app-related__list-item govuk-!-margin-bottom-3" style="list-style-type:none;">
+          <a class="govuk-link" href="https://user-guide.cloud-platform.service.justice.gov.uk/documentation/networking/ip-filtering.html#inbound-ip-filtering">Cloud Platform IP Addresses guide</a>
+        </li>
+
+      </ul>
+    </nav>
+    </aside>
+  </div>
+</div>
+{% endblock %}

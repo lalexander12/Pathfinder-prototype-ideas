@@ -1,0 +1,102 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+
+
+{% endblock %}
+
+{% block content %}
+
+
+{% include "../includes/nominal-snippet.html" %}
+
+
+
+
+<div class="govuk-width-container">
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <form action="document-pgf-eligibility-answer" method="post" novalidate>
+
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+
+
+                  Was the PGF completed within 12 months of the nominal being sentenced?
+
+
+                </h1>
+              </legend>
+              <!-- <p class="govuk-body">This service allows you to upload ERGs, go back </p> -->
+              {% if data['document-type'] == 'erg' %}
+              <div id="email-hint" class="govuk-hint">
+                  If the ERG is more than 12 months old, you will need to provide additional supporting information.
+                </div>
+              {% endif %}
+
+              <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="document-initial-eligibility" name="document-initial-eligibility" type="radio" value="Yes">
+                  <label class="govuk-label govuk-radios__label" for="document-initial-eligibility">
+                    Yes
+                  </label>
+                </div>
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="document-initial-eligibility-2" name="document-initial-eligibility" type="radio" value="No" data-aria-controls="conditional-document-initial-eligibility-2">
+                  <label class="govuk-label govuk-radios__label" for="document-initial-eligibility-2">
+                    No
+                  </label>
+                </div>
+                {% if data['document-type'] == 'erg' %}
+
+
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-document-initial-eligibility-2">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--m" for="more-detail">
+                      Can you provide more detail?
+                    </label>
+                  </h1>
+                  <!-- <div id="more-detail-hint" class="govuk-hint">
+                    Do not include personal or financial information, like your National Insurance number or credit card details.
+                  </div> -->
+                  <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
+                </div>
+
+                </div>
+                {% endif %}
+
+
+
+
+
+
+              </div>
+            </fieldset>
+          </div>
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+{% endblock %}

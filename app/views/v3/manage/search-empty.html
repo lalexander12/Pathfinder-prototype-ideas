@@ -1,0 +1,45 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<!-- 
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }} -->
+
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">There are no matching results</h1>
+  <p class="govuk-body">Improve your search results by:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+
+<li>double checking your spelling</li>
+<li>using fewer words</li>
+</ul>
+
+
+
+  <p><a href="edit-search">Search again</a> if you cannot find the user you're looking for</p>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

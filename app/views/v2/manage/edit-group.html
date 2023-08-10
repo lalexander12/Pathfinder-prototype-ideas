@@ -1,0 +1,72 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+          </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="edit-permissions2">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['new'] == 'true'%}
+  <h1 class="govuk-heading-l">Select the group {{ data['name'] }} is a member of</h1>
+  {% else %}
+  <h1 class="govuk-heading-l">Change the group {{ data['name'] }} is a member of</h1>
+  {% endif %}
+
+
+  {% include "includes/groups.html" %}
+
+<div class="moj-button-menu">
+<div class="moj-button-menu__wrapper">
+
+
+
+  <button role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+    Continue
+  </button>
+
+  <a href="view-user" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+    Cancel
+  </a>
+
+</form>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

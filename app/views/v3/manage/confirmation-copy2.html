@@ -1,0 +1,117 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title govuk-!-static-padding-9">
+            {% if data['new'] == 'true'%}
+            {{ data['name'] }} has been added to Pathfinder
+
+            {% elif data['deactivated'] == 'true'%}
+            {{ data['name'] }} has been removed from Pathfinder
+            {% elif data['deactivated'] == 'false'%}
+            {{ data['name'] }} has been reactivated
+            {% else %}
+            User group and access changed
+            {% endif%}
+          </h1>
+       
+        </div>
+        <!-- {% if data['role'] == 'admin'%}
+        <p>A confirmation email has been sent to group.owner@justice.gov.uk, with further details.</p>
+
+
+        {% endif%} -->
+
+
+        <div class="govuk-body">
+          <p>
+          {% if data['new'] == 'true'%}
+          <p>{{ data['select-user'] }} requested this change.</p>
+
+          <p>Please send an email to {{ data['name'] }} and {{ data['select-user'] }} to confirm that the account is active.</p>
+         </div>
+
+          {% elif data['deactivated'] == 'true'%}
+           {{ data['name'] }}'s Pathfinder account has been deactivated.
+           {% elif data['deactivated'] == 'false'%}
+           {{ data['name'] }}'s account has been reactivated.
+           {% else %}
+            
+           
+           <p class="govuk-body">{{ data['name'] }} has been updated:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li><strong>Group</strong> changed from <strong>Prison - London</strong> to <strong>Prison - Sheffield</strong>.</li>
+  <li><strong>Access</strong> changed from <strong>View profile</strong> to <strong>Full use</strong>.</li>
+
+</ul>
+<p>{{ data['select-user'] }} requested this change.</p>
+
+
+<p>Please send an email to {{ data['name'] }} and {{ data['select-user'] }} to confirm that this update has been made.</p>
+
+
+{% endif%}  
+
+                 
+      
+
+        
+          {% if data['new'] == 'true'%}
+
+
+             
+
+          {% else %}
+
+          {% endif%}
+
+
+            {% if data['deactivated'] == 'true'%}
+
+              {% else %}
+
+
+
+
+               <p class="govuk-body">
+                 <a href="./manage-home">Back to manage users and groups</a>
+               </p>
+
+
+
+          {% endif %}
+
+          <!-- <a href="search?new=false" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+          Go back to manage users and groups
+          </a> -->
+        </form>
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

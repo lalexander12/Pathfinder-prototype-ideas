@@ -1,0 +1,186 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+
+{% include "../includes/nominal-snippet.html" %}
+
+
+
+
+<div class="govuk-width-container">
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        {% if data['document-type'] == 'erg' %}
+        <h1 class="govuk-heading-l">Extremism Risk Guidance (ERG)</h1>
+       {% elseif data['document-type'] == 'pgf' %}
+        <h1 class="govuk-heading-l">Pathfinder Guidance Framework (PGF)</h1>
+        {% else %}
+        <h1 class="govuk-heading-l">Pathfinder document upload</h1>
+
+        {% endif %}
+
+                  {% if data['documentupload2'] == "true" %}
+                  <form action="confirmation?documentupload3=true" method="post" novalidate>
+                {% elseif data['documentupload1'] == "true" %}
+                <form action="confirmation?documentupload2=true" method="post" novalidate>
+                {% else %}
+                <form action="confirmation?documentupload1=true" method="post" novalidate>
+                {% endif %}
+
+
+
+                {% if data['document-type'] == 'erg' or data['document-type'] == 'pgf' %}
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset govuk-!-static-margin-bottom-9">
+    <label class="govuk-label" for="documeny-state">
+        <strong>
+
+          {% if data['document-type'] == 'erg' %}
+          Is this the first ERG for this sentence?
+          {% else %}
+          Is this the first PGF for this sentence?
+          {% endif %}
+        </strong>
+    </label>
+
+
+    <div id="state-hint" class="govuk-hint">
+      This is often refered to as an initial
+      {% if data['document-type'] == 'erg' %}
+      ERG
+      {% else %}
+      PGF
+      {% endif %}
+      </div>
+
+    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="document-state" name="document-state" type="radio" value="initial">
+        <label class="govuk-label govuk-radios__label" for="document-state">
+          Yes
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="document-state-2" name="document-state" type="radio" value="review">
+        <label class="govuk-label govuk-radios__label" for="document-state-2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+{% endif %}
+
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset govuk-!-static-margin-bottom-9">
+    <label class="govuk-label" for="sort-code"><strong>
+      {% if data['document-type'] == 'erg' and data['document-state'] == 'initial' %}
+      When was this initial ERG completed?
+      {% elseif data['document-type'] == 'erg' and data['document-state'] != 'initial' %}
+      When was this ERG review completed?
+      {% elseif data['document-type'] == 'pgf' and data['document-state'] == 'initial' %}
+      When was this initial PGF completed?
+      {% elseif data['document-type'] == 'pgf' and data['document-state'] != 'initial' %}
+      When was this PGF review completed?
+      {% else %}
+      When was this {{data['other-document-type']}}completed?
+      {% endif %}
+    </strong></label>
+
+  <div id="document-complete-date-hint" class="govuk-hint">
+    This is the completion date and not the upload date.
+    </div>
+
+    <div class="govuk-date-input" id="document-complete">
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="document-complete-day">
+            Day
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="document-complete-day" name="document-complete-day" type="text" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="document-complete-month">
+            Month
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="document-complete-month" name="document-complete-month" type="text" inputmode="numeric">
+        </div>
+      </div>
+      <div class="govuk-date-input__item">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-date-input__label" for="document-complete-year">
+            Year
+          </label>
+          <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="document-complete-year" name="document-complete-year" type="text" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+
+</div>
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset">
+    <label class="govuk-label" for="account-number"><strong>
+      Upload the document
+
+    </strong></label>
+
+    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" aria-describedby="file-upload-hint">
+
+
+  </fieldset>
+</div>
+
+  <div class="govuk-form-group">
+
+<button class="govuk-button" data-module="govuk-button">
+  Continue
+</button>
+</div>
+
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Help with file upload
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+          A file must be a DOC, PDF ot TXT. Files must be smaller than
+              100MB.
+
+  </div>
+</details>
+
+
+
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+{% endblock %}

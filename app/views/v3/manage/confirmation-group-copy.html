@@ -1,0 +1,57 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="manage-groups">Manage groups</a>
+        </li>
+  </ol>
+</div> -->
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title govuk-!-static-padding-9">
+            Group created
+          </h1>
+         
+          </div>
+          <div>
+        </div>
+        <div class="govuk-body">
+          <p>The <strong>Prison - South Wales</strong> group has been created.</p>
+      
+    
+      <p><a href="view-group?groupname=Prison+-+North+East&emptygroup=true">Prison - South Wales</a></p>  
+          <p><a href="manage-home">Back to manage users and groups</a></p>
+
+
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

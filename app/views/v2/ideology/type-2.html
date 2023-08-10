@@ -1,0 +1,305 @@
+{% extends "layout_moj.html" %}
+
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="../view-caseload">My caseload</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="../nominal">Jones, Bob</a>
+          </li>
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="basic-details govuk-!-margin-bottom-6">
+            <div class="govuk-!-margin-right-6">
+                <img src="/public/images/image.png" alt="Headshot of Jones, Bob" style="float:left" height="110" width="90" data-qa="offender-image">
+            </div>
+
+            <div id="basic-details-content">
+                <div>
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Name</span>
+                        <span data-qa="displayName">Jones, Bob</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Prison No.</span>
+                        <span data-qa="nomsId">G0928GG</span>
+                    </p>
+                </div>
+
+                <div class="hide-mobile">
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Date of Birth</span>
+                        <span data-qa="dob">18/02/1978</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="govuk-!-margin-bottom-0">
+                        <span class="govuk-!-font-weight-bold">Location</span>
+                        <span data-qa="prison-description">Outside</span>
+                    </p>
+                </div>
+            </div>
+</div>
+
+
+<div class="govuk-width-container">
+  <div class="govuk-grid-row govuk-!-display-none-print govuk-!-margin-bottom-4">
+
+        <div class="govuk-grid-column-three-quarters">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  What is their ideology?
+                </h1>
+              </legend>
+
+              <form method="post" action="view?type=true" class="form">
+
+              <div id="contact-hint" class="govuk-hint">
+
+              </div>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="contact" name="ideology" type="radio" {{ checked("ideology", "Dissident Irish Extremist") }} value="Dissident Irish Extremist" data-aria-controls="conditional-contact">
+                  <label class="govuk-label govuk-radios__label" for="contact">
+                    Dissident Irish Extremist
+                  </label>
+                </div>
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+                  <div class="govuk-form-group">
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="where-do-you-live" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Republicans (e.g. IRA)") }} value="Republicans (e.g. IRA)">
+                        <label class="govuk-label govuk-radios__label" for="where-do-you-live">
+                          Republicans (e.g. IRA)
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="where-do-you-live-2" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Unionists (e.g. UDA)") }} value="Unionists (e.g. UDA)">
+                        <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+                          Unionists (e.g. UDA)
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="where-do-you-live-3" name="sub-ideology" type="radio" value="">
+                        <label class="govuk-label govuk-radios__label" for="where-do-you-live-3">
+                          I don't know which type
+                        </label>
+                      </div>
+                  </div>
+
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="contact-2" name="ideology" type="radio" {{ checked("ideology", "Domestic Extremist") }} value="Domestic Extremist" data-aria-controls="conditional-contact-2">
+                  <label class="govuk-label govuk-radios__label" for="contact-2">
+                    Domestic Extremist
+                  </label>
+                </div>
+
+
+
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="contact-3" name="ideology" type="radio" {{ checked("ideology", "Islamist Extremist") }} value="Islamist Extremist" data-aria-controls="conditional-contact-3">
+                  <label class="govuk-label govuk-radios__label" for="contact-3">
+                    Islamist Extremist
+                  </label>
+                </div>
+
+
+
+
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-3">
+                  <div class="govuk-form-group">
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="islamist" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Al Quaeda inspired") }} value="Al Quaeda inspired">
+                      <label class="govuk-label govuk-radios__label" for="islamist">
+                        Al Quaeda inspired
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="islamist-2" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Daesh/ISIS inspired") }} value="Daesh/ISIS inspired">
+                      <label class="govuk-label govuk-radios__label" for="islamist-2">
+                        Daesh/ISIS inspired
+                      </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="islamist-3" name="sub-ideology" type="radio" value="">
+                      <label class="govuk-label govuk-radios__label" for="islamist-3">
+                        I don't know which type
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="contact-4" name="ideology" type="radio" {{ checked("ideology", "Left-Wing, Anarchist and Single-Issue Terrorism (LASIT)") }} value="Left-Wing, Anarchist and Single-Issue Terrorism (LASIT)" data-aria-controls="conditional-contact-4">
+                    <label class="govuk-label govuk-radios__label" for="contact-4">
+                        Left-Wing, Anarchist and Single-Issue Terrorism (LASIT)
+                    </label>
+                  </div>
+                  <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-4">
+                    <div class="govuk-form-group">
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="lasit" name="sub-ideology" type="radio" value="Anti-fascism (ANTIFA)">
+                        <label class="govuk-label govuk-radios__label" for="lasit">
+                          Anti-fascism (ANTIFA)
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="lasit-2" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Environmental Activism") }} value="Environmental Activism">
+                        <label class="govuk-label govuk-radios__label" for="lasit-2">
+                          Environmental Activism
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="lasit-3" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Basque Euskadi Ta Askatasuna (ETA)") }} value="Basque Euskadi Ta Askatasuna (ETA)">
+                        <label class="govuk-label govuk-radios__label" for="lasit-3">
+                          Basque Euskadi Ta Askatasuna (ETA)
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="lasit-4" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Involuntary celibates (Incel)") }} value="Involuntary celibates (Incel)">
+                        <label class="govuk-label govuk-radios__label" for="lasit-4">
+                          Involuntary celibates (Incel)
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="lasit-5" name="sub-ideology" type="radio" {{ checked("sub-ideology", "The International Sikh Youth Federation (ISYF)") }} value="The International Sikh Youth Federation (ISYF)">
+                        <label class="govuk-label govuk-radios__label" for="lasit-5">
+                          The International Sikh Youth Federation (ISYF)
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="lasit-6" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Liberation Tigers of Tamil Eelam") }} value="Liberation Tigers of Tamil Eelam">
+                        <label class="govuk-label govuk-radios__label" for="lasit-6">
+                          Liberation Tigers of Tamil Eelam
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="lasit-7" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Militant Animal Rights") }} value="Militant Animal Rights">
+                        <label class="govuk-label govuk-radios__label" for="lasit-7">
+                          Militant Animal Rights
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="lasit-8" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Kurdistan Workers' Party (PKK)") }} value="Kurdistan Workers' Party (PKK)">
+                        <label class="govuk-label govuk-radios__label" for="lasit-8">
+                          Kurdistan Workers' Party (PKK)
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="lasit-9" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Political left-wing") }} value="Political left-wing">
+                        <label class="govuk-label govuk-radios__label" for="lasit-9">
+                          Political left-wing
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="lasit-10" name="sub-ideology" type="radio" value="">
+                        <label class="govuk-label govuk-radios__label" for="lasit-10">
+                          I don't know which type
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="contact-5" name="ideology" type="radio" {{ checked("ideology", "Right Wing Extremist") }}  value="Right Wing Extremist" data-aria-controls="conditional-contact-5">
+                      <label class="govuk-label govuk-radios__label" for="contact-5">
+                        Right Wing Extremist
+                      </label>
+                    </div>
+                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-5">
+                      <div class="govuk-form-group">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="right" name="sub-ideology" type="radio" {{ checked("sub-ideology", "Cultural Nationalism") }} value="Cultural Nationalism">
+                          <label class="govuk-label govuk-radios__label" for="right">
+                            Cultural Nationalism
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="right-2" name="sub-ideology" type="radio" {{ checked("sub-ideology", "White Nationalism") }} value="White Nationalism">
+                          <label class="govuk-label govuk-radios__label" for="right-2">
+                            White Nationalism
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="right-3" name="sub-ideology" {{ checked("sub-ideology", "White Supremacism") }} type="radio" value="White Supremacism">
+                          <label class="govuk-label govuk-radios__label" for="right-3">
+                            White Supremacism
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="right-3" name="sub-ideology" type="radio" value="">
+                          <label class="govuk-label govuk-radios__label" for="right-3">
+                            I don't know which type
+                          </label>
+                        </div>
+                      </div>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="contact-6" name="ideology" type="radio" {{ checked("ideology", "Sikh Extremist") }} value="Sikh Extremist" data-aria-controls="conditional-contact-2">
+                  <label class="govuk-label govuk-radios__label" for="contact-6">
+                    Sikh Extremist
+                  </label>
+                </div>
+
+              </div>
+
+            </fieldset>
+            </div>
+
+            {{ govukDetails({
+            summaryText: "Can't find their ideology in the list?",
+            text: "The are trying to improve how we capture a person's ideology. If you think that we are missing an option that describes the person's ideology send an email with more information to emailaddress.tbc@moj.digital.gov."
+            }) }}
+
+
+
+
+
+  <button class="govuk-button" data-module="govuk-button">
+    Save
+  </button>
+
+
+{{ govukButton({
+  text: "Cancel",
+  classes: "govuk-button--secondary",
+  href: "view"
+}) }}
+
+</form>
+
+
+
+
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}

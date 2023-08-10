@@ -1,0 +1,95 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-width-container">
+<main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-static-padding-top-9 govuk-!-static-padding-bottom-9">
+        <h1 class="govuk-panel__title">
+          {% if data['document-type'] == 'erg' or data['document-type'] == 'pgf' %}
+
+
+          {% if data['document-type'] == null %}
+          Initial ERG
+          {% else %}
+          {% if data['document-state'] == "initial" %}
+        Initial
+        {% else %}
+        Review
+        {% endif %}
+
+        {% if data['document-type'] == "erg" %}
+      ERG
+      {% elseif data['document-type'] == "pgf" %}
+      PGF
+      {% else %}
+        {{data['other-document-type']}}
+      {% endif %}
+          {% endif %}
+
+          document uploaded
+          {% else %}
+          Pathfinder document uploaded
+
+          {% endif %}
+
+        </h1>
+        <!-- <div class="govuk-panel__body">
+          File name<br><strong>
+            {% if data['document-type'] == null %}
+            erg_initial_NOMS_9876e2_22122022.doc</strong>
+            {% else %}
+            {{data['document-type']}}_{{data['document-state']}}_NOMS_9876e2_22122022.doc</strong>
+            {% endif %}
+
+        </div> -->
+      </div>
+
+
+
+      <p class="govuk-body">You can now view the document in the nominal's profile.</p>
+
+      <p class="govuk-body"><a href="../nominal" class="govuk-link">View Pathfinder profile</a> for Bob Jones.</p>
+
+
+        <!-- <p class="govuk-body">You can now view the document
+          <strong>
+          {% if data['document-type'] == 'erg' or data['document-type'] == 'pgf' %}
+
+              {% if data['document-type'] == null %}
+              erg_initial_NOMS_2365466_070423.doc
+              {% else %}
+              {{data['document-type']}}_{{data['document-state']}}_NOMS_9876e2_22122022.doc
+              {% endif %}
+              {% else %}
+              documentfilename.doc
+              {% endif %}
+            </strong>
+          in the nominals profile.</p> -->
+
+      <!-- <h2 class="govuk-heading-m">Where next</h2>
+
+<p class="govuk-body"><a href="../documents/documents-list" class="govuk-link">View documents</a> for Bob Jones.</p>
+<p class="govuk-body"><a href="../nominal" class="govuk-link">View Pathfinder profile</a> for Bob Jones.</p>
+<p class="govuk-body"><a href="../view-caseload" class="govuk-link">View your caseload</a></p>
+<p class="govuk-body"><a href="../view-caseload" class="govuk-link">What do you think of this service?</a> (takes 30 seconds).</p> -->
+
+    </div>
+  </div>
+</main>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,131 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+        {% if data['new'] == 'true' %}
+        {% else %}
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+        </li>
+        {% endif %}
+
+  </ol>
+</div> -->
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post" action="edit-request-select">
+
+      {% if data['new'] == 'true' %}
+      <span class="govuk-caption-l">Add user</span>
+      <h1 class="govuk-heading-l">Search for the person who requested the new user</h1>
+          {% else %}
+          <span class="govuk-caption-l">Change user access</span>
+          <h1 class="govuk-heading-l">Search for the person who requested the change</h1>
+          {% endif %}
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="search">
+            Name, username or email address
+          </label>
+
+          <input class="govuk-input  govuk-input--width-30" id="search" name="search" type="search" aria-describedby="search-hint">
+
+        </div>        
+          <button class="govuk-button" data-module="govuk-button">
+            Search
+          </button>
+                 </div>
+
+    </form>
+
+
+
+    <table class="govuk-table govuk-!-margin-bottom-9" style="font-size: 18px">
+      <caption class="govuk-table__caption govuk-table__caption--m"></caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"></th>
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Username</th>
+          <th scope="col" class="govuk-table__header">Email address</th>
+          <th scope="col" class="govuk-table__header">Account</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">
+              <div class="govuk-radios__item  govuk-radios--small">
+                <input class="govuk-radios__input" id="select-user" name="select-user" type="radio" value="John Smith">
+                <label class="govuk-label govuk-radios__label" for="select-user">
+                </label>
+              </div>
+        </th>
+          <td class="govuk-table__cell">John Smith<br>
+
+            </td>
+          <td class="govuk-table__cell">JOHN_SMITH</td>
+          <td class="govuk-table__cell">john.smith@justice.gov.uk</td>
+          <td class="govuk-table__cell">Prison - NOMIS</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">
+            <div class="govuk-radios__item  govuk-radios--small">
+              <input class="govuk-radios__input" id="select-user" name="select-user" type="radio" value="Johnny Smith">
+              <label class="govuk-label govuk-radios__label" for="select-user">
+              </label>
+            </div>
+          </th>
+          <td class="govuk-table__cell">John Smyth<br>
+
+            </td>
+          <td class="govuk-table__cell">JOHN_SMITH2</td>
+          <td class="govuk-table__cell">john.smyth2@justice.gov.uk</td>
+          <td class="govuk-table__cell">Prison - NOMIS</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="govuk-button-group">
+      <a href="edit-permissions2" role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+        Continue
+      </a>
+      <a class="govuk-link" href="search">Cancel</a>
+    </div>
+  
+
+</div>
+</div>
+{% endblock %}

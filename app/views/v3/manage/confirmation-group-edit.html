@@ -1,0 +1,78 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="manage-groups">Manage groups</a>
+        </li>
+  </ol>
+</div> -->
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title govuk-!-static-padding-9">
+            Group name changed
+          </h1>
+         <!-- <div class="govuk-panel__body">Group name: Prison - South Wales
+          </div>
+
+          <h1 class="govuk-panel__title govuk-!-static-padding-9">
+            Prison - South Wales group has been changed
+          </h1> -->
+
+        </div>
+        <p class="govuk-body">The group name has been changed from <strong>{{ data['groupname'] }}</strong> to <strong>{{ data['groupname'] }}</strong>.</p>
+      <!--  <h2 class="govuk-heading-m">What happens next</h2>
+
+        <p>You now need to search for and add an owner and users to the group.</p>
+
+        <div class="moj-button-menu">s
+        <div class="moj-button-menu__wrapper">-->
+
+      <h2 class="govuk-heading-m">Where next</h2>
+
+      <p><a href="view-group?groupname=Prison+-+North+East&emptygroup=true">{{ data['groupname'] }}</a></p>
+
+
+        <p><a href="manage-home">Back to manage users and groups</a></p>
+
+        </form>
+
+
+        </div>
+        </div>
+
+
+
+
+
+      </div>
+    </div>
+  </main>
+</div>
+
+{% endblock %}

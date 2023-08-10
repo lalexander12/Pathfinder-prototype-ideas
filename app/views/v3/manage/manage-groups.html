@@ -1,0 +1,578 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="../index">TACT cases</a>
+      </li>
+      {% if data['owner'] == 'true'%}
+      {% else %}
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="manage-home">Manage users and groups</a>
+        </li>
+      {% endif %}
+
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container">
+
+
+
+
+
+  <div class="moj-page-header-actions">
+
+<div class="moj-page-header-actions__title">
+  {% if data['owner'] == 'true'%}
+  <h1 class="govuk-heading-l">Manage groups</h1>
+  {% else %}
+  <h1 class="govuk-heading-l">Manage groups</h1>
+  {% endif %}
+</div>
+
+<div class="moj-page-header-actions__actions">
+
+  <div class="moj-button-menu">
+    <div class="moj-button-menu__wrapper">
+
+      {% if data['owner'] == 'true'%}
+      {% else %}
+      <form method="post" action="add-group?editgroup=false" class="form">
+         <button class="govuk-button moj-button-menu__item govuk-button--secondary moj-page-header-actions__action" data-module="govuk-button">
+           Add group
+         </button>
+       </form>
+      {% endif %}
+
+
+
+
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<!--
+
+<div class="moj-filter__selected govuk-!-padding-left-5 govuk-!-padding-right-5 govuk-!-padding-top-5  govuk-!-margin-bottom-3 filter-box-color">
+    <form>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds  govuk-!-padding-top-1">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="nameNomsIdCrn">
+                        Search by group name or owner name
+                    </label>
+                    <input class="govuk-input govuk-!-padding-right-0" id="nameNomsIdCrn" name="nameNomsIdCrn" type="text" value="" maxlength="50" data-qa="name-or-id-filter">
+                </div>
+            </div>
+            <div class="govuk-grid-column-one-quarter">
+                <div class="govuk-!-padding-top-6 govuk-!-padding-left-0 govuk-!-margin-left-0">
+                    <button data-prevent-double-click="true" class="govuk-button govuk-button--primary govuk-!-margin-top-1" data-module="govuk-button" data-qa="apply-button">
+                    Search
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+-->
+
+<div class="spread-items hide-mobile govuk-!-margin-bottom-3">
+                <div>
+                    <p class="govuk-!-margin-bottom-2">
+
+                      {% if data['owner'] == 'true'%}
+                        <span class="govuk-!-font-weight-bold">2</span> groups
+                      {% else %}
+                        <span class="govuk-!-font-weight-bold">32</span> groups
+                      {% endif %}
+
+                    </p>
+
+                </div>
+                <!-- <div class="spread-items">
+                    <div class="govuk-!-margin-top-0">
+                        <button id="caseload-link" class="csv-link">Download this table (CSV)</button>
+                    </div>
+                    <script>
+                        const link = $("#caseload-link");
+                        link.on("click", function(event) {
+                            window.location = "/view-caseload/csv-download";
+                        });
+                    </script>
+                    <a href="javascript:window.print()" class="govuk-link print-link govuk-!-display-none-print">Print</a>
+                </div> -->
+            </div>
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+
+        <table style="font-size: 18px" class="govuk-table" data-module="moj-sortable-table">
+
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+
+        <th scope="col" class="govuk-table__header">Group name</th>
+
+
+        <th scope="col" class="govuk-table__header">Owner</th>
+
+        <th scope="col" class="govuk-table__header govuk-table__header--numeric">Number of users</th>
+
+      </tr>
+    </thead>
+
+    <tbody class="govuk-table__body">
+
+      {% if data['owner'] == 'true'%}
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+North+East&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - North East</a></td>
+
+
+        <td class="govuk-table__cell">Ermintrude Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">18</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+North+West&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - North West</a></td>
+
+
+        <td class="govuk-table__cell">Ermintrude Smith, Matty Brown</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">18</td>
+
+      </tr>
+
+      {% else %}
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Owners+group" class="govuk-link govuk-!-font-weight-bold">Owners group</a></td>
+
+
+        <td class="govuk-table__cell">Anna Admin</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1897">14</td>
+
+      </tr>
+
+
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Users+not+assigned+to+a+group" class="govuk-link govuk-!-font-weight-bold">Users not in a group</a></td>
+
+
+        <td class="govuk-table__cell">Bill Boss</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1897">18</td>
+
+      </tr>
+
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+East&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - East</a></td>
+
+
+        <td class="govuk-table__cell">John Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1897">18</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+East+Midlands+North&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - East Midlands North</a></td>
+
+
+        <td class="govuk-table__cell">John Smith, Simon Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1913">19</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+East+Midlands+South&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - East Midlands South</a></td>
+
+
+        <td class="govuk-table__cell">Simon Smith, Bob Brown, Fred Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1874">14</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+London&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - London</a></td>
+
+
+        <td class="govuk-table__cell">Mike Jones</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1953">53</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+North+East&emptygroup=true" class="govuk-link govuk-!-font-weight-bold">Prison - North East</a></td>
+
+
+        <td class="govuk-table__cell">Ermintrude Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">0</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+North+West&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - North West</a></td>
+
+
+        <td class="govuk-table__cell">Ermintrude Smith, Bob Brown</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">18</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+South+East&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - South East</a></td>
+
+
+        <td class="govuk-table__cell">Fred Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">12</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+Thames+Valley&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - Thames Valley</a></td>
+
+
+        <td class="govuk-table__cell">Ermintrude Jones</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">15</td>
+
+      </tr>
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+Wales&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - Wales</a></td>
+
+
+        <td class="govuk-table__cell">Ermintrude Jones</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">8</td>
+
+      </tr>
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+West+Midlands&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - West Midlands</a></td>
+
+
+        <td class="govuk-table__cell">John Baker</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">5</td>
+
+      </tr>
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="view-group?groupname=Prison+-+Yorkshire+Humberside&empty=false" class="govuk-link govuk-!-font-weight-bold">Prison - Yorkshire and Humberside</a></td>
+
+
+        <td class="govuk-table__cell">John Baker</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">5</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - East</a></td>
+
+
+        <td class="govuk-table__cell">John Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1897">18</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - East Midlands North</a></td>
+
+
+        <td class="govuk-table__cell">Mike Jones, Simon Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1913">19</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - East Midlands South</a></td>
+
+
+        <td class="govuk-table__cell">Simon Smith, Fred Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1874">14</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - London</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown, Mike Jones</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1953">13</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - North East</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown, Fred Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">18</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - North West</a></td>
+
+
+        <td class="govuk-table__cell">Fred Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">8</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - South East</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown, Fred Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">2</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - Thames Valley</a></td>
+
+
+        <td class="govuk-table__cell">Ermintrude Jones</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">5</td>
+
+      </tr>
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - Wales</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown, Ermintrude Jones</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">18</td>
+
+      </tr>
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - West Midlands</a></td>
+
+
+        <td class="govuk-table__cell">John Baker</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">13</td>
+
+      </tr>
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Probation - Yorkshire and Humberside</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown, John Baker</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">21</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Other - NOAT</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">2</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Other - NCTCCC</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">12</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Other - NIU</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown, Ann Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">21</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Other - JEXU HQ</a></td>
+
+
+        <td class="govuk-table__cell">Ann, Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">4</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Other - Regional Leads</a></td>
+
+
+        <td class="govuk-table__cell">John Jones, Simon Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">6</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Other - Joint hub users / JCTPPH</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">22</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Other - Police (non hub)</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown, Mike Jones, Kerry Kane</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">21</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Other - CT psychologists</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">12</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Other - CT-ARC</a></td>
+
+
+        <td class="govuk-table__cell">Bob Brown, John Smith</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">27</td>
+
+      </tr>
+
+      <tr class="govuk-table__row">
+
+        <td class="govuk-table__cell"><a href="" class="govuk-link govuk-!-font-weight-bold">Other - NSD</a></td>
+
+
+        <td class="govuk-table__cell">Ann Ainsworth, Bob Brown</td>
+
+        <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1889">13</td>
+
+      </tr>
+  {% endif %}
+
+    </tbody>
+  </table>
+
+
+
+  <!--    <nav class="moj-pagination" aria-label="Pagination navigation">
+
+        <ul class="moj-pagination__list">
+          <li class="moj-pagination__item  moj-pagination__item--prev">
+          </li>
+
+          <li class="moj-pagination__item  moj-pagination__item--active" aria-label="Page 2 of 30" aria-label="page">1</li>
+
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="#" aria-label="Page 2 of 30">2</a></li>
+
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="#" aria-label="Page 3 of 30">3</a></li>
+
+          <li class="moj-pagination__item moj-pagination__item--dots">…</li>
+
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="#" aria-label="Page 5 of 30">5</a></li>
+
+          <li class="moj-pagination__item  moj-pagination__item--next">
+            <a class="moj-pagination__link" href="">Next<span class="govuk-visually-hidden"> page</span></a>
+          </li>
+        </ul>
+        <p class="moj-pagination__results">Showing <b>10</b> to <b>20</b> of <b>30</b> pages</p>
+      </nav>-->
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

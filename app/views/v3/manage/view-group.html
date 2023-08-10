@@ -1,0 +1,592 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">TACT cases</a>
+    </li>
+
+    {% if data['role'] == 'admin'%}
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Manage users and groups</a>
+      </li>
+
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="manage-groups">Manage groups</a>
+        </li>
+        {% else %}
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="manage-groups">Manage groups</a>
+        </li>
+
+    {% endif %}
+
+
+
+
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="moj-page-header-actions">
+
+      <div class="moj-page-header-actions__title">
+        <h1 class="govuk-heading-l">{{ data['groupname'] }}</h1>
+      </div>
+
+
+      <div class="moj-page-header-actions__actions">
+
+        <div class="moj-button-menu">
+          <div class="moj-button-menu__wrapper">
+
+         <!--   <a href="#" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+              Change details
+            </a>-->
+
+{% if data['groupname'] == "Owners group" or data['groupname'] == "Users not assigned to a group" %}
+{% else %}
+
+            {% if data['role'] == 'groupowner'%}
+
+            <a href="add-new-request" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+              Add user
+            </a>
+
+
+            {% else %}
+
+            <a href="add-group?editgroup=true" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+              Change the group name
+            </a>
+
+            {% if data['emptygroup'] == 'true'%}
+            <!-- <a href="areyousure-group" role="button" draggable="false" class="govuk-button--warning govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+              Delete group
+            </a> -->
+
+            <a href="areyousure-group" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+              Delete group
+            </a>
+
+            {% else %}
+            <a href="warning-remove" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+              Delete group
+            </a>
+
+            {% endif %}
+
+            {% endif %}
+
+            {% endif %}
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    </div>
+    <div class="govuk-grid-column-full">
+
+      {% if data['role'] != 'admin'%}
+      <!-- <p>The owners of this group are <strong><a href="view-user?name=John+Smith&admingroups=true">John Smith</a></strong> and <strong><a href="view-user?name=Ermintrude+Jones&admingroups=true">Ermintrude Jones</a></strong>.</p> -->
+      <p>The owners of this group are John Smith and Ermintrude Jones.</p>
+
+      {% endif %}
+
+
+      {% if data['emptygroup'] == 'true'%}
+
+      <p>There are no users in this user group.</p>
+
+      {% else %}
+
+      <div class="spread-items hide-mobile govuk-!-margin-bottom-3">
+                      <div>
+                          <p class="govuk-!-margin-bottom-2">
+                              <span class="govuk-!-font-weight-bold">12</span> users
+                          </p>
+
+                      </div>
+                      <!-- <div class="spread-items">
+                          <div class="govuk-!-margin-top-0">
+                              <button id="caseload-link" class="csv-link">Download this table (CSV)</button>
+                          </div>
+                          <script>
+                              const link = $("#caseload-link");
+                              link.on("click", function(event) {
+                                  window.location = "/view-caseload/csv-download";
+                              });
+                          </script>
+                          <a href="javascript:window.print()" class="govuk-link print-link govuk-!-display-none-print">Print</a>
+                      </div> -->
+                  </div>
+
+                  {% if data['role'] == 'admin' %}
+
+                  <table style="font-size: 18px" id="view-caseload" class="govuk-table view-caseload tablesorter tablesorter-default tablesorterf4469144cd29a" role="grid">
+                      <thead class="govuk-table__head">
+                      <tr class="govuk-table__row tablesorter-headerRow" role="row">
+                          <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="0" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Name: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Name<i class="tablesorter-icon"></i></div></th>
+                          <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="1" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Prison number or CRN: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Email address<i class="tablesorter-icon"></i></div></th>
+                          <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="2" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Location: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Access<i class="tablesorter-icon"></i></div></th>
+                          <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="2" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Location: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Additional access<i class="tablesorter-icon"></i></div></th>
+
+                      </tr>
+                      </thead>
+
+                      <tbody class="govuk-table__body" aria-live="polite" aria-relevant="all">
+
+
+
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                    <a href="view-user?name=Bob+Brown&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Bob Brown</a>
+                                  </td>
+                                  <td class="govuk-table__cell">bob.brown@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">
+                                  {% if data['deactivated'] == 'true'%}
+                                  <span class="moj-badge moj-badge--red">Deactivated</span>
+                                  {% else %}
+                                  Read all but no update
+                                  {% endif %}
+                                  </td>
+                                  <td class="govuk-table__cell hide-mobile">
+
+                                  </td>
+
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Carl+Cooper&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Carl Cooper</a>
+                                  </td>
+                                  <td class="govuk-table__cell">carl.cooper@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Read all but no update</td>
+                                  <td class="govuk-table__cell hide-mobile"></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Dan+Elliot&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Dan Elliot</a>
+                                  </td>
+                                  <td class="govuk-table__cell">dan.elliot@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Full operational use</td>
+                                  <td class="govuk-table__cell hide-mobile">User group owner</td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Fiona+Jones&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Fiona Jones</a>
+                                  </td>
+                                  <td class="govuk-table__cell">fiona.jones@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=John+Smith&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">John Smith</a>
+                                  </td>
+                                  <td class="govuk-table__cell">john.smith@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Larry+Henry&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Larry Henry</a>
+                                  </td>
+                                  <td class="govuk-table__cell">larry.henry@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile">CIM Approver</td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Matty+Smith&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Matty Smith</a>
+                                  </td>
+                                  <td class="govuk-table__cell">matty.smith@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile">User group owner</td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Norman+Brown&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Norman Brown</a>
+                                  </td>
+                                  <td class="govuk-table__cell">norman.brown@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Olas+Summers&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Olaf Summers</a>
+                                  </td>
+                                  <td class="govuk-table__cell">olaf.summers@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Peter+Pepper&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Peter Pepper</a>
+                                  </td>
+                                  <td class="govuk-table__cell">peter.pepper@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Full operational use</td>
+                                  <td class="govuk-table__cell hide-mobile"></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Quentin+Jones&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Quentin Jones</a>
+                                  </td>
+                                  <td class="govuk-table__cell">quentin.jones@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Roger+Reanalds&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Roger Reanalds</a>
+                                  </td>
+                                  <td class="govuk-table__cell">roger.reanalds@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile">CIM Approver</td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      <a href="view-user?name=Sam+Smith&admingroups=true" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Sam Smith</a>
+                                  </td>
+
+                                  <td class="govuk-table__cell">sam.smith@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"></td>
+
+
+                              </tr>
+
+
+
+                      </tbody>
+                  </table>
+                  {% else %}
+                  <table style="font-size: 18px" id="view-caseload" class="govuk-table view-caseload tablesorter tablesorter-default tablesorterf4469144cd29a" role="grid">
+                      <thead class="govuk-table__head">
+                      <tr class="govuk-table__row tablesorter-headerRow" role="row">
+                          <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="0" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Name: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Name<i class="tablesorter-icon"></i></div></th>
+                          {% if data['role'] == 'groupowner'%}
+                          {% else %}
+                          <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="1" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Prison number or CRN: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">User name<i class="tablesorter-icon"></i></div></th>
+                          {% endif %}
+                          <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="1" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Prison number or CRN: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Email address<i class="tablesorter-icon"></i></div></th>
+                          <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="1" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Location: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Account<i class="tablesorter-icon"></i></div></th>
+                          <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="2" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Location: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Access<i class="tablesorter-icon"></i></div></th>
+                          <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="2" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Location: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner"><i class="tablesorter-icon"></i></div></th>
+
+                      </tr>
+                      </thead>
+
+                      <tbody class="govuk-table__body" aria-live="polite" aria-relevant="all">
+
+
+                        {% if data['remove'] == 'yes' %}
+                        {% else %}
+
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                    Bob Brown
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">BBROWN_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">bob.brown@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Probation</td>
+                                  <td class="govuk-table__cell">
+                                  {% if data['deactivated'] == 'true'%}
+                                  <span class="moj-badge moj-badge--red">Deactivated</span>
+                                  {% else %}
+                                  Read all but no update
+                                  {% endif %}
+                                  </td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+
+                              </tr>
+                              {% endif %}
+
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      Carl Cooper
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">CCOOPER_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">carl.cooper@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Probation</td>
+                                  <td class="govuk-table__cell">Read all but no update</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                    Dan Elliot
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">DELLIOT_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">dan.elliot@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Prison</td>
+                                  <td class="govuk-table__cell">Full operational use</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      Fiona Jones
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">FJONES_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">fiona.jones@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Prison</td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                    John Smith
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">JSMITH_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">john.smith@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">External</td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      Larry Henry</a>
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">LHENRY_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">larry.henry@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Prison</td>
+                                  <td class="govuk-table__cell">View Profile page only<br>CIM Approver</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                      Matty Smith
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">MSMITH_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">matty.smith@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Probation</td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                    Norman Brown
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">NBROWN_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">norman.brown@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Prison</td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                    Olaf Summers
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">OSUMMER_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">olaf.summers@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">Prevent</td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                    Peter Pepper
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">PPEPPER_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">peter.pepper@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">External</td>
+                                  <td class="govuk-table__cell">Full operational use</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                    Quentin Jones
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">QJONES_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">quentin.jones@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">External</td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                    Roger Reanalds
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">RREANAALDS_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">roger.reanalds@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">External</td>
+                                  <td class="govuk-table__cell">View Profile page only<br>CIM Approver</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+                              </tr>
+                              <tr class="govuk-table__row odd" role="row">
+                                  <td class="govuk-table__cell">
+                                    Sam Smith
+                                  </td>
+                                  {% if data['role'] == 'groupowner'%}
+                                  {% else %}
+                                  <td class="govuk-table__cell">SSMITH_GEN</td>
+                                  {% endif %}
+                                  <td class="govuk-table__cell">sam.smith@justice.gov.uk </td>
+                                  <td class="govuk-table__cell">External</td>
+                                  <td class="govuk-table__cell">View Profile page only</td>
+                                  <td class="govuk-table__cell hide-mobile"><a title="Remove user pathfinder user" href="areyousure-remove-user">Remove access to Pathfinder</a></td>
+
+
+                              </tr>
+
+
+
+                      </tbody>
+                  </table>
+<!--
+                  <details class="govuk-details" data-module="govuk-details">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        Help with job titles
+                      </span>
+                    </summary>
+                    <div class="govuk-details__text">
+                      Explaination of acronyms:<br>
+                      Prison (Full operational use)<br>
+                      Probation (Full operational use)<br>
+
+                      External (View profile page only)<br>
+
+                      FIM (View profile page only)<br>
+
+                      Prevent (View profile page only)
+
+                    </div>
+                  </details> -->
+
+
+
+
+                  {% endif %}
+
+
+
+
+
+{% endif %}
+
+  {% if data['role'] == 'groupowner'%}
+    <p class="govuk-body"><a href="manage-groups" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
+    Back to your groups
+  </a></p>
+  {% else %}
+    <p class="govuk-body"><a href="manage-groups" role="button" draggable="false" class="govuk-link" data-module="govuk-button">
+    Back to manage groups
+  </a></p>
+
+
+  {% endif %}
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+{% endblock %}

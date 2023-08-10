@@ -1,0 +1,118 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+          {% if data['new'] == 'true'%}
+
+          {% else %}
+          <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+            </li>
+          {% endif %}
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="edit-permissions0?name=Bob+Brown">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  {% if data['new'] == 'true'%}
+  <h1 class="govuk-heading-l">Enter the new user's details</h1>
+  {% else %}
+  <h1 class="govuk-heading-l">Change {{ data['name'] }}'s details</h1>
+  {% endif %}
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="user-name">
+      Username
+    </label>
+    {% if data['new'] == 'true'%}
+    <input class="govuk-input govuk-input--width-20" id="user-name" name="user-name" type="text">
+    {% else %}
+    <input class="govuk-input govuk-input--width-20" id="user-name" name="user-name" value="BBROWN_GEN" type="text">
+    {% endif %}
+  </div>
+
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="first-name">
+      First name
+    </label>
+    {% if data['new'] == 'true'%}
+    <input class="govuk-input govuk-input--width-20" id="first-name" name="first-name" type="text">
+    {% else %}
+    <input class="govuk-input govuk-input--width-20" id="first-name" name="first-name" value="Bob" type="text">
+    {% endif %}
+  </div>
+
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="last-name">
+        Last name
+      </label>
+      {% if data['new'] == 'true'%}
+      <input class="govuk-input govuk-input--width-20" id="last-name" name="last-name" type="text">
+      {% else %}
+      <input class="govuk-input govuk-input--width-20" id="last-name" name="last-name" value="Brown" type="text">
+      {% endif %}
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="email">
+        Email address
+      </label>
+      {% if data['new'] == 'true'%}
+      <input class="govuk-input govuk-input--width-30" id="email" name="email" type="text">
+      {% else %}
+      <input class="govuk-input govuk-input--width-30" id="email" name="email" value="bob.brown@justice.gov.uk" type="text">
+      {% endif %}
+    </div>
+
+<div class="moj-button-menu">
+<div class="moj-button-menu__wrapper">
+
+
+
+  <button role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+    Continue
+  </button>
+
+  <a href="search" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+    Cancel
+  </a>
+
+</form>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

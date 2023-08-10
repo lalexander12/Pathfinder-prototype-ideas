@@ -1,0 +1,89 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+
+
+
+
+
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Manage  users and user groups</a>
+      </li>
+
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+
+  </ol>
+</div> -->
+
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="edit-search-answer">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">
+    <span class="govuk-caption-l">Add user to Pathfinder</span>
+    Search</h1>
+    <div class="moj-filter__selected govuk-!-padding-left-5 govuk-!-padding-right-5 govuk-!-padding-top-5  govuk-!-margin-bottom-3 filter-box-color">
+      <form>
+          <div class="govuk-grid-row">
+              <div class="govuk-grid-column-two-thirds  govuk-!-padding-top-1">
+                  <div class="govuk-form-group">
+                      <label class="govuk-label" for="nameNomsIdCrn">
+                          Search by name, user name, user ID or email address
+                      </label>
+                      <input class="govuk-input govuk-!-padding-right-0" id="nameNomsIdCrn" name="nameNomsIdCrn" type="text" value="" maxlength="50" data-qa="name-or-id-filter">
+                  </div>
+              </div>
+              <div class="govuk-grid-column-one-quarter">
+                  <div class="govuk-!-padding-top-6 govuk-!-padding-left-0 govuk-!-margin-left-0">
+                      <button data-prevent-double-click="true" class="govuk-button govuk-button--primary govuk-!-margin-top-1" data-module="govuk-button" data-qa="apply-button">
+                      Search
+                      </button>
+                  </div>
+              </div>
+          </div>
+  
+  
+      </form>
+      
+  </div>
+
+  <div class="spread-items hide-mobile govuk-!-margin-bottom-3 govuk-!-margin-top-3">
+ 
+        <p class="govuk-!-margin-bottom-2">
+            <span class="govuk-!-font-weight-bold">0</span> results
+        </p>
+
+    </div>
+
+
+</form>
+
+{% endblock %}

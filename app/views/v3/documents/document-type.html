@@ -1,0 +1,83 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+
+
+{% endblock %}
+
+{% block content %}
+
+
+{% include "../includes/nominal-snippet.html" %}
+
+
+
+<div class="govuk-width-container">
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <!-- <form action="document-type-answer" method="post" novalidate> -->
+
+        <form action="document-state" method="post" novalidate>
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  What type of document do you want to upload?
+                </h1>
+              </legend>
+              <div class="govuk-radios" data-module="govuk-radios">
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="document-type" name="document-type" type="radio" value="erg">
+                  <label class="govuk-label govuk-radios__label" for="document-type">
+                    Extremism Risk Guidance (ERG)
+                  </label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="document-type-2" name="document-type" type="radio" value="pgf">
+                  <label class="govuk-label govuk-radios__label" for="document-type-2">
+                    Pathfinder Guidance Framework (PGF)
+                  </label>
+                </div>
+
+                <div class="govuk-radios__item">
+                  <!-- <input class="govuk-radios__input" id="document-type-3" name="document-type" type="radio" value="text" data-aria-controls="conditional-document-type-3"> -->
+                  <input class="govuk-radios__input" id="document-type-3" name="document-type" type="radio" value="other">
+                  <label class="govuk-label govuk-radios__label" for="document-type-3">
+                    Other
+                  </label>
+                </div>
+
+                <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-document-type-3">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="other-document-type">
+                      Enter document type
+                    </label>
+                    <input class="govuk-input govuk-!-width-one-third" id="other-document-type" name="other-document-type" type="tel" autocomplete="tel">
+                  </div>
+                </div>
+
+
+              </div>
+            </fieldset>
+          </div>
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+{% endblock %}

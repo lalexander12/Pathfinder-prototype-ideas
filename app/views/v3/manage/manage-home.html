@@ -1,0 +1,110 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-l">Manage users and groups</h1>
+</div>
+
+<!-- {% include "includes/stats.html" %} -->
+
+
+
+<div class="govuk-width-container">
+  <ul class="govuk-grid-row card-group">
+
+
+        {% if data['admin-lite'] == 'yes' %}
+
+
+
+
+    <li class="govuk-grid-column-one-third card-group__item">
+
+         <div class="card card--clickable" data-test="search">
+             <h2 class="govuk-heading-m card__heading">
+                 <a class="govuk-link govuk-link--no-visited-state card__link" href="view-caseload">View and manage caseload</a>
+             </h2>
+             <p class="govuk-body card__description">View your Pathfinder admin caseload</p>
+         </div>
+
+     </li>
+     {% endif %}
+
+      <li class="govuk-grid-column-one-third card-group__item">
+
+          <div class="card card--clickable" data-test="view">
+              <h2 class="govuk-heading-m card__heading">
+                  <a class="govuk-link govuk-link--no-visited-state card__link" href="manage-users">Manage users</a>
+              </h2>
+              <p class="govuk-body card__description">Add users and edit existing details</p>
+          </div>
+
+      </li>
+
+      <li class="govuk-grid-column-one-third card-group__item">
+
+        <div class="card card--clickable" data-test="refer">
+            <h2 class="govuk-heading-m card__heading">
+                <a class="govuk-link govuk-link--no-visited-state card__link" href="manage-groups?Owner=false">Manage groups</a>
+            </h2>
+            <p class="govuk-body card__description">Edit group details</p>
+        </div>
+
+    </li>
+
+    {% if data['stats'] == 'yes' %}
+
+    <li class="govuk-grid-column-one-third card-group__item">
+
+         <div class="card card--clickable" data-test="search">
+             <h2 class="govuk-heading-m card__heading">
+                 <a class="govuk-link govuk-link--no-visited-state card__link" href="manage-stats">View statistics</a>
+             </h2>
+             <p class="govuk-body card__description">View nominal stats and performance indicators</p>
+         </div>
+
+     </li>
+     {% endif %}
+
+
+<!--    <li class="govuk-grid-column-one-third card-group__item">
+
+        <div class="card card--clickable" data-test="search">
+            <h2 class="govuk-heading-m card__heading">
+                <a class="govuk-link govuk-link--no-visited-state card__link" href="">Manage permission templates</a>
+            </h2>
+            <p class="govuk-body card__description">View and edit the templates that you can use to assign permissions to a user</p>
+        </div>
+
+    </li>-->
+
+
+
+
+  </ul>
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,304 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="index">Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="view-caseload">My caseload</a>
+        </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div id="actions-container" class="nominal-home-section-container govuk-grid-row">
+
+
+
+    <div class="govuk-grid-column-full">
+
+      {% if data['ideology'] == 'It is unclear yet if they have an ideology'%}
+
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+                        <p class="govuk-notification-banner__heading">
+                            You have not updated this person's ideology yet. All adopted nominals that have an active, dormant review, or dormant status must have an ideology on their profile.
+
+                            {% if data['ideologyversion'] == 'option1'%}
+                            <a class="govuk-notification-banner__link" href="./ideology/update" data-qa="update-ideology-link"> Update ideology</a>
+
+                            {% elseif data['ideologyversion'] == 'option2'%}
+                            <a class="govuk-notification-banner__link" href="./ideology/view" data-qa="update-ideology-link"> Update ideology</a>
+
+                            {% else %}
+                            <a class="govuk-notification-banner__link" href="./ideology/view-multiple" data-qa="update-ideology-link"> Update ideology</a>
+
+                            {% endif %}
+
+
+                        </p>
+                    </div>
+        </div>
+
+      {% elif data['ideologytype'] == 'Unclear yet if they have an ideology'%}
+
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+                        <p class="govuk-notification-banner__heading">
+                            You have not updated this person's ideology yet. All adopted nominals that have an active, dormant review, or dormant status must have an ideology on their profile.
+                            <a class="govuk-notification-banner__link" href="#" data-qa="update-ideology-link"> Update ideology</a>
+
+                            <!-- {% if data['ideologyversion'] == 'option1'%}
+                            <a class="govuk-notification-banner__link" href="./ideology/update" data-qa="update-ideology-link"> Update ideology</a>
+
+                            {% elseif data['ideologyversion'] == 'option2'%}
+                            <a class="govuk-notification-banner__link" href="./ideology/view" data-qa="update-ideology-link"> Update ideology</a>
+
+                            {% else %}
+                            <a class="govuk-notification-banner__link" href="./ideology/view-multiple" data-qa="update-ideology-link"> Update ideology</a>
+
+                            {% endif %} -->
+                        </p>
+                    </div>
+        </div>
+
+      {% elif data['update'] == 'true'%}
+
+
+      {% else %}
+
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+                        <p class="govuk-notification-banner__heading">
+                            You have not updated this person's ideology yet. All adopted nominals that have an active, dormant review, or dormant status must have an ideology on their profile.
+                            <a class="govuk-notification-banner__link" href="#" data-qa="update-ideology-link"> Update ideology</a>
+
+                            <!-- {% if data['ideologyversion'] == 'option1'%}
+                            <a class="govuk-notification-banner__link" href="./ideology/update" data-qa="update-ideology-link"> Update ideology</a>
+
+                            {% elseif data['ideologyversion'] == 'option2'%}
+                            <a class="govuk-notification-banner__link" href="./ideology/view" data-qa="update-ideology-link"> Update ideology</a>
+
+                            {% else %}
+                            <a class="govuk-notification-banner__link" href="./ideology/view-multiple" data-qa="update-ideology-link"> Update ideology</a>
+
+                            {% endif %} -->
+                        </p>
+                    </div>
+        </div>
+
+        {% endif %}
+
+        <h1 style="float:left" class="govuk-heading-l">Jones, Bob</h1>
+        <div class="govuk-!-margin-top-2">
+        <p class="govuk-!-margin-left-5" style="float:left"><a href="#">View nominal profile on the Digital Prison Service</a></p>
+        <p style="float:right"><a href="manage-profile">Manage profile</a></p>
+        </div>
+
+        <div  style="clear:both" class="govuk-grid-column-one-quarter">
+        <div style="width: 200px">
+            <img src="/public/images/image.png" alt="Headshot of Brown, Bob" style="float:left"  width="100%" data-qa="offender-image">
+
+
+      </div>
+    </div>
+
+
+      <div class="govuk-grid-column-one-quarter">
+
+                 <p class="govuk-!-font-weight-bold">Prison No.<br>
+                 <span class="govuk-body" data-qa="prison-number">A8139DY</span></p>
+
+                 <p class="govuk-!-font-weight-bold">CRN<br>
+                 <span class="govuk-body" data-qa="crn">not entered</span></p>
+
+                 <p class="govuk-!-font-weight-bold">PNC<br>
+                 <span class="govuk-body" data-qa="pnc">not entered</span></p>
+
+                 <p class="govuk-!-font-weight-bold">Date of Birth<br>
+                 <span class="govuk-body" data-qa="dob">04/04/1978</span></p>
+
+                 <p class="govuk-!-font-weight-bold">Location<br>
+                 <span class="govuk-body" data-qa="prison-description">Moorland (HMP &amp; YOI)</span><br>
+
+                 <span class="govuk-body" data-qa="living-unit">1-3-004</span></p>
+
+                 <p class="govuk-!-font-weight-bold">Probation release area<br>
+                 <div class="govuk-body" data-qa="ldu">not entered</div></p>
+
+                 <p class="govuk-!-font-weight-bold">Community Offender Manager<br>
+                 <span class="govuk-body" data-qa="COM">not entered</span></p>
+
+                 <p class="govuk-!-font-weight-bold">CT Officer<br>
+                 <span class="govuk-body" data-qa="ct-officer">None</span></p>
+         </div>
+
+         <div class="govuk-grid-column-one-quarter">
+
+                      <p class="govuk-!-font-weight-bold">Imprisonment Status<br>
+                      <span class="govuk-body" data-qa="imprisonment-status">ORA FTR Schedule 15 Offender</span></p>
+
+                      <p class="govuk-!-font-weight-bold">Category<br>
+
+                      <span class="govuk-body">Uncategorised</span><br>
+
+                      <a class="govuk-body" href="/manage-caseload/recats" target="_blank">View categorisations</a></p>
+
+                      <p class="govuk-!-font-weight-bold">Main Offence<br>
+                      <span class="govuk-body" data-qa="offence">Act as crew of aircraft when under influence of drink / drug impairing capacity</span></p>
+
+
+                      <p class="govuk-!-font-weight-bold">Nationality<br>
+                      <span class="govuk-body" data-qa="nationality">not entered</span></p>
+
+                      <p class="govuk-!-font-weight-bold">Responsible Immigration Team<br>
+                      <span class="govuk-body" data-qa="immigration-team">
+
+                              not entered
+
+                      </span></p>
+
+                      <p class="govuk-!-font-weight-bold">Religion<br>
+                      <span class="govuk-body" data-qa="religion">not entered</span></p>
+
+                      <div class="govuk-form-group">
+
+                          <p class="govuk-!-font-weight-bold">Ideology<br>
+
+                            {% if data['update'] == 'true'%}
+
+                            <span class="govuk-body" data-qa="ideology-text">{{ data['ideology'] }} - {{ data['sub-ideology'] }}</span></p>
+
+                            {% else %}
+
+                            <span class="govuk-body" data-qa="ideology-text">Not yet identified</span></p>
+
+                            {% endif %}
+
+                            <p><a href="#">Update ideology</a></p>
+
+<!--
+                            {% if data['ideologyversion'] == 'option1'%}
+                            <p><a href="./ideology/update">Update ideology</a></p>
+
+                            {% elseif data['ideologyversion'] == 'option2'%}
+                          <p><a href="./ideology/view">Update ideology (alt design)</a></p>
+                            {% else %}
+                          <p><a href="./ideology/view-multiple">Update ideology (multiple)</a></p>
+                            {% endif %} -->
+
+
+                  </div>
+              </div>
+
+              <div class="govuk-grid-column-one-quarter">
+
+
+                           <p class="govuk-!-font-weight-bold">Calculated Release Date<br>
+                           <span class="govuk-body" data-qa="calculated-release-date">24/06/2010</span></p>
+
+                           <p class="govuk-!-font-weight-bold">HDC eligibility date</p><br>
+                           <span class="govuk-body" data-qa="hdc-date">not entered</span></p>
+
+                           <p class="govuk-!-font-weight-bold">Parole eligibility date</p><br>
+                           <span class="govuk-body" data-qa="parole-eligibility-date">not entered</span></p>
+
+                           <p class="govuk-!-font-weight-bold">Licence Expiry Date</p><br>
+                           <span class="govuk-body" data-qa="licence-expiry-date">16/09/2015</span></p>
+
+                           <p class="govuk-!-font-weight-bold">Sentence Expiry Date</p><br>
+                           <span class="govuk-body" data-qa="sentence-expiry-date">16/09/2015</span></p>
+
+                           <p class="govuk-!-font-weight-bold">Post-sentence supervision date</p><br>
+                           <span class="govuk-body" data-qa="post-sentence-supervision-date">not entered</span></p>
+                   </div>
+
+
+
+
+    <div style="clear:both" class="spread-items">
+        <div class="govuk-!-margin-top-0">
+
+        </div>
+
+        <a href="javascript:window.print()" class="govuk-link print-link govuk-!-display-none-print">Print</a>
+    </div>
+
+    <hr class="govuk-!-margin-bottom-6">
+
+    <div id="intelligence-actions-container" class="nominal-home-section-container govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
+
+              {% include "./includes/nominal-blocks.html" %}
+
+
+            <!--Documents-->
+            <div class="nominal-home-panel govuk-!-display-none-print" data-qa="documents">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                  {% if data['documentupload1'] == "true" %}
+                  <a class="govuk-link block govuk-link--no-visited-state" href="./documents/documents-list">
+                  {% else %}
+                  <a class="govuk-link block govuk-link--no-visited-state" href="./documents/documents-list">
+
+                  <!-- <a class="govuk-link block govuk-link--no-visited-state" href="./documents/document-type"> -->
+                  {% endif %}
+
+                        Uploaded documents
+                    </a>
+                </h2>
+                <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+
+    <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">View or upload documents, including ERG and PGF assessments.</p>
+
+
+
+
+      {% if data['documentupload2'] == "true" %}
+      <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">2 uploaded document</p>
+
+    {% elseif data['documentupload1'] == "true" %}
+    <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">1 uploaded document.</p>
+
+    {% else %}
+    <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">No documents</p>
+    {% endif %}
+
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+{% endblock %}

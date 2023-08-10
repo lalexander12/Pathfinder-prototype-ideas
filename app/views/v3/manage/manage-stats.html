@@ -1,0 +1,152 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+Nominal statistics    </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-l">Nominal statistics
+</h1>
+</div>
+
+
+{% include "includes/stats.html" %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h2 class="govuk-heading-m">Historical statistics</h2>
+
+      <form method="get">
+        <div class="govuk-!-display-inline-block">
+
+          <div class="date-picker-container">
+
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="fromDate">
+                From
+              </label>
+
+              <input class="govuk-input date-input hasDatepicker" id="fromDate" name="fromDate" type="text" autocomplete="off" data-disable-future-date="true">
+            </div>
+
+          </div>
+
+        </div>
+        <div class="govuk-!-display-inline-block govuk-!-margin-left-2">
+
+          <div class="date-picker-container">
+
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="toDate">
+                To
+              </label>
+
+              <input class="govuk-input date-input hasDatepicker" id="toDate" name="toDate" type="text" autocomplete="off" data-disable-future-date="true">
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <button class="govuk-button govuk-!-display-inline-block govuk-!-margin-left-2
+        govuk-!-margin-top-6" data-module="govuk-button">
+        Update
+      </button>
+
+    </form>
+  </div>
+</div>
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+           <div class="govuk-!-width-two-thirds govuk-!-margin-top-6">
+
+
+
+    <h3  class="govuk-heading-m">Referrals to security</h3>
+    <table class="govuk-table" id="security" style="font-size: 18px">
+        <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Manual</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Automatic</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
+        </tr>
+     <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Flagged</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1</td>
+        </tr>
+        <tr class="govuk-table__row">
+             <td class="govuk-table__cell govuk-!-font-weight-bold">Total</td>
+             <td class="govuk-table__cell govuk-!-font-weight-bold govuk-table__cell--numeric">5</td>
+           </tr>
+        </tbody>
+      </table>
+
+
+      <h3  class="govuk-heading-m">Average duration</h3>
+<p>All recategorisations get sent to security.</p>
+<table class="govuk-table" id="timeliness" style="font-size: 18px">
+    <tbody class="govuk-table__body">
+
+      <tr class="govuk-table__row ">
+        <td class="govuk-table__cell">Assessment started to sent to security</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric"> 12 days</td>
+      </tr>
+      <tr class="govuk-table__row ">
+        <td class="govuk-table__cell">Sent to security to security review complete</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric"> 23 days</td>
+      </tr>
+      <tr class="govuk-table__row ">
+        <td class="govuk-table__cell">Security review complete to approval complete</td>
+        <td class="govuk-table__cell govuk-table__cell--numeric"> 2 days</td>
+      </tr>
+      <tr class="govuk-table__row ">
+        <td class="govuk-table__cell">Assessment started to approval complete</td>
+        <td class="govuk-table__cell  govuk-table__cell--numeric"> 55 days</td>
+      </tr>
+
+
+    </tbody>
+  </table>
+</div>
+</div>
+
+</div>
+
+{% endblock %}

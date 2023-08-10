@@ -1,0 +1,114 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+
+
+{% endblock %}
+
+{% block content %}
+
+{% include "../includes/nominal-snippet.html" %}
+
+
+
+
+
+
+
+<div class="govuk-width-container">
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% if data['document-type'] == 'erg' %}
+        <form action="document-upload" method="post" novalidate>
+          {% elseif data['document-state'] == 'initial' %}
+          <form action="document-initial-eligibility" method="post" novalidate>
+
+          {% else %}
+          <form action="document-review-eligibility" method="post" novalidate>
+          {% endif %}
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+
+              {% if data['document-type'] == 'erg' %}
+
+              When was the ERG completed?
+              {% elseif data['document-type'] == 'pgf' %}
+              When was the PGF completed?
+
+              {% else %}
+              When was the initial PGF completed?
+
+
+
+              {% endif %}
+
+                </h1>
+              </legend>
+
+            <div id="document-complete-date-hint" class="govuk-hint">
+
+              {% if data['document-type'] == 'erg' %}
+              This is the date the ERG was completed, not the date it was uploaded
+        {% else %}
+              This is the date the PGF was completed, not the date it was uploaded
+              {% endif %}
+
+              
+              </div>
+
+              <div class="govuk-date-input" id="document-complete">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="document-complete-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="document-complete-day" name="document-complete-day" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="document-complete-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="document-complete-month" name="document-complete-month" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="document-complete-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="document-complete-year" name="document-complete-year" type="text" inputmode="numeric">
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            </fieldset>
+          </div>
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+{% endblock %}

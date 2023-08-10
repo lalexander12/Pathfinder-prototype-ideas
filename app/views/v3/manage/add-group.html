@@ -1,0 +1,154 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<a href="manage-groups" class="govuk-back-link govuk-!-margin-top-5">Back</a>
+
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="manage-groups">Manage groups</a>
+      </li>
+
+
+  </ol>
+</div> -->
+
+{% endblock %}
+
+{% block content %}
+
+
+
+  {% if data['editgroup'] == 'true' %}
+
+  <form method="post" action="confirmation-group-edit">
+
+  {% else %}
+  <form method="post" action="confirmation-group">
+
+  {% endif %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['editgroup'] == 'true' %}
+  <h1 class="govuk-heading-l">Change the group name</h1>
+  <div id="event-name-hint" class="govuk-hint">
+    Please follow the naming convention. For example, Prison - North East, Probation - South Wales, or, Other - JEXU 
+  </div>
+    {% else %}
+    <h1 class="govuk-heading-l">Enter the group name</h1>
+    <div id="event-name-hint" class="govuk-hint">
+      Please follow the naming convention. For example, Prison - North East, Probation - South Wales, or, Other - JEXU 
+    </div>
+    {% endif %}
+
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="event-name">
+  </label>
+  {% if data['editgroup'] == 'true' %}
+  <input class="govuk-input" id="event-name" name="event-name" type="text" value="{{ data['groupname'] }}">
+  {% else %}
+  <input class="govuk-input" id="event-name" name="event-name" type="text">
+  {% endif %}
+
+</div>
+<!--
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend">
+      Type of group
+    </legend>
+    <div class="govuk-radios" data-module="govuk-radios">
+      {% if data['editgroup'] == 'true' %}
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" checked value="england">
+        <label class="govuk-label govuk-radios__label" for="where-do-you-live">
+          Prison
+        </label>
+      </div>
+      {% else %}
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="where-do-you-live" name="where-do-you-live" type="radio" value="england">
+        <label class="govuk-label govuk-radios__label" for="where-do-you-live">
+          Prison
+        </label>
+      </div>
+      {% endif %}
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+        <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+          Probation
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="where-do-you-live-3" name="where-do-you-live" type="radio" value="wales">
+        <label class="govuk-label govuk-radios__label" for="where-do-you-live-3">
+          Other
+        </label>
+      </div>
+
+    </div>
+  </fieldset>
+</div>
+
+-->
+
+<div class="moj-button-menu">
+<div class="moj-button-menu__wrapper">
+
+
+
+
+
+  <div class="govuk-button-group">
+
+
+  {% if data['editgroup'] == 'true' %}
+
+  <button class="govuk-button" data-module="govuk-button">
+    Save change
+  </button>
+  {% else %}
+
+  <button class="govuk-button" data-module="govuk-button">
+    Save group
+  </button>
+  {% endif %}
+
+
+  <a class="govuk-link" href="view-user">Cancel</a>
+</div>
+
+
+
+</form>
+
+
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

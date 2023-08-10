@@ -1,0 +1,362 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+    {% if data['admin-lite'] == 'yes' %}
+
+    {% endif %}
+
+    {% if data['role'] == 'groupowner' and data['admin-lite'] == 'yes' %}
+
+    {% else %}
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+    {% endif %}
+
+
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+          {% if data['new'] == 'true' %}
+          {% else %}
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+          </li>
+          {% endif %}
+
+  </ol>
+</div> -->
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+<form method="post" action="edit-permissions-answer">
+
+<!-- {% if data['new'] == 'false' and data['addon'] == 'Owner'%}
+<form method="post" action="usergroupowner">
+
+{% elif data['new'] == 'false'%}
+<form method="post" action="edit-cya">
+  {% else %}
+  <form method="post" action="usergroup">
+
+{% endif%} -->
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['new'] == 'true'%}
+  <h1 class="govuk-heading-l">Assign {{ data['name'] }}'s access</h1>
+  {% else %}
+  <h1 class="govuk-heading-l">Change {{ data['name'] }}'s access</h1>
+  {% endif %}
+
+  <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h1 class="govuk-fieldset__heading">
+        Access types
+      </h1>
+    </legend>
+    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name" name="permission" type="radio" value="Read profile only" {{ checked("permission", "View profile page only") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name">
+          Read profile only
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+          {% if data['new'] == 'true'%}
+        <input class="govuk-radios__input" id="changed-name-2" name="permission" type="radio" value="Read all, no update">
+        {% else %}
+        <input class="govuk-radios__input" id="changed-name-2" name="permission" checked type="radio" value="Read all, no update" {{ checked("permission", "Read all but no update") }}>
+        {% endif %}
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Read all, no update
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-3" name="permission" type="radio" value="Read all, limited update" {{ checked("permission", "Read and limited update") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name-3">
+          Read all, limited update
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-5" name="permission" type="radio" value="Full use" {{ checked("permission", "Full use") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name-5">
+          Full use
+        </label>
+      </div>
+      {% if data['new'] != 'true'%}
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-4" name="permission" type="radio" value="Remove access to Pathfinder" {{ checked("permission", "suspend") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name-4">
+          Remove access to Pathfinder
+        </label>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </fieldset>
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h1 class="govuk-fieldset__heading">
+        Additional access
+      </h1>
+    </legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="addon" name="addon" type="checkbox" value="Owner" {{ checked("addon", "Owner") }}>
+        <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+          User group owner
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="addon-cim" name="addon-cim" type="checkbox" value="CIM Approver" {{ checked("addon", "CIM Approver") }}>
+        <label class="govuk-label govuk-checkboxes__label" for="organisation">
+          Controls Intervention Matrix (CIM) approver
+        </label>
+      </div>
+
+
+
+    </div>
+
+
+  </fieldset>
+</div>
+
+
+
+<div class="govuk-button-group">
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+  <a class="govuk-link" href="search">Cancel</a>
+</div>
+
+</form>
+
+<div class="govuk-grid-row govuk-!-margin-top-5">
+ 
+  <h2 class="govuk-heading-l">Help with access types</h2>
+  <p>
+    Different access levels allow users to perform different tasks.
+  </p>
+
+  <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+    <div class="govuk-accordion__section">
+      <div class="govuk-accordion__section-header">
+        <h3 class="govuk-accordion__section-heading">
+          <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+            Read profile only
+          </span>
+        </h3>
+      </div>
+      <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+        <p>
+          Can search Pathfinder and read:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+        
+        <li>nominal profile information      
+        <li>caseload filters     
+        <li>referral records (pre-adoption)      
+        <li>caseloads      
+        <li>how release dates are worked out      
+        <li>guidance      
+        <li>sentence and release date
+        </li>
+      </ul>
+      </div>
+    </div>
+    <div class="govuk-accordion__section">
+      <div class="govuk-accordion__section-header">
+        <h3 class="govuk-accordion__section-heading">
+          <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+            Read all, no update
+          </span>
+        </h3>
+      </div>
+      <div id="accordion-default-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-2">
+        <p class='govuk-body'>
+           The user has the same access as ‘read profile only’ and can also:
+          </p>
+          <ul class="govuk-list govuk-list--bullet">
+          
+          <li>download CSV files      
+          <li>print caseload      
+          <li>get notifications
+          </li>
+          </ul>
+          <p>
+          The user can also <strong>read</strong>:
+          </p>
+          <ul class="govuk-list govuk-list--bullet">
+          
+          <li>offence history      
+          <li>staff caseloads      
+          <li>pre-sentence nominals (Formerly known as missing nominals)      
+          <li>nominal TACT status    
+          <li>caseload filters      
+          <li>referral records (pre adoption)      
+          <li>status and reason for inclusion (post adoption)      
+          <li>ideology      
+          <li>meeting notes      
+          <li>intelligence reports      
+          <li>actions, control and interventions      
+          <li>case notes      
+          <li>case timeline      
+          <li>CIM assessment (Controls Intervention Matrix)      
+          <li>uploaded documents (for example, ERG and PGF)      
+          <li>link to DPS profiles (prison users only)      
+          <li>categorisation and re-categorisation status (prison users only)
+          </li>
+        </ul>
+               
+      </div>
+    </div>
+    <div class="govuk-accordion__section">
+      <div class="govuk-accordion__section-header">
+        <h3 class="govuk-accordion__section-heading">
+          <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+            Read all, limited update
+          </span>
+        </h3>
+      </div>
+      <div id="accordion-default-content-3" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-3">
+        <p class='govuk-body'>The user has the same access as ‘read all, no update’ and can also:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+      <li>upload documents (for example, ERG and PGF)
+      <li>add case notes
+      <li>change staff caseloads      
+      <li>change caseload filters         
+      <li>delete documents owned by user
+      </li>
+    </ul>
+      </div>
+    </div>
+    <div class="govuk-accordion__section">
+      <div class="govuk-accordion__section-header">
+        <h3 class="govuk-accordion__section-heading">
+          <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+            Full use
+          </span>
+        </h3>
+      </div>
+      <div id="accordion-default-content-4" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-4">
+        <p class='govuk-body'>The user has the same access as ‘Read all, limited update’ and can also <strong>edit</strong>:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+      <li>staff caseloads      
+      <li>pre-sentence nominals (Formerly known as missing nominals)      
+      <li>nominal TACT status     
+      <li>caseload filters      
+      <li>referral records (pre adoption)      
+      <li>status and reason for inclusion (post adoption)      
+      <li>ideology      
+      <li>meeting notes      
+      <li>intelligence reports      
+      <li>actions, control and interventions      
+      <li>case notes      
+      <li>case timeline      
+      <li>CIM assessment (Controls Intervention Matrix)      
+      <li>uploaded documents (for example, ERG and PGF)
+      </li>
+      </ul>
+      <p>
+      Prison only
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+      <li>refer nominal from prison      
+      <li>link to DPS profiles
+      <li>check categorisation and re-categorisation
+      </li>
+    </ul>
+      <p>
+      Probation only
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+        <li>
+        refer nominal from community
+      </li>
+    </ul>
+      </div>
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h3 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="accordion-default-heading-5">
+              Remove access to pathfinder
+            </span>
+          </h3>
+        </div>
+        <div id="accordion-default-content-5" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-5">
+          <p>The user account is deactivated but can still be viewed by a Pathfinder admin. The user cannot login to Pathfinder anymore.</p>
+        </div>
+      </div>
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-6">
+                Group Owner
+              </span>
+            </h3>
+          </div>
+        </div>
+          <div id="accordion-default-content-6" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-6">
+            <p>The user manages a group. They can ask to add and remove Pathfinder users.</p>       
+            </p>
+          </div>
+        </div>
+        <div class="govuk-accordion__section">
+          <div class="govuk-accordion__section-header">
+            <h3 class="govuk-accordion__section-heading">
+              <span class="govuk-accordion__section-button" id="accordion-default-heading-7">
+                Controls Intervention Matrix approver
+              </span>
+            </h3>
+          </div>
+          <div id="accordion-default-content-7" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-7">
+            <p>The user can approve a Controls Intervention Matrix.</p>
+            </p>
+          </div>
+        </div>  
+</div>
+
+</div>
+
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,185 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+
+  </ol>
+</div> -->
+
+
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+
+{% endblock %}
+
+{% block content %}
+
+  <form action="edit-select-answer" method="post" novalidate>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">Select the user you want to add to Pathfinder</h1>
+
+
+<table class="govuk-table" style="font-size: 18px">
+    <caption class="govuk-table__caption govuk-table__caption--m"></caption>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header"></th>
+        <th scope="col" class="govuk-table__header">Name</th>
+        <th scope="col" class="govuk-table__header">Username</th>
+        <th scope="col" class="govuk-table__header">Email address</th>
+        <th scope="col" class="govuk-table__header">Account</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+            <div class="govuk-radios__item  govuk-radios--small">
+              <input class="govuk-radios__input" id="select-user" name="select-user" type="radio" value="{% if data['name'] == null %}Steve Miller  {% else %} {{ data['name'] }} {% endif %}">
+              <label class="govuk-label govuk-radios__label" for="select-user">
+              </label>
+            </div>
+      </th>
+
+
+
+        <td class="govuk-table__cell">{% if data['name'] == null %}Steve Miller  {% else %} {{ data['name'] }} {% endif %}<br>
+
+          </td>
+        <td class="govuk-table__cell">SMILLER_GEN</td>
+        <td class="govuk-table__cell">steve.miller@justice.gov.uk</td>
+        <td class="govuk-table__cell">Prison - NOMIS</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div class="govuk-radios__item  govuk-radios--small">
+            <input class="govuk-radios__input" id="select-user" name="select-user" type="radio" value="SteveMiller">
+            <label class="govuk-label govuk-radios__label" for="select-user">
+            </label>
+          </div>
+        </th>
+        <td class="govuk-table__cell">{% if data['name'] == null %}Steve Miller  {% else %} {{ data['name'] }} {% endif %}<br>
+          <strong class="govuk-tag govuk-tag--green">
+              Active
+            </strong>
+          </td>
+        <td class="govuk-table__cell">SMILLER_GEN</td>
+        <td class="govuk-table__cell">s.miller@justice.gov.uk</td>
+        <td class="govuk-table__cell">Prison - NOMIS</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div class="govuk-radios__item  govuk-radios--small">
+            <input class="govuk-radios__input" id="select-user" name="select-user" type="radio" value="{% if data['name'] == null %}Steve Miller  {% else %} {{ data['name'] }} {% endif %}">
+            <label class="govuk-label govuk-radios__label" for="select-user">
+            </label>
+          </div>
+        </th>
+        <td class="govuk-table__cell">{% if data['name'] == null %}Steve Miller  {% else %} {{ data['name'] }} {% endif %}<br>
+
+          </td>
+        <td class="govuk-table__cell">SMILLER_GEN2</td>
+        <td class="govuk-table__cell">steve.miller2@justice.gov.uk</td>
+        <td class="govuk-table__cell">Prison - NOMIS</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav class="moj-pagination" id="pagination-label">
+
+    <p class="govuk-visually-hidden" aria-labelledby="pagination-label">Pagination navigation</p>
+  
+    <ul class="moj-pagination__list">
+            <li class="moj-pagination__item moj-pagination__item--active"></li>
+          </ul>
+      <p class="moj-pagination__results">Showing <b>1</b> to <b>3</b> of <b>3</b> results</p>
+    </nav>
+<!--
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="select-user-hint">
+
+    <div id="select-user-hint" class="govuk-hint">
+
+    </div>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="select-user" name="select-user" type="radio" value="{% if data['name'] == null %}Steve Miller  {% else %} {{ data['name'] }} {% endif %}" aria-describedby="select-user-item-hint">
+        <label class="govuk-label govuk-radios__label" for="select-user">
+        {% if data['name'] == null %}Steve Miller  {% else %} {{ data['name'] }} {% endif %} - SMILLER_GEN
+        </label>
+        <div id="select-user-item-hint" class="govuk-hint govuk-radios__hint">
+          steve.miller@justice.gov.uk
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="select-user" name="select-user" type="radio" value="Robert Miller" aria-describedby="select-user-item-hint">
+        <label class="govuk-label govuk-radios__label" for="select-user">
+          Robert Miller - SMILLER_GEN
+        </label>     <strong class="govuk-tag govuk-tag--green">
+                Active
+              </strong>
+        <div id="select-user-item-hint" class="govuk-hint govuk-radios__hint">
+            Robert.brown@justice.gov.uk
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="select-user-3" name="select-user" type="radio" value="{% if data['name'] == null %}Steve Miller  {% else %} {{ data['name'] }} {% endif %}" aria-describedby="select-user-item-hint">
+        <label class="govuk-label govuk-radios__label" for="select-user-3">
+          {% if data['name'] == null %}Steve Miller  {% else %} {{ data['name'] }} {% endif %} - SMILLER2_GEN
+        </label>
+        <div id="select-user-3-item-hint" class="govuk-hint govuk-radios__hint">
+            Robert.brown2@justice.gov.uk
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>
+ -->
+
+ <br>
+<p><a href="edit-search">Search again</a> if you cannot find the user you're looking for.</p>
+
+
+<div class="govuk-button-group">
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+  <a class="govuk-link" href="manage-users">Cancel</a>
+</div>
+
+
+</form>
+
+
+
+</div>
+</div>
+{% endblock %}

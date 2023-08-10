@@ -1,0 +1,198 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+
+
+{% endblock %}
+
+{% block content %}
+
+
+{% include "../includes/nominal-snippet.html" %}
+
+
+
+<div class="govuk-width-container">
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+
+
+
+
+          {% if data['documentupload2'] == "true" or data['documentupload1'] == "true" %}
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  Uploaded documents
+                </h1>
+              </legend>
+
+            </fieldset>
+          </div>
+          <div class="mobile-x-scroll govuk-!-margin-bottom-9">
+            <table id="{{ 'caseListBand' + bandNumber }}" class="govuk-table case-list-sort tablesorter">
+                <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Document name</th>
+                    <th scope="col" class="govuk-table__header">Document type</th>
+                    <th scope="col" class="govuk-table__header">File size</th>
+                    <th scope="col" class="govuk-table__header">Uploaded by</th>
+                    <th scope="col" class="govuk-table__header">Date uploaded</th>
+                    <th scope="col" class="govuk-table__header"></th>
+                </tr>
+                </thead>
+                <tbody class="govuk-table__body"> 
+
+
+
+
+                  {% if data['documentupload3'] == "true" %}
+
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                      <a href="cya">erg_review__2365466_070423.doc</a>
+                    </td>
+
+                    <td class="govuk-table__cell">Review ERG</td>
+                    <td class="govuk-table__cell">19.2&nbsp;kB</td>
+                    <td class="govuk-table__cell">John Thirlaway</td>
+                    <td class="govuk-table__cell">10/05/2023&nbsp;-&nbsp;14:32</td>
+                        <td class="govuk-table__cell">
+                          <a href="#">Delete</a>
+                        </td>
+                  </tr>
+                  {% endif %}
+
+
+
+                  {% if data['documentupload2'] == "true" %}
+
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="cya">pgf_initial__2365466_050423.doc</a>
+                    </td>
+                    <td class="govuk-table__cell">Initial PGF</td>
+                    <td class="govuk-table__cell">24.7&nbsp;kB</td>
+                    <td class="govuk-table__cell">John Thirlaway</td>
+                    <td class="govuk-table__cell">10/05/2023&nbsp;-&nbsp;13:52</td>
+                        <td class="govuk-table__cell">
+                            <a href="#">Delete</a>
+                        </td>
+                  </tr>
+
+                  {% endif %}
+
+                  {% if data['document-type'] == "other" %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                      <a href="cya">documentfilename.doc</a>
+                    </td>
+
+                    <td class="govuk-table__cell">Other</td>
+                    <td class="govuk-table__cell">21.2&nbsp;kB</td>
+                    <td class="govuk-table__cell">John Thirlaway</td>
+                    <td class="govuk-table__cell">10/06/2023&nbsp;-&nbsp;12:52</td>
+                        <td class="govuk-table__cell">
+                          <a href="#">Delete</a>
+                        </td>
+                  </tr>
+
+                  {% else %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                      <a href="cya">erg_initial__2365466_070423.doc</a>
+                    </td>
+
+
+
+
+
+
+                    <td class="govuk-table__cell">Initial ERG</td>
+                    <td class="govuk-table__cell">21.2&nbsp;kB</td>
+                    <td class="govuk-table__cell">John Thirlaway</td>
+                    <td class="govuk-table__cell">10/05/2023&nbsp;-&nbsp;12:52</td>
+                        <td class="govuk-table__cell">
+                          <a href="#">Delete</a>
+                        </td>
+                  </tr>
+
+                  {% endif %}
+
+
+
+                </tbody>
+            </table>
+          </div>
+
+          <h2 class="govuk-heading-m">Upload a document</h2>
+
+          <p>You can upload files:</p>
+        <ul class="govuk-list govuk-list--bullet">
+        <li>one at a time</li>
+        <li>100 MB or smaller</li>
+        <li>in DOC, PDF or TXT formats</li>
+      </ul>
+
+
+
+
+        {% else %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">
+                Uploaded documents
+              </h1>
+            </legend>
+
+          </fieldset>
+          <p>No documents to view</p>
+
+        </div>
+
+        <h2 class="govuk-heading-m">Upload a document</h2>
+        <p>You can upload files:</p>
+        <ul class="govuk-list govuk-list--bullet">
+        <li>one at a time</li>
+        <li>100 MB or smaller</li>
+        <li>in DOC, PDF or TXT formats</li>
+      </ul>
+
+
+
+
+        {% endif %}
+
+
+
+
+        <div class="govuk-form-group govuk-!-margin-top-6">
+          <p>
+                    <a href="document-type" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+                      Upload a document
+                  </a>
+                </p>
+        </div>
+
+
+
+        <!-- <a href="/nominal" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Back to profile
+        </a> -->
+
+
+  </main>
+</div>
+
+
+
+
+
+{% endblock %}

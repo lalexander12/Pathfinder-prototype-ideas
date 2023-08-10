@@ -1,0 +1,72 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row govuk-!-margin-bottom-6">
+  <div class="govuk-grid-column-one-half">
+      <h1 class="govuk-heading-l">Uploaded documents</h1>
+  </div>
+  {% if not user.isReadOnly %}
+      <div class="govuk-grid-column-one-half text-align-right">
+          {{ govukButton({
+              text: 'Upload new document',
+              classes: 'rightAlignedButton',
+              href: '/v1/documents/uploadMulti',
+              preventDoubleClick: true
+          }) }}
+      </div>
+  {% endif %}
+</div>
+
+<div class="mobile-x-scroll govuk-!-margin-bottom-9">
+  <table id="{{ 'caseListBand' + bandNumber }}" class="govuk-table case-list-sort tablesorter">
+      <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Document name</th>
+          <th scope="col" class="govuk-table__header">File type</th>
+          <th scope="col" class="govuk-table__header">File size</th>
+          <th scope="col" class="govuk-table__header">Uploaded by</th>
+          <th scope="col" class="govuk-table__header">Date uploaded</th>
+          <th scope="col" class="govuk-table__header"></th>
+      </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+              <a href="/nominal/263/documents/get?file=IvlpqTb.jpeg">IvlpqTb.jpeg</a>
+          </td>
+          <td class="govuk-table__cell">Image&nbsp;jpg</td>
+          <td class="govuk-table__cell">21.2&nbsp;kB</td>
+          <td class="govuk-table__cell">John Thirlaway</td>
+          <td class="govuk-table__cell">28/07/2022&nbsp;-&nbsp;13:52</td>
+              <td class="govuk-table__cell">
+                  <a href="/nominal/263/documents/delete-confirm?file=IvlpqTb.jpeg">Delete</a>
+              </td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+      {{ govukButton({
+          text: 'Back to profile',
+          classes: 'grey-button',
+          href: '/nominal/' + nominalData.id,
+          preventDoubleClick: true
+      }) }}
+  </div>
+  <div class="govuk-grid-column-one-half">
+      {% if numberOfDeletedDocuments > 0 and writePermission %}
+          <a class="govuk-link--no-visited-state float-right"
+             href="/nominal/{{ nominalData.id }}/documents/restore-list">
+              Restore documents marked for deletion
+          </a>
+      {% endif %}
+  </div>
+</div>
+{% endblock %}

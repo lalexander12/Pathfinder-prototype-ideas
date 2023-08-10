@@ -1,0 +1,101 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+        {% if data['new'] == 'true' %}
+        {% else %}
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+        </li>
+        {% endif %}
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="edit-permissions">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['new'] == 'true'%}
+  <h1 class="govuk-heading-l">Select {{ data['name'] }}'s Pathfinder role</h1>
+  {% else %}
+  <h1 class="govuk-heading-l">Change {{ data['name'] }}'s Pathfinder role</h1>
+  {% endif %}
+
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h1 class="govuk-fieldset__heading">
+        Role
+      </h1>
+    </legend>
+    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="organisation" name="role" type="radio" value="Pathfinder user" {{ checked("role", "Pathfinder user") }}>
+        <label class="govuk-label govuk-radios__label" for="organisation">
+          Pathfinder user
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="organisation-2" name="role" type="radio" value="Pathfinder administrator" {{ checked("role", "Pathfinder administrator") }}>
+        <label class="govuk-label govuk-radios__label" for="organisation-2">
+          Pathfinder administrator
+        </label>
+      </div>
+
+
+    </div>
+
+  </fieldset>
+</div>
+
+
+<div class="moj-button-menu">
+<div class="moj-button-menu__wrapper">
+
+
+
+  <button role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+    Continue
+  </button>
+
+  <a href="search" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+    Cancel
+  </a>
+
+</form>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

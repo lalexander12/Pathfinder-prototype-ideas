@@ -1,0 +1,273 @@
+<div class="govuk-!-margin-bottom-3 nominal-home-panel" data-qa="status">
+<h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+
+<a class="govuk-link block govuk-link--no-visited-state" href="#status-history">
+    Status and reason for inclusion
+</a>
+
+</h2>
+<div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+<p class="govuk-!-font-size-16" data-qa="status-history-description">ghbjk</p>
+<p class="govuk-!-font-size-16 govuk-!-padding-bottom-3" data-qa="status-history-date"><span class="govuk-!-font-weight-bold">Date of change:</span> 28 Feb 2023
+</p>
+</div>
+</div>
+
+<div class="govuk-!-margin-bottom-3 nominal-home-panel" data-qa="meetings">
+<h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+
+<a class="govuk-link block govuk-link--no-visited-state" data-qa="meetings-link" href="#meetings">
+    Meetings
+</a>
+
+</h2>
+<div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+
+<p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">There are no meeting notes about this nominal</p>
+
+</div>
+</div>
+
+<div class="govuk-!-margin-bottom-3 nominal-home-panel" data-qa="intelligence">
+<h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+
+<a class="govuk-link block govuk-link--no-visited-state" data-qa="intel-link" href="#intel">
+    Intelligence
+</a>
+
+</h2>
+
+
+{% if data['summarynotes'] == "No" %}
+
+
+
+<div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+
+
+<div>
+<div class="govuk-grid-row">
+    <p class="govuk-!-font-size-16 govuk-grid-column-one-half govuk-!-margin-bottom-0 govuk-!-font-weight-bold">
+        Summary</p>
+
+</div>
+
+
+<div class="gov govuk-!-margin-bottom-3 govuk-!-padding-bottom-3">
+
+
+    <div>
+        <p class="govuk-!-font-size-16">No intelligence summary written</p>
+    </div>
+
+
+
+</div>
+
+<p class="govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-0">Reports</p>
+
+
+
+<p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">You have not selected any summary reports</p>
+
+
+</div>
+
+
+
+</div>
+
+{% else %}
+
+
+
+
+<div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+
+  {% if data['permissions'] == 'profileonly'%}
+  <div>
+      <div class="govuk-grid-row">
+          <p class="govuk-!-font-size-16 govuk-grid-column-one-half govuk-!-margin-bottom-0 govuk-!-font-weight-bold">
+              Summary</p>
+
+
+      </div>
+
+      <div>
+          <p class="govuk-!-font-size-16">Profile view only content will be here.</p>
+      </div>
+
+  </div>
+  {% else %}
+
+        <div>
+            <div class="govuk-grid-row">
+                <p class="govuk-!-font-size-16 govuk-grid-column-one-half govuk-!-margin-bottom-0 govuk-!-font-weight-bold">
+                    Summary</p>
+
+                    <p class="govuk-!-font-size-16 govuk-grid-column-one-half govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="bold">Added:</span> 27 Apr 2023 - 10:21
+                    </p>
+
+            </div>
+
+            <div>
+                <p class="govuk-!-font-size-16">This will be shown as part of the nominal's overview This will be shown as part of the nominal's overview<br>
+This will be shown as part of the nominal's overview</p>
+            </div>
+
+        </div>
+        {% endif %}
+
+        <p class="govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-0">Reports</p>
+
+
+        {% if data['permissions'] == 'profileonly'%}
+        <div class="govuk-!-padding-top-3">
+
+                <div class="govuk-!-margin-bottom-3 underlined-section govuk-!-padding-bottom-3">
+                  <div>
+                      <p class="govuk-!-font-size-16">Profile view only content will be here.</p>
+                  </div>
+
+                </div>
+
+        </div>
+        {% else %}
+
+            <div class="govuk-!-padding-top-3">
+
+                    <div class="govuk-!-margin-bottom-3 underlined-section govuk-!-padding-bottom-3">
+                        <div class="govuk-grid-row">
+                            <p class="govuk-grid-column-one-half govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="bold">IR Number/Ref:</span> test
+                            </p>
+                            <p class="govuk-grid-column-one-half govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="bold">IR/Info Date:</span> 01 Jan 2022
+                            </p>
+                        </div>
+                        <div>
+                            <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0">testtesttesttesttesttesttest testtesttest. testtesttest test test test</p>
+                        </div>
+                    </div>
+
+            </div>
+            {% endif %}
+
+    </div>
+
+    {% endif %}
+
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+
+<div class="govuk-grid-column-one-half">
+<div class="govuk-!-margin-bottom-3 nominal-home-panel" data-qa="actions">
+<h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+
+<a class="govuk-link block govuk-link--no-visited-state" href="#actions">
+    Actions, controls and interventions
+</a>
+
+</h2>
+<div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+
+<p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">There are no outstanding or flagged ACI's for this nominal</p>
+
+
+
+
+
+
+</div>
+</div>
+
+<div class="nominal-home-panel govuk-!-margin-bottom-3 " data-qa="caseNotes">
+<h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+
+<a class="govuk-link block govuk-link--no-visited-state" href="#case-notes">
+    Pathfinder case notes
+</a>
+
+</h2>
+<div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+
+  {% if data['summarynotes'] == "No" %}
+  <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">You have not flagged any case notes
+      for this nominal</p>
+
+      {% else %}
+
+      {% if data['permissions'] == 'profileonly'%}
+      <div class="govuk-!-margin-bottom-3 underlined-section govuk-!-padding-bottom-3">
+        <div>
+            <p class="govuk-!-font-size-16">Profile view only content will be here.</p>
+        </div>
+
+      </div>
+      {% else %}
+
+    <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">Flagged case
+        notes</p>
+
+        <div class="gov govuk-!-margin-bottom-3 govuk-!-padding-bottom-3 underlined-section">
+            <p class="govuk-!-font-size-16 govuk-!-font-size-16 govuk-!-margin-bottom-0">Example text from flagged case notes.</p>
+            <br>
+            <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="govuk-!-font-weight-bold">Occurrence date:</span> Wednesday - 04 Jan 2023 - 14:25
+            </p>
+</div>
+    {% endif %}
+
+
+  {% endif %}
+
+
+
+
+</div>
+</div>
+
+<div class="nominal-home-panel govuk-!-margin-bottom-3 " data-qa="timeline">
+<h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+
+<a class="govuk-link block govuk-link--no-visited-state" href="#timeline?fromDate=03/01/2023&amp;toDate=03/04/2023&amp;eventType=intel&amp;eventType=profile&amp;eventType=status&amp;eventType=meeting&amp;eventType=casenote&amp;eventType=location">
+    Timeline
+</a>
+
+</h2>
+<div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+
+<p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">You have not flagged any timeline activity for
+    this nominal</p>
+
+</div>
+</div>
+
+<div class="govuk-!-margin-bottom-3 nominal-home-panel" data-qa="assessments">
+<h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+
+<a class="govuk-link block govuk-link--no-visited-state" href="#review/banding-assessments">
+    CIM Assessment
+</a>
+
+</h2>
+<div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+
+
+
+
+    <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">
+
+            <span class="bold">CIM current status: </span>Awaiting approval
+
+    </p>
+
+
+</div>
+</div>

@@ -1,0 +1,131 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="/index">TACT cases</a>
+    </li>
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-l">TACT cases</h1>
+</div>
+
+<div class="homepage-content">
+<div class="govuk-width-container">
+  <ul class="govuk-grid-row card-group">
+
+    {% if data['role'] == 'caseworker' or data['role'] == 'groupowner' or data['role'] == null' %}
+
+      <li class="govuk-grid-column-one-third card-group__item">
+
+          <div class="card card--clickable" data-test="view">
+              <h2 class="govuk-heading-m card__heading">
+
+                <a class="govuk-link card__link" href="./view-caseload" data-qa="view-caseload-link">Manage your caseload</a>
+              </h2>
+              <p class="govuk-body card__description">View your Pathfinder caseload and manage individuals' details</p>
+          </div>
+
+      </li>
+
+                    {% endif %}
+             
+      <li class="govuk-grid-column-one-third card-group__item">
+
+          <div class="card card--clickable" data-test="search">
+              <h2 class="govuk-heading-m card__heading">
+                  <a class="govuk-link govuk-link--no-visited-state card__link" href="view-caseload">Search Pathfinder</a>
+              </h2>
+              <p class="govuk-body card__description">Search all of the records in Pathfinder</p>
+          </div>
+
+      </li>
+
+      <li class="govuk-grid-column-one-third card-group__item">
+
+        <div class="card card--clickable" data-test="refer">
+            <h2 class="govuk-heading-m card__heading">
+                <a class="govuk-link govuk-link--no-visited-state card__link" href="">Refer from prison</a>
+            </h2>
+            <p class="govuk-body card__description">Search Digital Prison Services for individuals to view and refer</p>
+        </div>
+
+    </li>
+
+    <li class="govuk-grid-column-one-third card-group__item">
+
+      <div class="card card--clickable" data-test="build">
+          <h2 class="govuk-heading-m card__heading">
+              <a class="govuk-link govuk-link--no-visited-state card__link" href="./build-caseload">Build your caseload</a>
+          </h2>
+          <p class="govuk-body card__description">Build your list of cases by prison or by probation area</p>
+      </div>
+
+  </li>
+
+  <li class="govuk-grid-column-one-third card-group__item">
+
+    <div class="card card--clickable" data-test="recat">
+        <h2 class="govuk-heading-m card__heading">
+            <a class="govuk-link govuk-link--no-visited-state card__link" href="">View recategorisations</a>
+        </h2>
+        <p class="govuk-body card__description">View nominals who are due or have just had a recategorisation</p>
+    </div>
+
+</li>
+
+
+
+{% if data['role'] == 'admin' or data['role'] == null %}
+
+<li class="govuk-grid-column-one-third card-group__item">
+
+  <div class="card card--clickable" data-test="support">
+      <h2 class="govuk-heading-m card__heading">
+          <a class="govuk-link govuk-link--no-visited-state card__link" href="./manage/manage-home?owner=false">Manage users and groups</a>
+      </h2>
+      <p class="govuk-body card__description">Change user access and group details</p>
+  </div>
+
+</li>
+
+{% endif %}
+{% if data['role'] == 'groupowner' or data['role'] == null %}
+{% if data['role'] == 'admin' %}
+{% else %}
+
+<li class="govuk-grid-column-one-third card-group__item">
+
+  <div class="card card--clickable" data-test="support">
+      <h2 class="govuk-heading-m card__heading">
+          <a class="govuk-link govuk-link--no-visited-state card__link" href="./manage/manage-groups?owner=true">Manage groups</a>
+      </h2>
+      <p class="govuk-body card__description">View your groups and add or remove users</p>
+  </div>
+
+</li>
+{% endif %}
+
+{% endif %}
+
+  </ul>
+
+</div>
+</div>
+{% endblock %}

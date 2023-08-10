@@ -1,0 +1,40 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+
+{% include "../includes/nominal-snippet.html" %}
+
+
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">You must update the case notes before you can continue</h1>
+        <p class="govuk-body">
+          
+        </p>
+        <p class="govuk-body">
+          <p class="govuk-body"><a href="../nominal" class="govuk-link">Back to Pathfinder profile</a> for Bob Jones.</p>
+
+        </p>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+
+{% endblock %}

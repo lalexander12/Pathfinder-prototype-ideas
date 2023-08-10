@@ -1,0 +1,192 @@
+
+{% extends "layout_dps-signedout.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+</div>
+<div style="height:120px; background-color:#e0eef8" class="moj-filter__selected govuk-!-padding-left-5 govuk-!-padding-right-5 govuk-!-padding-top-5  govuk-!-margin-bottom-3 filter-box-color">
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-s">Select an add on and page to view what users with that add on can see and do  or <a href="template-tiles">view what templates can see or do</a>.</h1>
+
+
+<div style="float:left">
+  <label class="govuk-label" for="sort">
+Add on
+  </label>
+  <select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+    {% if data['template'] == 'approver' %}
+    <option value="template-addon-approver?template=approver" selected>CIM approver</option>
+    <option value="template-addon-groupowner?template=groupowner">Group owner</option>
+    {% elif data['template'] == 'groupowner' %}
+    <option value="template-addon-approver?template=approver">CIM approver</option>
+    <option value="template-addon-groupowner?template=groupowner" selected>Group owner</option>
+    {% else %}
+    <option value="template-addon-approver?template=approver" selected>CIM approver</option>
+    <option value="template-addon-groupowner?template=groupowner">Group owner</option>
+    {% endif %}
+  </select>
+</div>
+
+
+<div style="float:left" class="govuk-!-margin-left-9">
+<label class="govuk-label" for="sort">
+Page
+</label>
+<select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+  <option value="template-addon-approver"  selected>Controls and interventions matrix (CIM) assessment</option>
+</select>
+</div>
+</div>
+
+
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+<div class="govuk-grid-row">
+<div style="clear: both" class="govuk-grid-column-full">
+
+  <div class="basic-details">
+            <div class="govuk-!-margin-right-6">
+                <img src="/public/images/image.png" alt="Headshot of Rolenzo, Eekneeng" style="float:left" height="110" width="90" data-qa="offender-image">
+            </div>
+            <div id="basic-details-content">
+                <div>
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Name</span>
+                        <span data-qa="displayName">Rolenzo, Eekneeng</span>
+                    </p>
+                </div>
+
+                    <div>
+                        <p>
+                            <span class="govuk-!-font-weight-bold">Prison No.</span>
+                            <span data-qa="nomsId">G4630UU</span>
+                        </p>
+                    </div>
+
+                <div class="hide-mobile">
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Date of Birth</span>
+                        <span data-qa="dob">26/03/1972</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="govuk-!-margin-bottom-0">
+                        <span class="govuk-!-font-weight-bold">Location</span>
+                            <span data-qa="prison-description">Guys Marsh (HMP)</span>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+            <h2 class="govuk-heading-l govuk-!-margin-top-5">Controls and interventions matrix</h2>
+
+
+
+        <div class="govuk-!-margin-bottom-2">
+        <details id="view-cim-reviewed-help" class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text" data-qa="view-cim-reviewed-help-link">When should a CIM be reviewed?</span>
+            </summary>
+            <div class="govuk-details__text">
+                <ul>
+                    <li>significant nominal event</li>
+                    <li>every 6 months</li>
+                    <li>re-categorisation</li>
+                    <li>release upcoming</li>
+                    <li>transfer (prison/area)</li>
+                    <li>recall</li>
+                    <li>end of intervention</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+
+
+                <form method="post">
+                    <input type="hidden" name="_csrf" value="aJoo60AI-Iz1Ara68RNU-9waY4WRulu8I41s">
+                    <input type="hidden" name="nominalId" value="216">
+
+                    <table style="font-size: 18px" id="bandingAssessments" class="govuk-table" data-qa="approval-table">
+                        <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">Date started</th>
+                            <th scope="col" class="govuk-table__header">Created by</th>
+                            <th scope="col" class="govuk-table__header">Status</th>
+                            <th scope="col" class="govuk-table__header"></th>
+                        </tr>
+                        </thead>
+
+                        <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row light-blue-background govuk-!-font-size-19 govuk-!-margin-0">
+                            <td class="govuk-table__cell" data-qa="in-progress-created-date">21/06/2022</td>
+                            <td class="govuk-table__cell" data-qa="in-progress-reviewer">John Thirlaway</td>
+                            <td class="govuk-table__cell" data-qa="in-progress-status">Awaiting approval</td>
+                            <td class="govuk-table__cell">
+                            <a style="border: 5px solid #72f05f" href="#" role="button" draggable="false" class="tooltip govuk-button govuk-button--primary govuk-!-margin-0" data-module="govuk-button" data-qa="approval-btn">
+                              Review<span class="tooltiptext">Only approvers can review and approve a CIM</span>
+                            </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+
+              </div>
+              <div class="govuk-grid-column-full">
+
+                <hr class="govuk-!-margin-bottom-4">
+
+
+
+                <h3 class="govuk-heading-m">CIM history</h3>
+
+                <table style="font-size: 18px" id="bandingAssessments" class="govuk-table" data-qa="cim-history-table">
+
+                    <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Date started</th>
+                        <th scope="col" class="govuk-table__header">Created by</th>
+                        <th scope="col" class="govuk-table__header">Risk banding</th>
+                        <th scope="col" class="govuk-table__header">Needs prioritisation</th>
+                        <th scope="col" class="govuk-table__header">Approval status</th>
+                        <th scope="col" class="govuk-table__header">Approved by</th>
+                        <th scope="col" class="govuk-table__header">Approval date</th>
+                        <th scope="col" class="govuk-table__header"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row no-background" data-qa="history-row-206">
+                            <td class="govuk-table__cell">01/03/2022</td>
+                            <td class="govuk-table__cell">Lisa Rae</td>
+                            <td class="govuk-table__cell">Band 1</td>
+                            <td class="govuk-table__cell">NA</td>
+                            <td class="govuk-table__cell">Reviewed</td>
+                            <td class="govuk-table__cell">Ermintrude Jones</td>
+                            <td class="govuk-table__cell">16/06/2022</td>
+                            <td class="govuk-table__cell">
+                                <a class="govuk-link govuk-link--no-visited-state" href="#">View outcome</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+</div>
+</div>
+</div>
+{% endblock %}

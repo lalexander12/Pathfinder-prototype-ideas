@@ -1,0 +1,466 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+    {% if data['admin-lite'] == 'yes' %}
+
+    {% endif %}
+
+    {% if data['role'] == 'groupowner' and data['admin-lite'] == 'yes' %}
+
+    {% else %}
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+    {% endif %}
+
+
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+          {% if data['new'] == 'true' %}
+          {% else %}
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+          </li>
+          {% endif %}
+
+  </ol>
+</div> -->
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+<form method="post" action="edit-permissions-answer">
+
+<!-- {% if data['new'] == 'false' and data['addon'] == 'Owner'%}
+<form method="post" action="usergroupowner">
+
+{% elif data['new'] == 'false'%}
+<form method="post" action="edit-cya">
+  {% else %}
+  <form method="post" action="usergroup">
+
+{% endif%} -->
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['new'] == 'true'%}
+  <h1 class="govuk-heading-l">Assign {{ data['name'] }}'s access</h1>
+  {% else %}
+  <h1 class="govuk-heading-l">Change {{ data['name'] }}'s access</h1>
+  {% endif %}
+
+  <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+        Access types
+      </h2>
+    </legend>
+    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name" name="permission" type="radio" value="Read profile only" {{ checked("permission", "check profile only") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name">
+          Read profile only
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+          {% if data['new'] == 'true'%}
+        <input class="govuk-radios__input" id="changed-name-2" name="permission" type="radio" value="Read all but no edit">
+        {% else %}
+        <input class="govuk-radios__input" id="changed-name-2" name="permission" Readed type="radio" value="Read all but no edit" {{ checked("permission", "Check all but no edit") }}>
+        {% endif %}
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Read all, no update
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-3" name="permission" type="radio" value="Read all, limited update" {{ checked("permission", "Check all and edit some") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name-3">
+          Read all, limited update
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-5" name="permission" type="radio" value="Full use" {{ checked("permission", "Full use") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name-5">
+          Full use
+        </label>
+      </div>
+      {% if data['new'] != 'true'%}
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-4" name="permission" type="radio" value="Remove access to Pathfinder" {{ checked("permission", "suspend") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name-4">
+          Remove access to Pathfinder
+        </label>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </fieldset>
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+        Additional access
+      </h2>
+    </legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="addon" name="addon" type="checkbox" value="Owner" {{ checked("addon", "Owner") }}>
+        <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+          User group owner
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="addon-cim" name="addon-cim" type="checkbox" value="CIM Approver" {{ checked("addon", "CIM Approver") }}>
+        <label class="govuk-label govuk-checkboxes__label" for="organisation">
+          Controls Intervention Matrix (CIM) approver
+        </label>
+      </div>
+
+
+
+    </div>
+
+
+  </fieldset>
+</div>
+
+
+
+<div class="govuk-button-group">
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+  <a class="govuk-link" href="search">Cancel</a>
+</div>
+
+</form>
+
+<div class="govuk-grid-row govuk-!-margin-top-5">
+
+  <div class="govuk-tabs" data-module="govuk-tabs">
+    <h2 class="govuk-tabs__title">
+      Contents
+    </h2>
+    <ul class="govuk-tabs__list">
+      <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+        <a class="govuk-tabs__tab" href="#past-day">
+          Past day
+        </a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#past-week">
+          Past week
+        </a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#past-month">
+          Past month
+        </a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#past-year">
+          Past year
+        </a>
+      </li>
+    </ul>
+    <div class="govuk-tabs__panel" id="past-day">
+      <h2 class="govuk-heading-l">Past day</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Case manager</th>
+            <th scope="col" class="govuk-table__header">Cases opened</th>
+            <th scope="col" class="govuk-table__header">Cases closed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">David Francis</td>
+            <td class="govuk-table__cell">3</td>
+            <td class="govuk-table__cell">0</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Paul Farmer</td>
+            <td class="govuk-table__cell">1</td>
+            <td class="govuk-table__cell">0</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rita Patel</td>
+            <td class="govuk-table__cell">2</td>
+            <td class="govuk-table__cell">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
+      <h2 class="govuk-heading-l">Past week</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Case manager</th>
+            <th scope="col" class="govuk-table__header">Cases opened</th>
+            <th scope="col" class="govuk-table__header">Cases closed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">David Francis</td>
+            <td class="govuk-table__cell">24</td>
+            <td class="govuk-table__cell">18</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Paul Farmer</td>
+            <td class="govuk-table__cell">16</td>
+            <td class="govuk-table__cell">20</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rita Patel</td>
+            <td class="govuk-table__cell">24</td>
+            <td class="govuk-table__cell">27</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
+      <h2 class="govuk-heading-l">Past month</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Case manager</th>
+            <th scope="col" class="govuk-table__header">Cases opened</th>
+            <th scope="col" class="govuk-table__header">Cases closed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">David Francis</td>
+            <td class="govuk-table__cell">98</td>
+            <td class="govuk-table__cell">95</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Paul Farmer</td>
+            <td class="govuk-table__cell">122</td>
+            <td class="govuk-table__cell">131</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rita Patel</td>
+            <td class="govuk-table__cell">126</td>
+            <td class="govuk-table__cell">142</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-year">
+      <h2 class="govuk-heading-l">Past year</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Case manager</th>
+            <th scope="col" class="govuk-table__header">Cases opened</th>
+            <th scope="col" class="govuk-table__header">Cases closed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">David Francis</td>
+            <td class="govuk-table__cell">1380</td>
+            <td class="govuk-table__cell">1472</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Paul Farmer</td>
+            <td class="govuk-table__cell">1129</td>
+            <td class="govuk-table__cell">1083</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rita Patel</td>
+            <td class="govuk-table__cell">1539</td>
+            <td class="govuk-table__cell">1265</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Help with access
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      <p>
+        <h3 class="govuk-heading-m">
+          Read profile only</h3>
+      
+      
+      <p>
+      Can Search Pathfinder and check:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+      <li>nominal profile information      
+      <li>prison region, community area, banding and status      
+      <li>referral records (pre-adoption)      
+      <li>caseloads      
+      <li>how release dates are worked out      
+      <li>guidance      
+      <li>sentence and release date
+      </li>
+    </ul>
+      <h3 class="govuk-heading-m">Read all, no update</h3>
+      
+        
+      <p>
+      All of the above, and also:
+      </p>
+      <ul>
+      
+      <li>download CSV files      
+      <li>print caseload      
+      <li>get notifications
+      </li>
+      </ul>
+      <p>
+      Can <strong>check:</strong>
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+      <li>offence history      
+      <li>staff caseloads      
+      <li>pre-sentence nominals (Formerly known as missing nominals)      
+      <li>nominal TACT status (aka Manage Profile link)      
+      <li>prison region, community area, banding and status (caseload filters)      
+      <li>referral records (pre adoption)      
+      <li>status and reason for inclusion (post adoption)      
+      <li>ideology      
+      <li>meeting notes      
+      <li>intelligence reports      
+      <li>actions, control and interventions      
+      <li>case notes      
+      <li>case timeline      
+      <li>CIM assessment (Controls Intervention Matrix)      
+      <li>uploaded documents (eg ERG and PGF)      
+      <li>link to DPS profiles (prison users only)
+      
+      <li>categorisation and re-categorisation status (prison users only)
+      </li>
+    </ul>
+      <h3 class="govuk-heading-m">
+         Read all, limited update</h3>
+        <p>
+      All of the above and also <strong>add:</strong>
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+      <li>uploaded documents (eg ERG and PGF)
+      <li>case notes
+      </li>
+      </ul>
+      <p>
+      And <strong>change</strong>:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+      <li>staff caseloads      
+      <li>prison region, community area, banding and status
+      </li>
+      </ul>
+      <p>
+      And <strong>delete:</strong>
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+      <li>documents owned by user
+      </li>
+    </ul>
+      <h3 class="govuk-heading-m">Full use</h3>         
+      
+      <p>
+      All the above and also <strong>edit</strong>:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+      <li>staff caseloads      
+      <li>pre-sentence nominals (Formerly known as missing nominals)      
+      <li>nominal TACT status (aka Manage Profile link)      
+      <li>prison region, community area, banding and status (view caseload filters)      
+      <li>referral records (pre adoption)      
+      <li>status and reason for inclusion (post adoption)      
+      <li>ideology      
+      <li>meeting notes      
+      <li>intelligence reports      
+      <li>actions, control and interventions      
+      <li>case notes      
+      <li>case timeline      
+      <li>CIM assessment (Controls Intervention Matrix)      
+      <li>uploaded documents (eg ERG and PGF)
+      </li>
+      </ul>
+      <p>
+      Prison only
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+      <li>refer nominal from prison      
+      <li>link to DPS profiles
+      <li>check categorisation and re-categorisation
+      </li>
+    </ul>
+      <p>
+      Probation only
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+      
+        <li>
+        refer nominal from community
+      </li>
+    </ul>
+
+    <h3 class="govuk-heading-m">Remove access to pathfinder</h3>
+    <p>The user account moves into a deactivated state but can still be viewed by a Pathfinder admin. User can not login to Pathfinder anymore.</p>
+    <h3 class="govuk-heading-m">User Group Owner</h3>
+    <p>User manages a group. Can request to add and remove Pathfinder users.</p> 
+    
+    
+    <h3 class="govuk-heading-m">Controls Intervention Matrix approver</h3>
+    <p></p>Can approve a Controls Intervention Matrix.</p>
+    
+
+    </div>
+  </details>
+</div>
+
+</div>
+
+
+
+</div>
+{% endblock %}

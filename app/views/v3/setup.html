@@ -1,0 +1,189 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+    Categorisation prototype
+{% endblock %}
+
+{% block beforeContent %}
+
+
+
+
+
+{% endblock %}
+
+{% block content %}
+
+<h1 class="govuk-heading-xl">
+      Pathfinder setup
+    </h1>
+
+<form action="setup-answer" method="post" novalidate>
+
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+      {{ govukRadios({
+        idPrefix: "role",
+        name: "role",
+        fieldset: {
+          legend: {
+            text: "Select user type",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "No selection = Admin"
+        },
+        items: [
+          {
+            value: "caseworker",
+            text: "Caseworker"
+          },
+          {
+            value: "groupowner",
+            text: "Group owner"
+          },
+          {
+            value: "admin",
+            text: "Admin"
+          }
+        ]
+      }) }}
+
+
+            {{ govukRadios({
+              idPrefix: "ideologyversion",
+              name: "ideologyversion",
+              fieldset: {
+                legend: {
+                  text: "Ideology version",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--l"
+                }
+              },
+              hint: {
+                text: "No selection = Idea 1"
+              },
+              items: [
+
+                {
+                  value: "option1",
+                  text: "Idea 1"
+                },
+                {
+                  value: "option2",
+                  text: "Idea 2"
+                }  ,
+                {
+                  value: "option3",
+                  text: "Idea 3"
+                }
+              ]
+            }) }}
+
+
+
+      {{ govukRadios({
+        idPrefix: "ideologystatus",
+        name: "ideologystatus",
+        fieldset: {
+          legend: {
+            text: "Ideology status",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "No selection = unknown"
+        },
+        items: [
+
+          {
+            value: "single",
+            text: "1 ideology"
+          },
+          {
+            value: "multiple",
+            text: "Mulitple ideologies"
+          }
+        ]
+      }) }}
+
+
+
+ {{ govukRadios({
+   idPrefix: "admin-lite",
+   name: "admin-lite",
+   fieldset: {
+     legend: {
+       text: "Show admin improvement",
+       isPageHeading: true,
+       classes: "govuk-fieldset__legend--l"
+     }
+   },
+   hint: {
+     text: "No selection = no"
+   },
+   items: [
+     {
+       value: "yes",
+       text: "Yes"
+     },
+     {
+       value: "no",
+       text: "No"
+     }
+   ]
+ }) }}
+
+{{ govukRadios({
+   idPrefix: "stats",
+   name: "stats",
+   fieldset: {
+     legend: {
+       text: "Shows stats",
+       isPageHeading: true,
+       classes: "govuk-fieldset__legend--l"
+     }
+   },
+   hint: {
+     text: "No selection = no"
+   },
+   items: [
+     {
+       value: "yes",
+       text: "Yes"
+     },
+     {
+       value: "no",
+       text: "No"
+     }
+   ]
+ }) }}
+
+
+
+
+
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+
+    </form>
+
+
+
+
+<div aria-live="polite" role="status" aria-atomic="true" class="govuk-visually-hidden"></div></div>
+
+
+
+    </div>
+</div>
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layout_dps.html" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <p>The prototype has been allow listed in Ingress so it is not viewable on machines outside of the Global Protect VPN. For future usability testing, IP addresses can be added.</p>
+
+    <h2 class="govuk-heading-l govuk-!-margin-bottom-1">Future scope, initial view - LA version 3.1 <span><strong class="govuk-tag govuk-tag--green">In design</strong></span></h2>
+    <p class="govuk-body-s">Last updated: 13 July 2023</p>
+    <p>Versioning has been added to allow us to work on ideology improvements whilst keeping pervious routes.</p>
+    <p>User group admin journey iterated.</p>
+    <p>Added setup screen.</p>
+    <p>File upload (ERG and PGF) iterated.</p>
+    <p>Iterated the group owners journey.</p>
+    <p>Added content for the access types definitions.</p>
+
+    <p><a href="v3/" class="govuk-button govuk-button">Start prototype</a>
+      <a href="v3/index?role=admin" class="govuk-button govuk-button--secondary">View as admin</a>
+      <a href="v3/index?role=groupowner" class="govuk-button govuk-button--secondary">View as user group owner</a><br>
+      <a href="v3/setup">Further setup</a></p>
+
+<hr>
+<h2 class="govuk-heading-l govuk-!-margin-bottom-1">Baseline prototype
+  Version 2<span><strong class="govuk-tag govuk-tag--green">In development</strong></span></h2>
+
+
+<p class="govuk-body-s">11 January 2023</p>
+
+<p class="govuk-body">Slice 3 of the Pathfinder service.</p>
+<p>The prototype contains designs and functionality for the: <a href=" https://dsdmoj.atlassian.net/browse/DSE-795">slice 3 epic</a> and <a href=" https://dsdmoj.atlassian.net/browse/DSE-761">slice 2 epic</a></li>
+</ul>
+
+<p><a href="../v2?permission=Read+all&group=Prison+-+East" class="govuk-button">Start prototype journey slice 3</a><br>
+  <a href="../v2?role=admin" class="govuk-button govuk-button--secondary">View as admin</a><br>
+  <a href="../v2?role=groupowner" class="govuk-button govuk-button--secondary">View as user group owner</a><p>
+
+<p><a href="../v2/manage/template-tiles">View permissions help / guide</a></p>
+
+<!-- <hr>
+  <h2 class="govuk-heading-l govuk-!-margin-bottom-1">Baseline prototype - version 1<span><strong class="govuk-tag govuk-tag--green">In dev</strong></span></h2>
+
+
+    <p class="govuk-body-s">21 November 2022</p>
+
+  <p class="govuk-body">Initial prototype of the Pathfinder service.</p>
+  <p>The prototype contains:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Pathfinder home page</li>
+      <li>View and manage caseload page</li>
+      <li>Basic Nominal Documents</li>
+      <li>Update ideology (concepts)</li>
+      <li>Manage Pathfinder (concepts)</li>
+      <li><a href="../v1/manage/read-all">Manage granular permissions (descoped)</a></li>
+    </ul>
+    <p>The prototype has been whitelisted in Ingress so it is not viewable on machines outside of the Global Protect VPN. For future usability testing, IP addresses can be added.</p>
+  <p><a href="../v1" class="govuk-button govuk-button--secondary">Start prototype journey V1</a></p> -->
+
+
+
+
+
+
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related" role="complementary" style="border-top: 2px solid #1d70b8; padding-top:15px">
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-2" id="-title">Links to related content</h2>
+    <nav role="navigation" aria-labelledby="-title">
+      <ul class="app-related__list" style="padding-left: 0;">
+        <li class="app-related__list-item govuk-!-margin-bottom-3" style="list-style-type:none;">
+          <a class="govuk-link" href="index-history?page=history">Design history</a>
+        </li>
+        <li class="app-related__list-item govuk-!-margin-bottom-3" style="list-style-type:none;">
+        <a href="v3/manage/template-tiles">View permissions help / guide</a>
+        </li>
+        <li class="app-related__list-item govuk-!-margin-bottom-3" style="list-style-type:none;">
+          <a class="govuk-link" href="https://user-guide.cloud-platform.service.justice.gov.uk/documentation/networking/ip-filtering.html#inbound-ip-filtering">Cloud Platform IP Addresses guide</a>
+        </li>
+
+      </ul>
+    </nav>
+    </aside>
+  </div>
+</div>
+{% endblock %}

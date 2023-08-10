@@ -1,0 +1,189 @@
+
+{% extends "layout_dps-signedout.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+</div>
+<div style="height:120px; background-color:#e0eef8" class="moj-filter__selected govuk-!-padding-left-5 govuk-!-padding-right-5 govuk-!-padding-top-5  govuk-!-margin-bottom-3 filter-box-color">
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-s">Select a template and page to view what users with those permissions can see and do  or <a href="template-addon-approver">view what add ons can do</a>.</h1>
+
+
+<div style="float:left">
+  <label class="govuk-label" for="sort">
+Template
+  </label>
+  <select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+    {% if data['template'] == 'readprofile' %}
+    <option value="template-tiles?template=readprofile" selected>View profile page only</option>
+    <option value="template-tiles?template=readall">Read all but not update</option>
+    <option value="template-tiles?template=writelimited">Read & limited update</option>
+    <option value="template-tiles?template=writeall">Full operational use</option>
+    {% elif data['template'] == 'readall' %}
+    <option value="template-tiles?template=readprofile">View profile page only</option>
+    <option value="template-tiles?template=readall" selected>Read all but not update</option>
+    <option value="template-tiles?template=writelimited">Read & limited update</option>
+    <option value="template-tiles?template=writeall">Full operational use</option>
+    {% elif data['template'] == 'writelimited' %}
+    <option value="template-tiles?template=readprofile">View profile page only</option>
+    <option value="template-tiles?template=readall" >Read all but not update</option>
+    <option value="template-tiles?template=writelimited" selected>Read & limited update</option>
+    <option value="template-tiles?template=writeall">Full operational use</option>
+    {% else %}
+    <option value="template-tiles?template=readprofile">View profile page only</option>
+    <option value="template-tiles?template=readall">Read all but not update</option>
+    <option value="template-tiles?template=writelimited">Read & limited update</option>
+    <option value="template-tiles?template=writeall" selected>Full operational use</option>
+    {% endif %}
+  </select>
+</div>
+
+
+<div style="float:left" class="govuk-!-margin-left-9">
+<label class="govuk-label" for="sort">
+Page
+</label>
+<select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+  <option value="template-tiles"  selected>Pathfinder tiles page</option>
+  <option value="template-caseload" >View and manage my caseload</option>
+  <option value="template-profile">Profile</option>
+  <option value="template-tbc">Uploaded documents</option>
+</select>
+</div>
+</div>
+
+
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+<div class="govuk-grid-row">
+  <div style="clear: both" class="govuk-grid-column-full">
+
+
+          <h1 class="govuk-heading-xl govuk-!-margin-top-5" >Pathfinder</h1>
+
+            <ul class="govuk-grid-row card-group">
+
+                <li class="govuk-grid-column-one-third card-group__item">
+                    <div class="card card--clickable" data-test="view-caseload-link">
+                        <h2 class="govuk-heading-m card__heading">
+                                <a class="govuk-link card__link" href="#" data-qa="view-caseload-link">View and manage my caseload</a>
+                        </h2>
+                            <p class="govuk-body card__description">View your Pathfinder caseload and manage individuals' details</p>
+                    </div>
+                </li>
+
+                <li class="govuk-grid-column-one-third card-group__item">
+                  <div class="card card--clickable" data-test="search-pathfinder-link">
+                      <h2 class="govuk-heading-m card__heading">
+                              <a class="govuk-link card__link" href="#" data-qa="search-pathfinder-link">Search pathfinder</a>
+                      </h2>
+                          <p class="govuk-body card__description">Search all of the records in Pathfinder</p>
+                  </div>
+                </li>
+
+                {% if data['template'] == 'writeall' %}
+
+                <li class="govuk-grid-column-one-third card-group__item">
+                  <div class="card card--clickable" data-test="prison-search-link">
+                      <h2 class="govuk-heading-m card__heading">
+                              <a class="govuk-link card__link" href="#" data-qa="prison-search-link">Refer from prison</a>
+                      </h2>
+                          <p class="govuk-body card__description">Search Digital Prison Services for individuals to view and refer</p>
+                  </div>
+                </li>
+
+                {% else %}
+
+                <li class="govuk-grid-column-one-third card-group__item">
+                  <div style="background-color:	#f3f2f1" class="tooltip card card--clickable" data-test="prison-search-link">
+                      <h2 class="govuk-heading-m card__heading">
+                              <a style="color: 	#b1b4b6" class="govuk-link card__link" href="#" data-qa="prison-search-link">Refer from prison</a>
+                      </h2>
+                          <p style="color: 	#b1b4b6" class="govuk-body card__description"><span class="tooltiptext">No access</span>Search Digital Prison Services for individuals to view and refer</p>
+                  </div>
+                </li>
+
+
+                {% endif %}
+
+                <li class="govuk-grid-column-one-third card-group__item">
+                  <div class="card card--clickable" data-test="build-caseload-link">
+                      <h2 class="govuk-heading-m card__heading">
+                              <a class="govuk-link card__link" href="#" data-qa="build-caseload-link">Build my caseload</a>
+                      </h2>
+                          <p class="govuk-body card__description">Build your list of cases by prison or by probation area</p>
+                  </div>
+                </li>
+
+          {% if data['template'] == 'writeall' %}
+                <li class="govuk-grid-column-one-third card-group__item">
+                  <div class="card card--clickable" data-test="missing-nominals-link">
+                      <h2 class="govuk-heading-m card__heading">
+                              <a class="govuk-link card__link" href="#" data-qa="missing-nominals-link">Pre-sentence Nominals</a>
+                      </h2>
+                          <p class="govuk-body card__description">View dashboard of nominals who are in an inactive or invalid probation area or LDU and therefore cannot currently appear in a probation caseload</p>
+                  </div>
+                </li>
+
+                {% else %}
+
+                <li class="govuk-grid-column-one-third card-group__item">
+                  <div style="background-color:	#f3f2f1" class="tooltip card card--clickable" data-test="missing-nominals-link">
+                      <h2 class="govuk-heading-m card__heading">
+                              <a style="color: 	#b1b4b6" class="govuk-link card__link" href="#" data-qa="missing-nominals-link">Pre-sentence Nominals</a>
+                      </h2>
+                          <p style="color: 	#b1b4b6" class="govuk-body card__description"><span class="tooltiptext">No access</span>View dashboard of nominals who are in an inactive or invalid probation area or LDU and therefore cannot currently appear in a probation caseload</p>
+                  </div>
+                </li>
+
+                {% endif %}
+
+              {% if data['template'] == 'readprofile' %}
+                <li class="govuk-grid-column-one-third card-group__item">
+                  <div style="background-color:	#f3f2f1" class="tooltip card card--clickable" data-test="recat-link">
+                      <h2 class="govuk-heading-m card__heading">
+                              <a style="color: 	#b1b4b6" class="govuk-link card__link" href="#" data-qa="recat-link">View recategorisations</a>
+                      </h2>
+                          <p style="color: 	#b1b4b6" class="govuk-body card__description"><span class="tooltiptext">No access</span>View nominals who are due or have just had a recategorisation</p>
+                  </div>
+                </li>
+
+              {% else %}
+
+              <li class="govuk-grid-column-one-third card-group__item">
+                <div class="card card--clickable" data-test="recat-link">
+                    <h2 class="govuk-heading-m card__heading">
+                            <a class="govuk-link card__link" href="#" data-qa="recat-link">View recategorisations</a>
+                    </h2>
+                        <p class="govuk-body card__description">View nominals who are due or have just had a recategorisation</p>
+                </div>
+              </li>
+
+              {% endif %}
+
+                <li class="govuk-grid-column-one-third card-group__item">
+                  <div class="card card--clickable" data-test="support-link">
+                      <h2 class="govuk-heading-m card__heading">
+                              <a class="govuk-link card__link" href="#" data-qa="support-link">Support and feedback</a>
+                      </h2>
+                          <p class="govuk-body card__description">Get help using this service or contact the digital support team</p>
+                  </div>
+                </li>
+
+            </ul>
+
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

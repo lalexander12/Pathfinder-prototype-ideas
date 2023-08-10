@@ -1,0 +1,243 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+
+
+{% endblock %}
+
+{% block content %}
+
+{% include "../includes/nominal-snippet.html" %}
+
+
+
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper " id="main-content" role="main">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds-from-desktop">
+          <h1 class="govuk-heading-l">Check your answers before uploading the document</h1>
+          <!-- <h2 class="govuk-heading-m">Document details</h2> -->
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Document name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['document-type']}}_{{data['document-state']}}_2365466_050423.doc
+
+eee
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <!-- <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> date of birth</span>
+                </a> -->
+              </dd>
+            </div>
+
+
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Type of document
+              </dt>
+              <dd class="govuk-summary-list__value">
+                  {% if data['document-type'] == "erg" %}
+                ERG
+                {% elseif data['document-type'] == "pgf" %}
+                PGF
+                {% else %}
+                  {{data['other-document-type']}}
+                {% endif %}
+
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="document-type">
+                  Change<span class="govuk-visually-hidden"> Type of document</span>
+                </a>
+              </dd>
+            </div>
+
+            {% if data['document-type'] == "erg" or data['document-type' == "pgf" ] %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Initial document
+              </dt>
+              <dd class="govuk-summary-list__value">
+
+                {% if data['document-state'] == "initial" %}
+              Initial
+              {% else %}
+              Review
+              {% endif %}
+                            </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="document-state">
+                  Change<span class="govuk-visually-hidden"> purpose of document</span>
+                </a>
+              </dd>
+            </div>
+
+            {% endif %}
+
+
+                        <div class="govuk-summary-list__row">
+                          <dt class="govuk-summary-list__key">
+                            Date of completion
+                          </dt>
+                          <dd class="govuk-summary-list__value">
+                            {{data['document-complete-day']}}/{{data['document-complete-month']}}/{{data['document-complete-year']}}/
+                          </dd>
+                          <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" href="document-complete-date">
+                              Change<span class="govuk-visually-hidden"> date of completion</span>
+                            </a>
+                          </dd>
+                        </div>
+
+            <!-- {% if data['document-state'] == "initial" %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                {% if data['document-type'] == 'erg' %}
+                Completed within 12 months of sentencing
+                {% else %}
+                Completed within 8 weeks of becoming active on Pathfinder?
+                {% endif %}
+
+              </dt>
+              <dd class="govuk-summary-list__value">
+
+                {{data['document-initial-eligibility']}}
+
+                {% if data['document-type'] == "erg" and data['document-initial-eligibility'] == "No" %}
+                  <br><strong>Reason</strong>:
+              {{data['more-detail']}}
+              {% endif %}
+
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="document-initial-eligibility">
+                  Change<span class="govuk-visually-hidden"> eligibility</span>
+                </a>
+              </dd>
+            </div>
+            {% endif %} -->
+
+
+
+            <!-- {% if data['document-type'] == 'erg' %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Significant Point of Progression
+              </dt>
+              <dd class="govuk-summary-list__value">
+
+                {{data['document-pop']}}
+
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="document-pop">
+                  Change<span class="govuk-visually-hidden"> Significant Point of Progression</span>
+                </a>
+              </dd>
+            </div>
+
+            {% endif %} -->
+
+
+            {% if data['document-type'] == "pgf" and data['document-initial-eligibility'] == "No" %}
+
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                  Document PGF case notes question
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['document-pgf-notes-state']}}
+
+
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="document-pgf-notes">
+                  Change<span class="govuk-visually-hidden"> document pgf notes state</span>
+                </a>
+              </dd>
+            </div>
+
+            {% endif %}
+
+
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Uploaded document
+              </dt>
+              <dd class="govuk-summary-list__value">
+                original-file-uploaded.doc
+
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="document-upload">
+                  Change<span class="govuk-visually-hidden"> uploaded document</span>
+                </a>
+              </dd>
+            </div>
+
+
+
+
+
+            <!-- <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Location of completion
+              </dt>
+              <dd class="govuk-summary-list__value">
+
+
+                Location type :  {{data['document-complete-location-type']}}<br>
+                Prison :  {{data['document-complete-location']}}
+
+
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="document-complete-location">
+                  Change<span class="govuk-visually-hidden"> location of completion</span>
+                </a>
+              </dd>
+            </div> -->
+          </dl>
+          <!-- <h2 class="govuk-heading-m">Now upload your document</h2>
+          <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p> -->
+
+          {% if data['documentupload2'] == "true" %}
+          <form action="confirmation?documentupload3=true" method="post" novalidate>
+        {% elseif data['documentupload1'] == "true" %}
+        <form action="confirmation?documentupload2=true" method="post" novalidate>
+        {% else %}
+        <form action="confirmation?documentupload1=true" method="post" novalidate>
+        {% endif %}
+
+
+            <input type="hidden" name="answers-checked" value="true">
+            <button class="govuk-button" data-module="govuk-button">
+              Accept and upload
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,126 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-l">Pathfinder</h1>
+</div>
+
+<div class="homepage-content">
+<div class="govuk-width-container">
+  <ul class="govuk-grid-row card-group">
+
+      <li class="govuk-grid-column-one-third card-group__item">
+
+          <div class="card card--clickable" data-test="view">
+              <h2 class="govuk-heading-m card__heading">
+                  <a class="govuk-link govuk-link--no-visited-state card__link" href="/v2/view-caseload">View and manage my caseload</a>
+              </h2>
+              <p class="govuk-body card__description">View your Pathfinder caseload and manage individuals' details</p>
+          </div>
+
+      </li>
+
+      <li class="govuk-grid-column-one-third card-group__item">
+
+          <div class="card card--clickable" data-test="search">
+              <h2 class="govuk-heading-m card__heading">
+                  <a class="govuk-link govuk-link--no-visited-state card__link" href="">Search pathfinder</a>
+              </h2>
+              <p class="govuk-body card__description">Search all of the records in Pathfinder</p>
+          </div>
+
+      </li>
+
+      <li class="govuk-grid-column-one-third card-group__item">
+
+        <div class="card card--clickable" data-test="refer">
+            <h2 class="govuk-heading-m card__heading">
+                <a class="govuk-link govuk-link--no-visited-state card__link" href="">Refer from prison</a>
+            </h2>
+            <p class="govuk-body card__description">Search Digital Prison Services for individuals to view and refer</p>
+        </div>
+
+    </li>
+
+    <li class="govuk-grid-column-one-third card-group__item">
+
+      <div class="card card--clickable" data-test="build">
+          <h2 class="govuk-heading-m card__heading">
+              <a class="govuk-link govuk-link--no-visited-state card__link" href="/v2/build-caseload">Build my caseload</a>
+          </h2>
+          <p class="govuk-body card__description">Build your list of cases by prison or by probation area</p>
+      </div>
+
+  </li>
+
+  <li class="govuk-grid-column-one-third card-group__item">
+
+    <div class="card card--clickable" data-test="recat">
+        <h2 class="govuk-heading-m card__heading">
+            <a class="govuk-link govuk-link--no-visited-state card__link" href="">View recategorisations</a>
+        </h2>
+        <p class="govuk-body card__description">View nominals who are due or have just had a recategorisation</p>
+    </div>
+
+</li>
+
+<li class="govuk-grid-column-one-third card-group__item">
+
+  <div class="card card--clickable" data-test="support">
+      <h2 class="govuk-heading-m card__heading">
+          <a class="govuk-link govuk-link--no-visited-state card__link" href="">Support and feedback</a>
+      </h2>
+      <p class="govuk-body card__description">Get help using this service or contact the digital support team</p>
+  </div>
+
+</li>
+
+{% if data['role'] == 'admin' or data['role'] == 'all' %}
+
+<li class="govuk-grid-column-one-third card-group__item">
+  <div class="card card--clickable" data-test="support">
+      <h2 class="govuk-heading-m card__heading">
+          <a class="govuk-link govuk-link--no-visited-state card__link" href="/v2/manage/manage-home?owner=false">Pathfinder admin</a>
+      </h2>
+      <p class="govuk-body card__description">Manage user groups, users and their permissions</p>
+  </div>
+</li>
+
+{% endif %}
+{% if data['role'] != 'admin'%}
+
+<li class="govuk-grid-column-one-third card-group__item">
+
+  <div class="card card--clickable" data-test="support">
+      <h2 class="govuk-heading-m card__heading">
+          <a class="govuk-link govuk-link--no-visited-state card__link" href="/v2/manage/manage-groups?owner=true">View my Pathfinder user groups</a>
+      </h2>
+      <p class="govuk-body card__description">View user groups that I own and the users in them</p>
+  </div>
+  {% endif %}
+
+</li>
+  </ul>
+
+</div>
+</div>
+{% endblock %}

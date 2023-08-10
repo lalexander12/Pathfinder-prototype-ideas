@@ -1,0 +1,682 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+        </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container">
+
+
+
+
+
+  <div class="moj-page-header-actions">
+
+<div class="moj-page-header-actions__title">
+  <h1 class="govuk-heading-l">Manage Pathfinder users</h1>
+</div>
+
+<div class="moj-page-header-actions__actions">
+
+  <div class="moj-button-menu">
+    <div class="moj-button-menu__wrapper">
+
+  <form method="post" action="edit-search?new=true&empty=true" class="form">
+      <button class="govuk-button moj-button-menu__item govuk-button--secondary moj-page-header-actions__action" data-module="govuk-button">
+        Add user to Pathfinder
+      </button>
+    </form>
+
+
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<div class="moj-filter__selected govuk-!-padding-left-5 govuk-!-padding-right-5 govuk-!-padding-top-5  govuk-!-margin-bottom-3 filter-box-color">
+    <form>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds  govuk-!-padding-top-1">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="nameNomsIdCrn">
+                        Search by name, user name, user ID or email address
+                    </label>
+                    <input class="govuk-input govuk-!-padding-right-0" id="nameNomsIdCrn" name="nameNomsIdCrn" type="text" value="" maxlength="50" data-qa="name-or-id-filter">
+                </div>
+            </div>
+            <div class="govuk-grid-column-one-quarter">
+                <div class="govuk-!-padding-top-6 govuk-!-padding-left-0 govuk-!-margin-left-0">
+                    <button data-prevent-double-click="true" class="govuk-button govuk-button--primary govuk-!-margin-top-1" data-module="govuk-button" data-qa="apply-button">
+                    Search
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <div class="moj-filter-layout">
+        <div class="moj-filter-layout__filter" tabindex="-1">
+        <form id="filter-form" action="#" novalidate="">
+
+
+<div class="moj-filter" id="myDIV" style="display: none">
+
+  <div class="moj-filter__header">
+
+    <div class="moj-filter__header-title">
+      <h2 class="govuk-heading-m">Filters</h2>
+    </div>
+
+    <div class="moj-filter__header-action">
+
+    </div>
+
+  </div>
+
+  <div class="moj-filter__content">
+
+    <div class="moj-filter__selected">
+
+        <div class="moj-filter__selected-heading">
+
+          <div class="moj-filter__heading-title">
+            <h2 class="govuk-heading-s">Selected filters</h2>
+          </div>
+
+          <div class="moj-filter__heading-action">
+            <p><a class="govuk-link govuk-link--no-visited-state" href="">Clear filters</a></p>
+          </div>
+
+        </div>
+
+
+      <!--   <h3 class="govuk-heading-s govuk-!-margin-bottom-0">User group</h3>
+
+          <ul class="moj-filter-tags">
+
+              <li><a class="moj-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this filter</span> Prisons - North East X</a></li>
+
+              <li><a class="moj-filter__tag" href="#"><span class="govuk-visually-hidden">Remove this filter</span> Prisons - North West X</a></li>
+
+          </ul>-->
+
+
+
+
+      </div>
+
+
+
+
+
+
+    <div class="moj-filter__options">
+
+
+
+
+
+
+
+<button class="govuk-button">
+  Apply filters
+</button>
+
+
+
+
+
+<!--<div class="govuk-form-group">
+  <label class="govuk-label govuk-label--s" for="user">
+    Name, username or email address
+  </label>
+
+
+
+  <div id="user-hint" class="govuk-hint">
+    Will match the user's name, username or verified email address
+  </div>
+
+<input class="govuk-input govuk-input--width-20 govuk-fieldset__legend--s" id="user" name="user" type="text" aria-describedby="user-hint">
+
+</div>-->
+
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset" aria-describedby="status-hint">
+
+  <legend class="govuk-fieldset__legend govuk-label--s">
+
+    Role
+
+  </legend>
+
+
+  <div id="status-hint" class="govuk-hint">
+
+  </div>
+
+
+  <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="status-2" name="status" type="radio" value="ACTIVE">
+          <label class="govuk-label govuk-radios__label" for="status-2">
+        Pathfinder user
+      </label>
+
+        </div>
+
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="status-3" name="status" type="radio" value="INACTIVE">
+          <label class="govuk-label govuk-radios__label" for="status-3">
+        Pathfinder administrator
+      </label>
+
+        </div>
+  </div>
+
+
+</fieldset>
+
+
+</div>
+
+
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset" aria-describedby="status-hint">
+
+  <legend class="govuk-fieldset__legend govuk-label--s">
+
+    Permissions
+
+  </legend>
+
+
+  <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="status-2" name="status" type="radio" value="ACTIVE">
+          <label class="govuk-label govuk-radios__label" for="status-2">
+        View Profile only
+      </label>
+
+        </div>
+
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="status-3" name="status" type="radio" value="INACTIVE">
+          <label class="govuk-label govuk-radios__label" for="status-3">
+        Read only
+      </label>
+
+        </div>
+
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="status-3" name="status" type="radio" value="INACTIVE">
+          <label class="govuk-label govuk-radios__label" for="status-3">
+        Read & limited update
+      </label>
+
+        </div>
+
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="status-3" name="status" type="radio" value="INACTIVE">
+          <label class="govuk-label govuk-radios__label" for="status-3">
+        Read and write all
+      </label>
+
+        </div>
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="status-3" name="status" type="radio" value="INACTIVE">
+          <label class="govuk-label govuk-radios__label" for="status-3">
+        Suspended
+      </label>
+
+        </div>
+
+  </div>
+
+
+</fieldset>
+
+
+</div>
+
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset" aria-describedby="status-hint">
+
+  <legend class="govuk-fieldset__legend govuk-label--s">
+
+  Permission add on
+
+  </legend>
+
+
+  <div id="status-hint" class="govuk-hint">
+
+  </div>
+
+
+  <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+        <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="status-2" name="status" type="radio" value="ACTIVE">
+          <label class="govuk-label govuk-radios__label" for="status-2">
+        CIM Approver
+      </label>
+
+        </div>
+
+       <div class="govuk-radios__item">
+          <input class="govuk-radios__input" id="status-3" name="status" type="radio" value="INACTIVE">
+          <label class="govuk-label govuk-radios__label" for="status-3">
+      User group owner
+      </label>
+
+        </div>
+  </div>
+
+
+</fieldset>
+
+
+</div>
+
+
+
+<div class="govuk-form-group">
+
+  <fieldset class="govuk-fieldset" aria-describedby="status-hint">
+
+  <legend class="govuk-fieldset__legend govuk-label--s">
+
+    User group
+
+  </legend>
+
+    {% include "includes/groups-search.html" %}
+
+  <!--<div class="govuk-form-group">
+    <label class="govuk-label" for="sort">
+      Prisons
+    </label>
+    <select class="govuk-select" id="sort" name="sort">
+      <option value="published" selected>Select</option>
+      <option value="views">East</option>
+      <option value="updated" >East Midlands North</option>
+      <option value="views">East Midlands South</option>
+      <option value="comments">London</option>
+      <option value="views">North East</option>
+      <option value="updated" >North West</option>
+      <option value="views">South East</option>
+      <option value="comments">Thames Valley</option>
+      <option value="views">Wales</option>
+      <option value="updated" >West Midlands</option>
+      <option value="views">Yorkshire and Humberside</option>
+    </select>
+  </div>
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="sort">
+      Probation
+    </label>
+    <select class="govuk-select" id="sort" name="sort">
+      <option value="published" selected>Select</option>
+      <option value="views">East</option>
+      <option value="updated" >East Midlands North</option>
+      <option value="views">East Midlands South</option>
+      <option value="comments">London</option>
+      <option value="views">North East</option>
+      <option value="updated" >North West</option>
+      <option value="views">South East</option>
+      <option value="comments">Thames Valley</option>
+      <option value="views">Wales</option>
+      <option value="updated" >West Midlands</option>
+      <option value="views">Yorkshire and Humberside</option>
+    </select>
+  </div>
+
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="sort">
+      Other
+    </label>
+    <select class="govuk-select" id="sort" name="sort">
+      <option value="published" selected>Select</option>
+      <option value="updated" >NOAT</option>
+      <option value="views">NCTCCC</option>
+      <option value="comments">NIU</option>
+      <option value="updated">JEXU HQ</option>
+      <option value="views">Regional leads</option>
+      <option value="comments">Joint hub users / JCTPPH</option>
+      <option value="updated" >Police (non hub)</option>
+      <option value="views">CT psychologists</option>
+      <option value="comments">CT-ARC</option>
+      <option value="comments">NSD</option>
+    </select>
+  </div>-->
+
+
+
+
+</fieldset>
+
+
+</div>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+        </form>
+        </div>
+        <div class="moj-filter-layout__content">
+
+          <button class="govuk-button govuk-button--secondary" type="button" aria-haspopup="true" onclick="myFunction()" aria-expanded="false">Show filter</button>
+            <div>
+
+
+              <div class="spread-items hide-mobile govuk-!-margin-bottom-3 govuk-!-margin-top-3">
+                  <div>
+                      <p class="govuk-!-margin-bottom-2">
+                          <span class="govuk-!-font-weight-bold">437</span> users
+                      </p>
+
+                  </div>
+                  <div class="spread-items">
+                      <div class="govuk-!-margin-top-0">
+                       <button id="caseload-link" class="csv-link">Download CSV</button>
+                      </div>
+                      <script>
+                          const link = $("#caseload-link");
+                          link.on("click", function(event) {
+                              window.location = "/view-caseload/csv-download";
+                          });
+                      </script>
+                      <a href="javascript:window.print()" class="govuk-link print-link govuk-!-display-none-print">Print</a>
+                 </div>
+              </div>
+          </div>
+
+
+  <div class="">
+      <div id="caseload-container">
+          <table style="font-size: 18px" id="view-caseload" class="govuk-table view-caseload tablesorter tablesorter-default tablesorterf4469144cd29a" role="grid">
+              <thead class="govuk-table__head">
+              <tr class="govuk-table__row tablesorter-headerRow" role="row">
+                  <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="0" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Name: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Name<i class="tablesorter-icon"></i></div></th>
+                  <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="1" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Prison number or CRN: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">User name<i class="tablesorter-icon"></i></div></th>
+                  <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="1" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Prison number or CRN: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Email address<i class="tablesorter-icon"></i></div></th>
+                  <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="2" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Location: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Permissions<i class="tablesorter-icon"></i></div></th>
+                  <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="2" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Location: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">Add on<i class="tablesorter-icon"></i></div></th>
+                  <th scope="col" class="govuk-table__header sortable tablesorter-header tablesorter-headerUnSorted" data-column="2" tabindex="0" role="columnheader" aria-disabled="false" aria-controls="view-caseload" unselectable="on" aria-sort="none" aria-label="Location: No sort applied, activate to apply an ascending sort" style="user-select: none;"><div class="tablesorter-header-inner">User groups<i class="tablesorter-icon"></i></div></th>
+
+              </tr>
+              </thead>
+
+              <tbody class="govuk-table__body" aria-live="polite" aria-relevant="all">
+                    {% if data['deactivated'] == 'true'%}
+                      {% else %}
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Bob+Brown&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Bob Brown</a>
+                      </td>
+                      <td class="govuk-table__cell">BBROWN_GEN</td>
+                      <td class="govuk-table__cell">bob.brown@justice.gov.uk </td>
+                      <td class="govuk-table__cell">
+                    {% if data['permission'] == 'Suspend access to Pathfinder'%}
+                      <span class="moj-badge moj-badge--red">Access suspended</span>
+                      {% else %}
+                      Read only
+                      {% endif %}
+                      </td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison - North East</td>
+                  </tr>
+                  {% endif %}
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Carl+Cooper&admingroups=false&new=false&addon=Owner" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Carl Cooper</a>
+                      </td>
+                      <td class="govuk-table__cell">CCOOPER_GEN</td>
+                      <td class="govuk-table__cell">carl.cooper@justice.gov.uk </td>
+                      <td class="govuk-table__cell">Read only</td>
+                      <td class="govuk-table__cell hide-mobile">User group owner</td>
+                      <td class="govuk-table__cell hide-mobile">Multiple</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Dan+Elliot&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Dan Elliot</a>
+                      </td>
+                      <td class="govuk-table__cell">DELLIOT_GEN</td>
+                      <td class="govuk-table__cell">dan.elliot@justice.gov.uk </td>
+                      <td class="govuk-table__cell">Full operational use</td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  North West</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Fiona+Jones&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Fiona Jones</a>
+                      </td>
+                      <td class="govuk-table__cell">FJONES_GEN</td>
+                      <td class="govuk-table__cell">fiona.jones@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  North East</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=John+Smith&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">John Smith</a>
+                      </td>
+                      <td class="govuk-table__cell">JSMITH_GEN</td>
+                      <td class="govuk-table__cell">john.smith@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  North East</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Larry+Henry&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Larry Henry</a>
+                      </td>
+                      <td class="govuk-table__cell">LHENRY_GEN</td>
+                      <td class="govuk-table__cell">larry.henry@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile">CIM Approver</td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  South East</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Matty+Smith&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Matty Smith</a>
+                      </td>
+                      <td class="govuk-table__cell">MSMITH_GEN</td>
+                      <td class="govuk-table__cell">matty.smith@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile">User group owner</td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  North East</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Norman+Brown&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Norman Brown</a>
+                      </td>
+                      <td class="govuk-table__cell">NBROWN_GEN</td>
+                      <td class="govuk-table__cell">norman.brown@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  North West</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Olas+Summers&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Olaf Summers</a>
+                      </td>
+                      <td class="govuk-table__cell">OSUMMER_GEN</td>
+                      <td class="govuk-table__cell">olaf.summers@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  South East</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Peter+Pepper&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Peter Pepper</a>
+                      </td>
+                      <td class="govuk-table__cell">PPEPPER_GEN</td>
+                      <td class="govuk-table__cell">peter.pepper@justice.gov.uk </td>
+                      <td class="govuk-table__cell">Full operational use</td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  South West</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Quentin+Jones&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Quentin Jones</a>
+                      </td>
+                      <td class="govuk-table__cell">QJONES_GEN</td>
+                      <td class="govuk-table__cell">quentin.jones@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  North East</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Roger+Reanalds&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Roger Reanalds</a>
+                      </td>
+                      <td class="govuk-table__cell">RREANAALDS_GEN</td>
+                      <td class="govuk-table__cell">roger.reanalds@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile">CIM Approver</td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  North West</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Sam+Smith&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Sam Smith</a>
+                      </td>
+                      <td class="govuk-table__cell">SSMITH_GEN</td>
+                      <td class="govuk-table__cell">sam.smith@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  North East</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Tracey+Turner&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Tracy Turner</a>
+                      </td>
+                      <td class="govuk-table__cell">TTURNER_GEN</td>
+                      <td class="govuk-table__cell">tracy.turnerh@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  South East</td>
+
+
+                  </tr>
+                  <tr class="govuk-table__row odd" role="row">
+                      <td class="govuk-table__cell">
+                          <a href="view-user?name=Viv+Smith&admingroups=false&new=false" class="govuk-link govuk-link--no-visited-state govuk-!-font-weight-bold">Viv Smith</a>
+                      </td>
+                      <td class="govuk-table__cell">VSMITH_GEN</td>
+                      <td class="govuk-table__cell">viv.smith@justice.gov.uk </td>
+                      <td class="govuk-table__cell">View Profile only</td>
+                      <td class="govuk-table__cell hide-mobile"></td>
+                      <td class="govuk-table__cell hide-mobile">Prison -  South East</td>
+
+
+                  </tr>
+
+              </tbody>
+          </table>
+      </div>
+
+      <nav class="moj-pagination" aria-label="Pagination navigation">
+
+        <ul class="moj-pagination__list">
+          <li class="moj-pagination__item  moj-pagination__item--prev">
+          <!--  <a class="moj-pagination__link" href="">Previous<span class="govuk-visually-hidden"> page</span></a>-->
+          </li>
+
+          <li class="moj-pagination__item  moj-pagination__item--active" aria-label="Page 2 of 30" aria-label="page">1</li>
+
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="#" aria-label="Page 2 of 30">2</a></li>
+
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="#" aria-label="Page 3 of 30">3</a></li>
+
+          <li class="moj-pagination__item moj-pagination__item--dots">…</li>
+
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="#" aria-label="Page 5 of 30">5</a></li>
+
+          <li class="moj-pagination__item  moj-pagination__item--next">
+            <a class="moj-pagination__link" href="">Next<span class="govuk-visually-hidden"> page</span></a>
+          </li>
+        </ul>
+        <p class="moj-pagination__results">Showing <b>10</b> to <b>20</b> of <b>30</b> pages</p>
+      </nav>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+  </script>
+
+{% endblock %}

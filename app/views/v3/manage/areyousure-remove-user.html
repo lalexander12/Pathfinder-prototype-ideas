@@ -1,0 +1,123 @@
+{% extends "layout_moj.html" %}
+
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-groups">Manage groups</a>
+      </li>
+
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="view-group">{{ data['groupname'] }}</a>
+        </li>
+
+  </ol>
+</div> -->
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-width-container">
+  <div class="govuk-grid-row govuk-!-display-none-print govuk-!-margin-bottom-4">
+
+        <div class="govuk-grid-column-three-quarters">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+                <h1 class="govuk-fieldset__heading">
+
+                  Are you sure you want to remove
+
+                  {% if data['name'] == null %}
+                  Bob Brown
+                  {% else %}
+                  {{ data['name'] }}
+                  {% endif %}
+
+
+                  from Pathfinder?
+
+                </h1>
+              </legend>
+
+              <form method="post" action="areyousure-suspend" class="form">
+
+                <!-- <div id="contact-hint" class="govuk-hint">
+
+                  If you suspend their account they will not be able to access the Pathfinder service. You will need to contact the Primary RCTL or PCTL to reactivate their account.
+                </div> -->
+
+
+
+<div class="govuk-form-group">
+<div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+      <div class="govuk-radios__item ">
+        <input class="govuk-radios__input" id="contact-10" name="suspend" type="radio" value="yes" >
+        <label class="govuk-label govuk-radios__label" for="contact-10">
+          Yes
+        </label>
+      </div>
+
+
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact-1" name="suspend" type="radio"  value="no">
+        <label class="govuk-label govuk-radios__label" for="contact-1">
+        No
+        </label>
+      </div>
+
+</div>
+
+
+  </fieldset>
+</div>
+
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+
+
+</form>
+
+
+
+
+</div>
+</div>
+</div>
+
+<!--
+
+<script>
+function setLocation(element) {
+      document.forms[0].action = element.value
+}
+</script>
+-->
+
+
+{% endblock %}

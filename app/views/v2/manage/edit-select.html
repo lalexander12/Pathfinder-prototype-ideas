@@ -1,0 +1,177 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="edit-permissions0?name=Bob+Brown">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">Select the user you want to add to Pathfinder</h1>
+
+
+  <table class="govuk-table" style="font-size: 18px">
+    <caption class="govuk-table__caption govuk-table__caption--m"></caption>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header"></th>
+        <th scope="col" class="govuk-table__header">Name</th>
+        <th scope="col" class="govuk-table__header">Username</th>
+        <th scope="col" class="govuk-table__header">Email address</th>
+        <th scope="col" class="govuk-table__header">Location</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+            <div class="govuk-radios__item  govuk-radios--small">
+              <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+              <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+              </label>
+            </div>
+      </th>
+        <td class="govuk-table__cell">Bob Brown<br>
+          <strong class="govuk-tag govuk-tag--green">
+              Active
+            </strong>
+          </td>
+        <td class="govuk-table__cell">BBROWN_GEN</td>
+        <td class="govuk-table__cell">bob.brown@justice.gov.uk</td>
+        <td class="govuk-table__cell">Prison - NOMIS</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div class="govuk-radios__item  govuk-radios--small">
+            <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+            <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+            </label>
+          </div>
+        </th>
+        <td class="govuk-table__cell">Bobbie Brown<br>
+          <strong class="govuk-tag govuk-tag--green">
+              Active
+            </strong>
+          </td>
+        <td class="govuk-table__cell">RBROWN_GEN</td>
+        <td class="govuk-table__cell">robert.brown@justice.gov.uk</td>
+        <td class="govuk-table__cell">Prison - NOMIS</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">
+          <div class="govuk-radios__item  govuk-radios--small">
+            <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
+            <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
+            </label>
+          </div>
+        </th>
+        <td class="govuk-table__cell">Robert Brown<br>
+          <strong class="govuk-tag govuk-tag--green">
+              Active
+            </strong>
+          </td>
+        <td class="govuk-table__cell">BBROWN_GEN2</td>
+        <td class="govuk-table__cell">robert.brown2@justice.gov.uk</td>
+        <td class="govuk-table__cell">Prison - NOMIS</td>
+      </tr>
+    </tbody>
+  </table>
+
+<!--  <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+      <h1 class="govuk-fieldset__heading">
+
+      </h1>
+    </legend>
+    <div id="sign-in-hint" class="govuk-hint">
+
+    </div>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="sign-in" name="sign-in" type="radio" value="government-gateway" aria-describedby="sign-in-item-hint">
+        <label class="govuk-label govuk-radios__label" for="sign-in">
+        Bob Brown - BBROWN_GEN
+        </label>
+        <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+          bob.brown@justice.gov.uk
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="sign-in-2" name="sign-in" type="radio" value="govuk-verify" aria-describedby="sign-in-2-item-hint">
+        <label class="govuk-label govuk-radios__label" for="sign-in-2">
+          Robert Brown - RBROWN_GEN
+        </label>
+        <div id="sign-in-2-item-hint" class="govuk-hint govuk-radios__hint">
+            Robert.brown@justice.gov.uk
+        </div>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="sign-in-3" name="sign-in" type="radio" value="govuk-verify" aria-describedby="sign-in-2-item-hint">
+        <label class="govuk-label govuk-radios__label" for="sign-in-3">
+          Bobbie Brown - BBROWN2_GEN
+        </label>
+        <div id="sign-in-3-item-hint" class="govuk-hint govuk-radios__hint">
+            Robert.brown2@justice.gov.uk
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>-->
+
+
+
+
+<p>Can't find the user you are looking for? You can <a href="edit-search">search again</a></p>
+
+
+<div class="moj-button-menu">
+<div class="moj-button-menu__wrapper">
+
+
+
+  <button role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+    Continue
+  </button>
+
+  <a href="search" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+    Cancel
+  </a>
+
+</form>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

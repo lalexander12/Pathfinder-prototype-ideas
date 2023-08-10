@@ -1,0 +1,149 @@
+{% extends "layout_moj.html" %}
+<!-- {% from "moj/components/multi-file-upload/macro.njk" import mojMultiFileUpload %} -->
+{% from "../../components/multi-file-upload/macro.njk" import mojMultiFileUpload %} -->
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container">
+    <div class="govuk-grid-row govuk-body">
+        <div class="govuk-grid-column-three-quarters">
+            <h1 class="govuk-heading-l">Upload documents</h1>
+            <p>You can upload or drag and drop documents in multiple files. Each file must be smaller than
+                100MB.</p>
+        </div>
+    </div>
+    <form method="post" enctype='multipart/form-data'>
+        {% set uploadHtml %}
+            <div class="govuk-grid-row govuk-body">
+                <div class="govuk-grid-column-full">
+                    {{ govukFileUpload({
+                        id: "file-upload-1",
+                        name: "fileName",
+                        classes: 'moj-multi-file-upload__input',
+                        label: {
+                            text: "Upload or drag and drop documents",
+                            classes: 'govuk-label--m'
+                        },
+                        attributes: { multiple: '' },
+                        errorMessage: {
+                            text: "Please select a file"
+                        } if (errorKeys | findErrorMap('file-upload-1'))
+                    }) }}
+
+                    {{ govukButton({
+                        text: 'Upload file',
+                        classes: 'govuk-button--secondary moj-multi-file-upload__button'
+                    }) }}
+                </div>
+            </div>
+        {% endset %}
+        <!-- <div class="govuk-grid-row govuk-body">
+            <div class="govuk-grid-column-full">
+                {{ mojMultiFileUpload({
+                    id: "file-upload-1",
+                    name: "fileName",
+                    label: { text: "Upload or drag and drop documents" },
+                    uploadedFiles: {
+                        heading: { text: 'Documents added' },
+                        items: uploadedFiles
+                    },
+                    uploadHtml: uploadHtml,
+                    errorMessage: {
+                        text: "Please select a file"
+                    } if (errorKeys | findErrorMap('file-upload-1'))
+                }) }}
+            </div>
+        </div> -->
+        <div class="govuk-grid-row govuk-body">
+            <div class="govuk-grid-column-full">
+                <div class="moj-multi-file-upload">
+                    <div class="moj-multi-file__uploaded-files">
+                        <h2 class="govuk-heading-m">ABC</h2>
+                        <div class="govuk-summary-list moj-multi-file-upload__list">
+                            <div class="govuk-summary-list__row">
+                                <dt class="govuk-summary-list__key">
+                                    Document Name
+                                </dt>
+                                <dt class="govuk-summary-list__key">
+                                    Assign Document type
+                                </dt>
+                                <dt class="govuk-summary-list__key">
+                                </dt>
+                            </div>
+                            <div class="govuk-summary-list__row moj-multi-file-upload__row">
+                                <dd class="govuk-summary-list__value moj-multi-file-upload__message">
+                                    <span class="moj-multi-file-upload__success">
+                                        <svg class="moj-banner__icon" fill="currentColor" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" height="25" width="25">
+                                            <path d="M25,6.2L8.7,23.2L0,14.1l4-4.2l4.7,4.9L21,2L25,6.2z"></path>
+                                        </svg> Digital.png</span>
+                                </dd>
+                                <dt class="govuk-summary-list__value">
+                                {{ govukSelect({
+                                    id: "documentType",
+                                    name: "documentType",
+                                    items: [
+                                        {
+                                            value: "SelectDocumentType",
+                                            text: "Select document type",
+                                            selected: true
+                                        },
+                                        {
+                                            value: "erginitial",
+                                            text: "ERG Initial"
+                                        },
+                                        {
+                                            value: "ergreview",
+                                            text: "ERG Review"
+                                        },
+                                        {
+                                            value: "other",
+                                            text: "Other"
+                                        }
+                                    ]
+                                }) }}
+                                </dt>
+                                <dt class="govuk-summary-list__actions moj-multi-file-upload__actions">
+                                    <button type="submit" name="delete" class="moj-multi-file-upload__delete govuk-button govuk-button--secondary govuk-!-margin-bottom-0" value="Digital.png">
+                                    Delete <span class="govuk-visually-hidden">Digital.png</span>
+                                    </button>
+                                </dt>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="moj-multi-file-upload__upload">
+                    {{ params.uploadHtml | safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="govuk-grid-row govuk-body">
+            <div class="govuk-grid-column-full">
+                {{ govukButton({
+                    text: 'Continue',
+                    disabled: true,
+                    attributes: { 'id': 'continueButton' },
+                    preventDoubleClick: true
+                }) }}
+                {{ govukButton({
+                    text: 'Cancel',
+                    href: '/nominal/' + nominalData.id + '/documents',
+                    classes: 'grey-button govuk-!-margin-left-2'
+                }) }}
+            </div>
+        </div>
+
+        <div class="govuk-grid-row govuk-body">
+            <div class="govuk-grid-column-full">
+                <a href="uploadNames">Upload Names</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="/assets/javascripts/multiFileUpload.js" nominalId="{{ nominalData.id }}"></script>
+{% endblock %}

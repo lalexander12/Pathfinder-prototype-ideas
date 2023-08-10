@@ -1,0 +1,135 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Manage Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="view-user">Bob Brown</a>
+          </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['new'] == 'true'%}
+  <h1 class="govuk-heading-l">Add Bob Brown's permissions</h1>
+  {% else %}
+  <h1 class="govuk-heading-l">Change Bob Brown's permissions</h1>
+  {% endif %}
+
+  <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h1 class="govuk-fieldset__heading">
+        Permissions
+      </h1>
+    </legend>
+    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name" name="permission" type="radio" value="month">
+        <label class="govuk-label govuk-radios__label" for="changed-name">
+          Read limited
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+          {% if data['new'] == 'true'%}
+        <input class="govuk-radios__input" id="changed-name-2" name="permission" type="radio" value="year">
+        {% else %}
+        <input class="govuk-radios__input" id="changed-name-2" name="permission" checked type="radio" value="year">
+        {% endif %}
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          Read all
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-3" name="permission" type="radio" value="year">
+        <label class="govuk-label govuk-radios__label" for="changed-name-3">
+          Read and write limited
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-4" name="permission" type="radio" value="year">
+        <label class="govuk-label govuk-radios__label" for="changed-name-4">
+          Read and write all
+        </label>
+      </div>
+    </div>
+
+  </fieldset>
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h1 class="govuk-fieldset__heading">
+        Permission add on
+      </h1>
+    </legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="organisation" name="organisation" type="checkbox" value="hmrc">
+        <label class="govuk-label govuk-checkboxes__label" for="organisation">
+          Approver
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="organisation-2" name="organisation" type="checkbox" value="employment-tribunal">
+        <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+          User group owner
+        </label>
+      </div>
+
+    </div>
+
+  </fieldset>
+</div>
+
+
+<div class="moj-button-menu">
+<div class="moj-button-menu__wrapper">
+
+
+
+  <a href="edit-permissions2?new=false" role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+    Continue
+  </a>
+
+  <a href="view-user" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+    Cancel
+  </a>
+
+
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

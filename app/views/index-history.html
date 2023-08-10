@@ -1,0 +1,72 @@
+{% extends "layout_dps.html" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <ol class="app-document-list govuk-!-margin-bottom-6">
+      <li class="app-document-list__item">
+
+        <h2 class="app-document-list__item-title">
+          <a class="govuk-link" href="history/v3">Future scope, initial view - version 3</a>
+        </h2>
+        <span><strong class="govuk-tag govuk-tag--green">In design</strong></span>
+        <p class="app-document-list__item-description">Building on insights from managed service work, and exploring assumptions.</p>
+        <ul class="app-document-list__item-metadata">
+          <li class="app-document-list__attribute">
+            <time datetime="2021-12-20T00:00:00.000Z">27 February 2023</time>
+          </li>
+        </ul>
+      </li>
+      <li class="app-document-list__item">
+
+        <h2 class="app-document-list__item-title">
+          <a class="govuk-link" href="history/v2">Baseline prototype - slice 3 version 2</a>
+        </h2>
+        <span><strong class="govuk-tag govuk-tag--green">In dev</strong></span>
+        <p class="app-document-list__item-description">Slice 3 of the Pathfinder service.</p>
+        <ul class="app-document-list__item-metadata">
+          <li class="app-document-list__attribute">
+            <time datetime="2021-11-24T00:00:00.000Z">11 January 2023</time>
+          </li>
+        </ul>
+      </li>
+
+      <li class="app-document-list__item">
+
+        <h2 class="app-document-list__item-title">
+          <a class="govuk-link" href="history/v1">Baseline prototype - version 1</a>
+        </h2>
+        <span><strong class="govuk-tag govuk-tag--green">In dev</strong></span>
+        <p class="app-document-list__item-description">Initial prototype of the Pathfinder service.</p>
+        <ul class="app-document-list__item-metadata">
+          <li class="app-document-list__attribute">
+            <time datetime="2021-11-24T00:00:00.000Z">21 November 2022</time>
+          </li>
+        </ul>
+      </li>
+
+    </ol>
+
+    </div>
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related" role="complementary" style="border-top: 2px solid #1d70b8; padding-top:15px">
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-2" id="-title">Links to related content</h2>
+    <nav role="navigation" aria-labelledby="-title">
+      <ul class="app-related__list" style="padding-left: 0;">
+        <li class="app-related__list-item govuk-!-margin-bottom-3" style="list-style-type:none;">
+          <a class="govuk-link" href="index?page=clear">Prototype start page</a>
+        </li>
+        <li class="app-related__list-item govuk-!-margin-bottom-3" style="list-style-type:none;">
+        <a href="v3/manage/template-tiles">View permissions help / guide</a>
+        </li>
+        <li class="app-related__list-item govuk-!-margin-bottom-3" style="list-style-type:none;">
+          <a class="govuk-link" href="https://user-guide.cloud-platform.service.justice.gov.uk/documentation/networking/ip-filtering.html#inbound-ip-filtering">Cloud Platform IP Addresses guide</a>
+        </li>
+
+      </ul>
+    </nav>
+    </aside>
+  </div>
+</div>
+{% endblock %}

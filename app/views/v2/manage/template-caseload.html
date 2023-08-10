@@ -1,0 +1,75 @@
+
+{% extends "layout_dps-signedout.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+</div>
+
+<div style="height:120px ; background-color:#e0eef8" class="moj-filter__selected govuk-!-padding-left-5 govuk-!-padding-right-5 govuk-!-padding-top-5  govuk-!-margin-bottom-3">
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-s">Select a template and page to view what users with those permissions can see and do or <a href="template-addon-approver">view what add ons can do</a>.</h1>
+
+
+<div style="float:left">
+  <label class="govuk-label" for="sort">
+Template
+  </label>
+  <select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+    {% if data['template'] == 'readprofile' %}
+    <option value="template-caseload?template=readprofile" selected>View profile page only</option>
+    <option value="template-caseload?template=readall">>Read all but not update</option>
+    <option value="template-caseload?template=writelimited">Read & limited update</option>
+    <option value="template-caseload?template=writeall">Full operational use</option>
+    {% elif data['template'] == 'readall' %}
+    <option value="template-caseload?template=readprofile">View profile page only</option>
+    <option value="template-caseload?template=readall" selected>>Read all but not update</option>
+    <option value="template-caseload?template=writelimited">Read & limited update</option>
+    <option value="template-caseload?template=writeall">Full operational use</option>
+    {% elif data['template'] == 'writelimited' %}
+    <option value="template-caseload?template=readprofile">View profile page only</option>
+    <option value="template-caseload?template=readall" >>Read all but not update</option>
+    <option value="template-caseload?template=writelimited" selected>Read & limited update</option>
+    <option value="template-caseload?template=writeall">Full operational use</option>
+    {% else %}
+    <option value="template-caseload?template=readprofile">View profile page only</option>
+    <option value="template-caseload?template=readall">>Read all but not update</option>
+    <option value="template-caseload?template=writelimited">Read & limited update</option>
+    <option value="template-caseload?template=writeall" selected>Full operational use</option>
+    {% endif %}
+  </select>
+</div>
+
+<div style="float:left" class="govuk-!-margin-left-9">
+<label class="govuk-label" for="sort">
+Page
+</label>
+<select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+  <option value="template-tiles">Pathfinder tiles page</option>
+  <option value="template-caseload"   selected>View and manage my caseload</option>
+  <option value="template-profile">Profile</option>
+  <option value="template-tbc">Uploaded documents</option>
+</select>
+</div>
+</div>
+
+
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container">
+<div class="govuk-grid-row">
+<div style="clear: both" class="govuk-grid-column-full">
+
+    {% include "includes/caseload.html" %}
+</div>
+
+
+</div>
+</div>
+{% endblock %}

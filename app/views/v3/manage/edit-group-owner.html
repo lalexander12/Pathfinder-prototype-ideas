@@ -1,0 +1,224 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+          </li>
+
+
+  </ol>
+</div> -->
+
+{% endblock %}
+
+{% block content %}
+
+<!-- {% if data['new'] == 'new'%}
+<form method="post" action="edit-permissons2">
+
+  {% else %}
+  <form method="post" action="edit-cya">
+
+{% endif%} -->
+
+
+{% if data['empty'] == 'false' %}
+<form method="post" action="groupowneradd2">
+{% else %}
+<form method="post" action="groupowneradd">
+{% endif %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  {% if data['empty'] == 'true'%}
+  <h1 class="govuk-heading-l">
+    {% if data['name'] == null %}
+    Bob Brown
+    {% else %}
+    {{ data['name'] }}
+    {% endif %}
+does not own any groups</h1>
+
+  {% elif data['added'] == 'true'%}
+  <h1 class="govuk-heading-l">{{ data['name'] }}'s groups</h1>
+  {% else %}
+  <h1 class="govuk-heading-l">{{ data['name'] }}'s groups</h1>
+  {% endif %}
+
+
+
+<!--  <div class="govuk-tabs" data-module="govuk-tabs">
+    <h2 class="govuk-tabs__title">
+      Contents
+    </h2>
+    <ul class="govuk-tabs__list">
+      <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+      {% if data['new'] == 'true'%}
+        <a class="govuk-tabs__tab" href="#past-day">
+          Prison
+        </a>
+      {% else %}
+      <a class="govuk-tabs__tab" href="#past-day">
+        Prison (1)
+      </a>
+      {% endif %}
+
+      </li>
+
+      <li class="govuk-tabs__list-item">
+        {% if data['new'] == 'true'%}
+        <a class="govuk-tabs__tab" href="#past-week">
+          Probation
+        </a>
+        {% else %}
+        <a class="govuk-tabs__tab" href="#past-week">
+          Probation (1)
+        </a>
+        {% endif %}
+
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#past-month">
+          Other
+        </a>
+      </li>
+
+    </ul>
+    <div class="govuk-tabs__panel" id="past-day">
+      <h2 class="govuk-heading-m">Prison</h2>
+  {% include "includes/prisoncheckboxes.html" %}
+
+
+    </div>
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
+      <h2 class="govuk-heading-m">Probation</h2>
+    {% include "includes/probationcheckboxes.html" %}
+
+    </div>
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-month">
+      <h2 class="govuk-heading-m">Other</h2>
+        {% include "includes/othercheckboxes.html" %}
+    </div>
+
+  </div>
+
+-->
+
+{% if data['empty'] == 'true' %}
+
+{% else %}
+
+
+<dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+
+      {% if data['group'] == 'unsure' %}
+        I don't know their group
+      {% else %}
+    Prison - East Midlands South
+    {% endif %}
+
+    </dt>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="areyousure-remove-owner?empty=true">
+        Remove<span class="govuk-visually-hidden"> name</span>
+      </a>
+    </dd>
+  </div>
+  {% if data['added'] == 'true' %}
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+    Prison - East Midlands North
+    </dt>
+    <dd class="govuk-summary-list__actions">
+      <a class="govuk-link" href="areyousure-remove-owner?added=false">
+        Remove<span class="govuk-visually-hidden"> name</span>
+      </a>
+    </dd>
+  </div>
+
+  {% else %}
+
+  {% endif %}
+
+</dl>
+
+{% endif %}
+
+<div class="govuk-form-group govuk-!-padding-top-5">
+  <fieldset class="govuk-fieldset" aria-describedby="changed-name-hint">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h1 class="govuk-fieldset__heading">
+
+        {% if data['empty'] == 'true' %}
+        Do you want to add a group for them to own?
+        {% else %}
+        Do you want to add another group?
+        {% endif %}
+      </h1>
+    </legend>
+    <div id="changed-name-hint" class="govuk-hint">
+    </div>
+    <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name" name="addgroup" type="radio" value="yes">
+        <label class="govuk-label govuk-radios__label" for="changed-name">
+          Yes
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-2" name="addgroup" type="radio" value="no">
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          No
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+
+
+
+<div class="govuk-button-group">
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+  <a class="govuk-link" href="view-user">Cancel</a>
+</div>
+
+</form>
+
+
+</div>
+</div>
+{% endblock %}

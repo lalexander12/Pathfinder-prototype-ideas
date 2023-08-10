@@ -1,0 +1,305 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+        {% if data['new'] == 'true' %}
+        {% else %}
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+        </li>
+        {% endif %}
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="confirmation">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+  <h1 class="govuk-heading-l">Check your answers before saving them</h1>
+
+    {% if data['deactivated'] == 'true' %}
+
+    <h2 class="govuk-heading-m"></h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        Delete account
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="areyousure">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+    {% elif data['deactivated'] == 'false' %}
+
+    <h2 class="govuk-heading-m"></h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        Activate account
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="areyousure">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+
+    {% else %}
+
+{% if data['new'] == 'true' %}
+   <h2 class="govuk-heading-m">User to add to Pathfinder</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        Location
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Prison - NOMIS
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="edit-search">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        User details
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Bob Brown<br>
+          BBROWN_GEN<br>
+          bob.brown@justice.gov.uk
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="edit-search">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+
+
+    </dl>
+
+      {% else %}
+      {% endif %}
+<!-- 
+    <h2 class="govuk-heading-m">Pathfinder role</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        Role
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Pathfinder user
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="edit-permissions0">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+    </dl> -->
+
+          <h2 class="govuk-heading-m">Permissions and groups</h2>
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+              Permissions
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['permission'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-permissions">
+                  Change<span class="govuk-visually-hidden"> name</span>
+                </a>
+              </dd>
+            </div>
+
+
+
+            {% if data['addon'] == 'Owner' %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Permission add ons
+              </dt>
+              <dd class="govuk-summary-list__value">
+               User group owner
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-permissions">
+                  Change<span class="govuk-visually-hidden"> date of birth</span>
+                </a>
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Owner of
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['group'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-group-owner">
+                  Change<span class="govuk-visually-hidden"> address</span>
+                </a>
+              </dd>
+            </div>
+            {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Permission add ons
+              </dt>
+              <dd class="govuk-summary-list__value">
+               {{ data['addon'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-permissions">
+                  Change<span class="govuk-visually-hidden"> date of birth</span>
+                </a>
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Member of
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['group'] }}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-group">
+                  Change<span class="govuk-visually-hidden"> address</span>
+                </a>
+              </dd>
+            </div>
+
+            {% endif %}
+        </dl>
+
+  {% endif %}
+          <h2 class="govuk-heading-m">Person authorising the change</h2>
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Ermintrude Jones
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-permissions2">
+                  Change<span class="govuk-visually-hidden"> previous application number</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Method of authorisation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Email
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-permissions2">
+                  Change<span class="govuk-visually-hidden"> licence type</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+              Date of authorisation
+              </dt>
+              <dd class="govuk-summary-list__value">
+                12/12/2022
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-permissions2">
+                  Change<span class="govuk-visually-hidden"> home address</span>
+                </a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+              Notes
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Neutra enamel pin photo booth blog. Tbh kitsch tumblr mlkshk chambray subway tile biodiesel. Meh kogi wolf iPhone air plant ramps quinoa Brooklyn yr.
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-permissions2">
+                  Change<span class="govuk-visually-hidden"> notes</span>
+                </a>
+              </dd>
+            </div>
+
+          </dl>
+
+
+
+<div class="moj-button-menu">
+<div class="moj-button-menu__wrapper">
+
+
+
+  <button role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+    Save changes
+  </button>
+
+  <a href="view-user" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+    Cancel
+  </a>
+
+</form>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

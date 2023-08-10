@@ -1,0 +1,83 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+          </li>
+
+  </ol>
+</div> -->
+
+{% endblock %}
+
+{% block content %}
+
+
+
+{% if data['new'] != 'true'%}
+<form method="post" action="edit-cya">
+
+  {% else %}
+  <form method="post" action="edit-permissions2">
+
+{% endif%}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['new'] == 'true' or data['name'] == 'Carl Cooper'%}
+  <h1 class="govuk-heading-l">Add {{ data['name'] }} to a group</h1>
+
+  {% else %}
+  <h1 class="govuk-heading-l">Change {{ data['name'] }}'s group </h1>
+  {% endif %}
+
+
+  {% include "includes/groups.html" %}
+
+
+  <div class="govuk-button-group">
+    <button class="govuk-button" data-module="govuk-button">
+      Continue
+    </button>
+    <a class="govuk-link" href="manage-users">Cancel</a>
+  </div>
+
+
+
+
+
+</form>
+
+
+
+
+</div>
+</div>
+{% endblock %}

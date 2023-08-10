@@ -1,0 +1,139 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="index">Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="view-caseload">My caseload</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="../nominal">Jones, Bob</a>
+          </li>
+          <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="../nominal/documents">Uploaded documents</a>
+            </li>
+  </ol>
+</div> -->
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row govuk-body">
+    <div class="govuk-grid-column-full">
+        <div class="basic-details">
+            <div class="govuk-!-margin-right-6">
+              <img src="/public/images/image.png" alt="Headshot of TEST, TEST" style="float:left" height="110" width="90" data-qa="offender-image">
+            </div>
+            <div id="basic-details-content">
+                <div>
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Name</span>
+                        <span data-qa="displayName">Jones, Bob</span>
+                    </p>
+                </div>
+
+
+
+                    <div>
+                        <p>
+                            <span class="govuk-!-font-weight-bold">Prison No.</span>
+                            <span data-qa="nomsId">G5897GP</span>
+                        </p>
+                    </div>
+
+
+
+                <div class="hide-mobile">
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Date of Birth</span>
+                        <span data-qa="dob">22/04/1989</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="govuk-!-margin-bottom-0">
+                        <span class="govuk-!-font-weight-bold">Location</span>
+
+                            <span data-qa="prison-description">Moorland (HMP &amp; YOI)</span>
+
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="govuk-width-container">
+        <div class="govuk-grid-row govuk-body">
+            <div class="govuk-grid-column-three-quarters">
+                <h1 class="govuk-heading-l">Upload a document to Pathfinder</h1>
+                <p>Use this service to upload documents to a Pathfinder nominal.</p>
+
+                <!-- <p>You can upload documents. Each file must be smaller than
+                    100MB.</p> -->
+
+                    <p class="govuk-body">You can use this service to</p>
+                    <ul class="govuk-list govuk-list--bullet">
+                      <li>upload mulitple documents</li>
+                      <li>upload documents smaller than 100MB</li>
+                    </ul>
+
+
+<h2 id="before-you-start">Before you start</h2>
+
+<p>You’ll need a xyz.....</p>
+<p id="get-started" class="get-started group">
+
+  <a class="gem-c-button govuk-button" role="button" rel="external" data-module="govuk-button cross-domain-tracking" data-tracking-code="UA-50679428-3" data-tracking-name="transactionTracker" draggable="false" href="document-type" data-govuk-button-module-started="true" data-cross-domain-tracking-module-started="true">Upload a document
+
+</a>
+
+
+    </p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+<!--
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+      {{ govukButton({
+          text: 'Back to profile',
+          classes: 'grey-button',
+          href: '/nominal/' + nominalData.id,
+          preventDoubleClick: true
+      }) }}
+  </div>
+  <div class="govuk-grid-column-one-half">
+      {% if numberOfDeletedDocuments > 0 and writePermission %}
+          <a class="govuk-link--no-visited-state float-right"
+             href="/nominal/{{ nominalData.id }}/documents/restore-list">
+              Restore documents marked for deletion
+          </a>
+      {% endif %}
+  </div>
+</div> -->
+{% endblock %}

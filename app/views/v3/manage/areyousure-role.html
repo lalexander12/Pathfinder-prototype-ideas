@@ -1,0 +1,93 @@
+{% extends "layout_moj.html" %}
+
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-width-container">
+  <div class="govuk-grid-row govuk-!-display-none-print govuk-!-margin-bottom-4">
+
+        <div class="govuk-grid-column-three-quarters">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+
+                <h1 class="govuk-fieldset__heading">
+                  Are you sure you want to change {{ data['name'] }}'s role?
+                </h1>
+                </a>
+              </legend>
+
+              <form method="post" action="/roleareyousure" class="form">
+
+
+
+
+
+
+
+<div class="govuk-form-group">
+<div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+      <div class="govuk-radios__item ">
+        <input class="govuk-radios__input" id="contact-10" name="rolechange" type="radio" value="yes"  data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-radios__label" for="contact-10">
+          Yes
+        </label>
+      </div>
+
+
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact-1" name="rolechange" type="radio"  value="no" data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-radios__label" for="contact-1">
+        No
+        </label>
+      </div>
+
+</div>
+
+
+  </fieldset>
+</div>
+
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+
+
+</form>
+
+
+
+
+</div>
+</div>
+</div>
+
+<!--
+
+<script>
+function setLocation(element) {
+      document.forms[0].action = element.value
+}
+</script>
+-->
+
+
+{% endblock %}

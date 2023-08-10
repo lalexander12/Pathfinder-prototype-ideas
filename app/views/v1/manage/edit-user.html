@@ -1,0 +1,151 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Manage Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  <h1 class="govuk-heading-l">Change Bob Brown's details</h1>
+
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="username">
+      First name
+    </label>
+
+  <input class="govuk-input govuk-input--width-20" id="firstname" name="username" value="Bob" type="text">
+
+  </div>
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="username">
+      Last name
+    </label>
+
+  <input class="govuk-input govuk-input--width-20" id="lastname" name="username" value="Brown" type="text">
+
+  </div>
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="username">
+      Username
+    </label>
+
+  <input class="govuk-input govuk-input--width-20" id="username" name="username" value="BBROWN_GEN" type="text">
+
+  </div>
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="username">
+      Email address
+    </label>
+
+  <input class="govuk-input govuk-input--width-20" id="email" name="username"value="bob.brown@justice.gov.uk"  type="text">
+
+  </div>
+
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="sort">
+    Pathfinder role
+  </label>
+  <select class="govuk-select" id="sort" name="sort">
+    <option value="published">Choose role</option>
+    <option value="published" selected>Pathfinder - User</option>
+    <option value="updated" >Pathfinder - Administrator</option>
+  </select>
+</div>
+<!--
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="sort">
+    Permissions
+  </label>
+
+  {% if data['customised'] == 'true' %}
+  <select class="govuk-select" id="sort" name="customised">
+    <option value="false">Choose permissions</option>
+    <option value="true" selected>Customised</option>
+    <option value="false">Read profile only</option>
+    <option value="false" >Read all</option>
+    <option value="false">Read and write limited</option>
+    <option value="false">Read and write all</option>
+  </select>
+
+  {% else %}
+
+  <select class="govuk-select" id="sort" name="sort">
+    <option value="published">Choose permissions</option>
+    <option value="published" Read limited</option>
+    <option value="updated" >Read all</option>
+    <option value="views">Read and write limited</option>
+    <option value="comments">Read and write all</option>
+  </select>
+
+  {% endif %}
+
+ <p class="govuk-!-margin-top-3" ><a href="read-limited">View and customise permissions</a></p>
+</div>-->
+
+  <div class="govuk-form-group">
+  <label class="govuk-label" for="sort">
+    User group
+  </label>
+  <select class="govuk-select" id="sort" name="sort">
+    <option value="published">Choose user group</option>
+    <option value="published">Prisons - North East</option>
+    <option value="updated" selected>Prisons - North West</option>
+    <option value="views">Probation - North East</option>
+    <option value="comments">Probation - North West</option>
+    <option value="views">Probation - South East</option>
+    <option value="comments">Probation - South West</option>
+  </select>
+</div>
+
+
+<div class="moj-button-menu">
+<div class="moj-button-menu__wrapper">
+
+  <a href="view-user" role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+  Continue
+  </a>
+
+  <a href="view-user" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+    Cancel
+  </a>
+
+
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

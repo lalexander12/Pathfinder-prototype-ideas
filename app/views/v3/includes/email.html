@@ -1,0 +1,11 @@
+{% if data['name'] == null %}
+bob.brown@justice.gov.uk
+{% elif data['name'] == 'Bob Brown'%}
+bob.brown@justice.gov.uk
+{% elif data['name'] == 'Carl Cooper'%}
+carl.cooper@justice.gov.uk
+{% elif data['name'] == 'Steve Miller'%}
+steve.miller@justice.gov.uk
+{% else %}
+bob.brown@justice.gov.uk
+{% endif %}

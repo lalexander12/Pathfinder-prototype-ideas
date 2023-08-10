@@ -1,0 +1,86 @@
+<div class="govuk-form-group">
+<fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+
+  </legend>
+  <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name" name="prison" type="checkbox" {{ checked("prison", "Prison - East") }} value="Prison - East">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name">
+        East
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name-2" name="prison" type="checkbox" {{ checked("prison", "Prison - East Midlands North") }} value="Prison - East Midlands North">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-2">
+        East Midlands North
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name-3" name="prison" type="checkbox" {{ checked("prison", "Prison - East Midlands South") }} value="Prison - East Midlands South">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-3">
+        East Midlands South
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name-4" name="prison" type="checkbox" {{ checked("prison", "Prison - London") }} value="Prison - London">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-4">
+       London
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      {% if data['new'] == 'true'%}
+      <input class="govuk-checkboxes__input" id="changed-name-5" name="prison" type="checkbox"  value="Prison - North East">
+      {% else %}
+      <input class="govuk-checkboxes__input" id="changed-name-5" name="prison" type="checkbox" {{ checked("prison", "Prison - North East") }} value="Prison - North East">
+      {% endif %}
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-5">
+       North East
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name-6" name="prison" type="checkbox" {{ checked("prison", "Prison - North West") }} value="Prison - North West">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-6">
+       North West
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name-7" name="prison" type="checkbox" {{ checked("prison", "Prison - South East") }}value="Prison - South East">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-7">
+       South East
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name-8" name="prison" type="checkbox" {{ checked("prison", "Prison - South West") }} value="Prison - South West">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-8">
+       South West
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name-9" name="prison" type="checkbox" {{ checked("prison", "Prison - Thames Valley") }} value="Prison - Thames Valley">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-9">
+       Thames Valley
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name-10" name="prison" type="checkbox" {{ checked("prison", "Prison - Wales") }} value="Prison - Wales">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-10">
+       Wales
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name-11" name="prison" type="checkbox" {{ checked("prison", "Prison - West Midlands") }} value="Prison - West Midlands">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-11">
+       West Midlands
+      </label>
+    </div>
+    <div class="govuk-checkboxes__item">
+      <input class="govuk-checkboxes__input" id="changed-name-12" name="prison" type="checkbox" {{ checked("prison", "Prison - Yorkshire and Humberside") }} value="Prison - Yorkshire and Humberside">
+      <label class="govuk-label govuk-checkboxes__label" for="changed-name-12">
+       Yorkshire and Humberside
+      </label>
+    </div>
+  </div>
+
+</fieldset>
+</div>

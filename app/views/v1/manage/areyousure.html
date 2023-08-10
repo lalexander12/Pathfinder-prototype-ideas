@@ -1,0 +1,125 @@
+{% extends "layout_moj.html" %}
+
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Manage Pathfinder</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="view-user">Bob Brown</a>
+          </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-width-container">
+  <div class="govuk-grid-row govuk-!-display-none-print govuk-!-margin-bottom-4">
+
+        <div class="govuk-grid-column-three-quarters">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+                {% if data['deactivated'] == 'true'%}
+                <h1 class="govuk-fieldset__heading">
+                  Are you sure you want to activate Bob Brown's pathfinder account?
+                </h1>
+                </a>
+              </legend>
+
+              <form method="post" action="/areyousure-activate" class="form">
+
+                <div id="contact-hint" class="govuk-hint">
+                  If you activate their account they will be able to access the Pathfinder service.
+                </div>
+                {% else %}
+                <h1 class="govuk-fieldset__heading">
+                  Are you sure you want to deactivate Bob Brown's Pathfinder account?
+                </h1>
+                </a>
+              </legend>
+
+              <form method="post" action="/areyousure-deactivate" class="form">
+
+                <div id="contact-hint" class="govuk-hint">
+                  If you deactivate their account they will not be able to access the Pathfinder service.
+
+                </div>
+                {% endif %}
+
+
+
+
+
+<div class="govuk-form-group">
+<div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+      <div class="govuk-radios__item ">
+        <input class="govuk-radios__input" id="contact-10" name="remove" type="radio" value="yes"  data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-radios__label" for="contact-10">
+          Yes
+        </label>
+      </div>
+
+
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="contact-1" name="remove" type="radio"  value="no" data-aria-controls="conditional-contact-2">
+        <label class="govuk-label govuk-radios__label" for="contact-1">
+        No
+        </label>
+      </div>
+
+</div>
+
+
+  </fieldset>
+</div>
+
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+
+
+</form>
+
+
+
+
+</div>
+</div>
+</div>
+
+<!--
+
+<script>
+function setLocation(element) {
+      document.forms[0].action = element.value
+}
+</script>
+-->
+
+
+{% endblock %}

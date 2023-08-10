@@ -1,0 +1,687 @@
+
+{% extends "layout_dps-signedout.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+</div>
+
+<div style="height:120px ; background-color:#e0eef8" class="moj-filter__selected govuk-!-padding-left-5 govuk-!-padding-right-5 govuk-!-padding-top-5  govuk-!-margin-bottom-3">
+
+<div class="govuk-width-container">
+  <h1 class="govuk-heading-s">Select a template and page to view what users with those permissions can see and do or <a href="template-addon-approver">view what add ons can do</a>.</h1>
+
+
+<div style="float:left">
+  <label class="govuk-label" for="sort">
+Template
+  </label>
+  <select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+    {% if data['template'] == 'readprofile' %}
+    <option value="template-profile?template=readprofile" selected>View profile page only</option>
+    <option value="template-profile?template=readall">Read all but not update</option>
+    <option value="template-profile?template=writelimited">Read & limited update</option>
+    <option value="template-profile?template=writeall">Full operational use</option>
+    {% elif data['template'] == 'readall' %}
+    <option value="template-profile?template=readprofile">View profile page only</option>
+    <option value="template-profile?template=readall" selected>Read all but not update</option>
+    <option value="template-profile?template=writelimited">Read & limited update</option>
+    <option value="template-profile?template=writeall">Full operational use</option>
+    {% elif data['template'] == 'writelimited' %}
+    <option value="template-profile?template=readprofile">View profile page only</option>
+    <option value="template-profile?template=readall" >Read all but not update</option>
+    <option value="template-profile?template=writelimited" selected>Read & limited update</option>
+    <option value="template-profile?template=writeall">Full operational use</option>
+    {% else %}
+    <option value="template-profile?template=readprofile">View profile page only</option>
+    <option value="template-profile?template=readall">Read all but not update</option>
+    <option value="template-profile?template=writelimited">Read & limited update</option>
+    <option value="template-profile?template=writeall" selected>Full operational use</option>
+    {% endif %}
+  </select>
+</div>
+
+<div style="float:left" class="govuk-!-margin-left-9">
+<label class="govuk-label" for="sort">
+Page
+</label>
+<select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+  <option value="template-tiles">Pathfinder tiles page</option>
+  <option value="template-caseload" >View and manage my caseload</option>
+  <option value="template-profile" selected>Profile</option>
+  <option value="template-tbc">Uploaded documents</option>
+</select>
+</div>
+
+</div>
+
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+<div class="govuk-grid-row">
+<div style="clear: both" class="govuk-grid-column-full">
+
+  <h1 style="float:left" class="govuk-heading-xl  govuk-!-margin-top-5">Jones, Bob</h1>
+  <div class="govuk-!-margin-top-2">
+  {% if data['template'] == 'readprofile' %}
+  <p class="tooltip govuk-!-margin-left-5  govuk-!-margin-top-5" style="float:left; background-color:	#f3f2f1"><span class="tooltiptext">No access</span><a href="#" style="color: 	#b1b4b6">View nominal profile on the Digital Prison Service</a></p>
+  {% else %}
+  <p class="govuk-!-margin-left-5  govuk-!-margin-top-5" style="float:left"><a href="#">View nominal profile on the Digital Prison Service</a></p>
+  {% endif %}
+
+  {% if data['template'] == 'readprofile' %}
+  <p style="float:right; background-color:	#f3f2f1" class="tooltip govuk-!-margin-top-5"><span class="tooltiptext">No access</span><a href="#" style="color: 	#b1b4b6">Manage profile</a></p>
+  {% elif data['template'] == 'writeall' %}
+  <p style="float:right" class=" govuk-!-margin-top-5"><a href="#">Manage profile</a></p>
+  {% else %}
+  <p style="float:right; border: 5px solid red" class="tooltip govuk-!-margin-top-5"><span class="tooltiptext">Can click and view page but not edit</span><a href="#">Manage profile</a></p>
+  {% endif %}
+  </div>
+
+  <div  style="clear:both" class="govuk-grid-column-one-quarter">
+  <div style="width: 200px">
+      <img src="/public/images/image.png" alt="Headshot of Brown, Bob" style="float:left"  width="100%" data-qa="offender-image">
+
+
+</div>
+</div>
+
+
+<div class="govuk-grid-column-one-quarter">
+
+           <p class="govuk-!-font-weight-bold">Prison No.<br>
+           <span class="govuk-body" data-qa="prison-number">A8139DY</span></p>
+
+           <p class="govuk-!-font-weight-bold">CRN<br>
+           <span class="govuk-body" data-qa="crn">not entered</span></p>
+
+           <p class="govuk-!-font-weight-bold">PNC<br>
+           <span class="govuk-body" data-qa="pnc">not entered</span></p>
+
+           <p class="govuk-!-font-weight-bold">Date of Birth<br>
+           <span class="govuk-body" data-qa="dob">04/04/1978</span></p>
+
+           <p class="govuk-!-font-weight-bold">Location<br>
+           <span class="govuk-body" data-qa="prison-description">Moorland (HMP &amp; YOI)</span><br>
+
+           <span class="govuk-body" data-qa="living-unit">1-3-004</span></p>
+
+           <p class="govuk-!-font-weight-bold">Probation release area<br>
+           <span class="govuk-body" data-qa="ldu">not entered</span></p>
+
+           <p class="govuk-!-font-weight-bold">Community Offender Manager<br>
+           <span class="govuk-body" data-qa="COM">not entered</span></p>
+
+           <p class="govuk-!-font-weight-bold">CT Officer<br>
+           <span class="govuk-body" data-qa="ct-officer">None</span></p>
+   </div>
+
+   <div class="govuk-grid-column-one-quarter">
+
+                <p class="govuk-!-font-weight-bold">Imprisonment Status<br>
+                <span class="govuk-body" data-qa="imprisonment-status">ORA FTR Schedule 15 Offender</span></p>
+
+                <p class="govuk-!-font-weight-bold">Category<br>
+
+                <span class="govuk-body">Uncategorised</span><br>
+
+                {% if data['template'] == 'readprofile' %}
+                <a class="tooltip govuk-body" href="#" target="_blank" style="background-color:	#f3f2f1; color: 	#b1b4b6"><span class="tooltiptext">No access</span>View categorisations</a></p>
+                {% else %}
+                <a class="govuk-body" href="#" target="_blank">View categorisations</a></p>
+                {% endif %}
+
+                <p class="govuk-!-font-weight-bold">Main Offence<br>
+                <span class="govuk-body" data-qa="offence">Act as crew of aircraft when under influence of drink / drug impairing capacity</span></p>
+
+
+                <p class="govuk-!-font-weight-bold">Nationality<br>
+                <span class="govuk-body" data-qa="nationality">not entered</span></p>
+
+                <p class="govuk-!-font-weight-bold">Responsible Immigration Team<br>
+                <span class="govuk-body" data-qa="immigration-team">
+
+                        not entered
+
+                </span></p>
+
+                <p class="govuk-!-font-weight-bold">Religion<br>
+                <span class="govuk-body" data-qa="religion">not entered</span></p>
+
+                <div class="govuk-form-group">
+
+                    <p class="govuk-!-font-weight-bold">Ideology<br>
+                      <span class="govuk-body" data-qa="ideology-text">Not yet identified</span><br>
+                      {% if data['template'] == 'readprofile' %}
+                      <a class="tooltip govuk-body" href="#" target="_blank" style="background-color:	#f3f2f1; color: 	#b1b4b6"><span class="tooltiptext">No access</span>Update ideology</a></p>
+                      {% elif data['template'] == 'writeall' %}
+                      <a class="govuk-body" href="#">Update ideology</a>  </p>
+                      {% else %}
+                      <a class="tooltip govuk-body" href="#" target="_blank" style="background-color:	#f3f2f1; color: 	#b1b4b6"><span class="tooltiptext">No access</span>Update ideology</a></p>
+                      {% endif %}
+
+
+            </div>
+        </div>
+
+        <div class="govuk-grid-column-one-quarter">
+
+
+                     <p class="govuk-!-font-weight-bold">Calculated Release Date<br>
+                     <span class="govuk-body" data-qa="calculated-release-date">24/06/2010</span></p>
+
+                     <p class="govuk-!-font-weight-bold">HDC eligibility date<br>
+                     <span class="govuk-body" data-qa="hdc-date">not entered</span></p>
+
+                     <p class="govuk-!-font-weight-bold">Parole eligibility date<br>
+                     <span class="govuk-body" data-qa="parole-eligibility-date">not entered</span></p>
+
+                     <p class="govuk-!-font-weight-bold">Licence Expiry Date<br>
+                     <span class="govuk-body" data-qa="licence-expiry-date">16/09/2015</span></p>
+
+                     <p class="govuk-!-font-weight-bold">Sentence Expiry Date<br>
+                     <span class="govuk-body" data-qa="sentence-expiry-date">16/09/2015</span></p>
+
+                     <p class="govuk-!-font-weight-bold">Post-sentence supervision date<br>
+                     <span class="govuk-body" data-qa="post-sentence-supervision-date">not entered</span></p>
+             </div>
+
+
+
+
+<div style="clear:both" class="spread-items">
+  <div class="govuk-!-margin-top-0">
+
+  </div>
+
+  {% if data['template'] == 'readprofile' %}
+  <div style="background-color:	#f3f2f1" >
+  <a style="color: 	#b1b4b6;   background:none" href="javascript:window.print()" class="tooltip govuk-link print-link govuk-!-display-none-print govuk-!-padding-right-3"><span class="tooltiptext">No access</span>Print</a>
+  </div>
+  {% else %}
+  <a href="javascript:window.print()" class="govuk-link print-link govuk-!-display-none-print">Print</a>
+  {% endif %}
+
+</div>
+
+<hr>
+
+</div>
+
+  <div id="intelligence-actions-container"  class="nominal-home-section-container govuk-grid-row">
+          <div  class="govuk-grid-column-one-half">
+
+            {% if data['template'] == 'readprofile' %}
+            <div style="border: 5px solid orange" class="tooltip govuk-!-margin-bottom-3 nominal-home-panel" data-qa="status">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                          Status and reason for inclusion
+
+                </h2>
+                <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                    <p class="govuk-!-font-size-16" data-qa="status-history-description"><span class="tooltiptext">Can view information but not click</span> Asymmetrical hexagon gatekeep hammock cronut, yes plz VHS crucifix etsy. Enamel pin fingerstache forage shoreditch drinking vinegar narwhal. Single-origin coffee messenger bag mustache fingerstache hell of. Hot chicken biodiesel chicharrones activated charcoal, cornhole banjo try-hard small batch kitsch direct trade bespoke mumblecore next level quinoa.</p>
+                    <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3  govuk-!-margin-bottom-0" data-qa="status-history-date"><span class="govuk-!-font-weight-bold">Date of change:</span> 18 Jan 2023
+                    </p>
+                </div>
+            </div>
+            {% elif data['template'] == 'writeall' %}
+            <div class="govuk-!-margin-bottom-3 nominal-home-panel" data-qa="status">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                        <a class="govuk-link block govuk-link--no-visited-state" href="#">
+                            Status and reason for inclusion
+                        </a>
+                </h2>
+                <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                    <p class="govuk-!-font-size-16" data-qa="status-history-description">Asymmetrical hexagon gatekeep hammock cronut, yes plz VHS crucifix etsy. Enamel pin fingerstache forage shoreditch drinking vinegar narwhal. Single-origin coffee messenger bag mustache fingerstache hell of. Hot chicken biodiesel chicharrones activated charcoal, cornhole banjo try-hard small batch kitsch direct trade bespoke mumblecore next level quinoa.</p>
+                    <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3  govuk-!-margin-bottom-0" data-qa="status-history-date"><span class="govuk-!-font-weight-bold">Date of change:</span> 18 Jan 2023
+                    </p>
+                </div>
+            </div>
+
+            {% else %}
+            <div style="border: 5px solid red" class="tooltip govuk-!-margin-bottom-3 nominal-home-panel" data-qa="status">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                      <a class="govuk-link block govuk-link--no-visited-state" href="#">
+                          Status and reason for inclusion
+                      </a>
+                </h2>
+                <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                    <p class="govuk-!-font-size-16" data-qa="status-history-description"><span class="tooltiptext">Can click and view page but not edit</span> Asymmetrical hexagon gatekeep hammock cronut, yes plz VHS crucifix etsy. Enamel pin fingerstache forage shoreditch drinking vinegar narwhal. Single-origin coffee messenger bag mustache fingerstache hell of. Hot chicken biodiesel chicharrones activated charcoal, cornhole banjo try-hard small batch kitsch direct trade bespoke mumblecore next level quinoa.</p>
+                    <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3  govuk-!-margin-bottom-0" data-qa="status-history-date"><span class="govuk-!-font-weight-bold">Date of change:</span> 18 Jan 2023
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+
+
+            {% if data['template'] == 'readprofile' %}
+              <div style="border: 5px solid orange" class="tooltip govuk-!-margin-bottom-3 nominal-home-panel" data-qa="meetings">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                              Meetings
+                  </h2>
+                  <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                          <p class="govuk-!-font-size-16"><span class="bold">Date of last meeting: </span>12 Dec 2022
+                          </p>
+                          <p class="govuk-!-font-size-16 bold govuk-!-margin-bottom-0">Summary of last meeting</p>
+                          <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="tooltiptext">Can view information but not click</span> Slow-carb irony meggings man bun coloring book four dollar toast vice chillwave sus bitters cliche four loko VHS migas semiotics.</p>
+                  </div>
+              </div>
+            {% elif data['template'] == 'writeall' %}
+            <div class="govuk-!-margin-bottom-3 nominal-home-panel" data-qa="meetings">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                        <a class="govuk-link block govuk-link--no-visited-state" data-qa="meetings-link" href="#">
+                            Meetings
+                        </a>
+                </h2>
+                <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                        <p class="govuk-!-font-size-16"><span class="bold">Date of last meeting: </span>12 Dec 2022
+                        </p>
+                        <p class="govuk-!-font-size-16 bold govuk-!-margin-bottom-0">Summary of last meeting</p>
+                        <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">Slow-carb irony meggings man bun coloring book four dollar toast vice chillwave sus bitters cliche four loko VHS migas semiotics.</p>
+                </div>
+            </div>
+
+            {% else %}
+            <div style="border: 5px solid red" class="tooltip govuk-!-margin-bottom-3 nominal-home-panel" data-qa="meetings">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                        <a class="govuk-link block govuk-link--no-visited-state" data-qa="meetings-link" href="#">
+                            Meetings
+                        </a>
+                </h2>
+                <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                        <p class="govuk-!-font-size-16"><span class="bold">Date of last meeting: </span>12 Dec 2022
+                        </p>
+                        <p class="govuk-!-font-size-16 bold govuk-!-margin-bottom-0">Summary of last meeting</p>
+                        <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="tooltiptext">Can click and view page but not edit</span> Slow-carb irony meggings man bun coloring book four dollar toast vice chillwave sus bitters cliche four loko VHS migas semiotics.</p>
+                </div>
+            </div>
+
+            {% endif %}
+
+            {% if data['template'] == 'readprofile' %}
+              <div style="border: 5px solid orange" class="tooltip govuk-!-margin-bottom-3 nominal-home-panel" data-qa="intelligence">
+                <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                            Intelligence
+                </h2>
+                <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                    <div>
+                        <div class="govuk-grid-row">
+                            <p class="govuk-!-font-size-16 govuk-grid-column-one-half govuk-!-margin-bottom-0 govuk-!-font-weight-bold">
+                                Summary</p>
+                                <p class="govuk-!-font-size-16 govuk-grid-column-one-half govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="bold">Updated:</span> 18 Jan 2023 - 08:36
+                                </p>
+                        </div>
+                        <div>
+                            <p class="govuk-!-font-size-16">Locavore af vexillologist fashion axe. Bruh heirloom lomo, hoodie helvetica meditation praxis. Pour-over slow-carb chambray, listicle kogi hella gatekeep twee offal JOMO vibecession iPhone tonx. Copper mug jean shorts pork belly blog waistcoat 8-bit craft beer neutra jianbing tattooed viral.</p>
+                        </div>
+                    </div>
+                    <p class="govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-0">Reports</p>
+                        <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="tooltiptext">Can view information but not click</span>You have not selected any intelligence reports</p>
+                </div>
+            </div>
+          </div>
+          {% elif data['template'] == 'writeall' %}
+          <div class="govuk-!-margin-bottom-3 nominal-home-panel" data-qa="intelligence">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    <a class="govuk-link block govuk-link--no-visited-state" data-qa="intel-link" href="#">
+                        Intelligence
+                    </a>
+            </h2>
+            <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                <div>
+                    <div class="govuk-grid-row">
+                        <p class="govuk-!-font-size-16 govuk-grid-column-one-half govuk-!-margin-bottom-0 govuk-!-font-weight-bold">
+                            Summary</p>
+                            <p class="govuk-!-font-size-16 govuk-grid-column-one-half govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="bold">Updated:</span> 18 Jan 2023 - 08:36
+                            </p>
+                    </div>
+                    <div>
+                        <p class="govuk-!-font-size-16">Locavore af vexillologist fashion axe. Bruh heirloom lomo, hoodie helvetica meditation praxis. Pour-over slow-carb chambray, listicle kogi hella gatekeep twee offal JOMO vibecession iPhone tonx. Copper mug jean shorts pork belly blog waistcoat 8-bit craft beer neutra jianbing tattooed viral.</p>
+                    </div>
+                </div>
+                <p class="govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-0">Reports</p>
+                    <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">You have not selected any intelligence reports</p>
+            </div>
+        </div>
+      </div>
+
+          {% else %}
+          <div style="border: 5px solid red" class="tooltip govuk-!-margin-bottom-3 nominal-home-panel" data-qa="intelligence">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    <a class="govuk-link block govuk-link--no-visited-state" data-qa="intel-link" href="#">
+                        Intelligence
+                    </a>
+            </h2>
+            <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                <div>
+                    <div class="govuk-grid-row">
+                        <p class="govuk-!-font-size-16 govuk-grid-column-one-half govuk-!-margin-bottom-0 govuk-!-font-weight-bold">
+                            Summary</p>
+                            <p class="govuk-!-font-size-16 govuk-grid-column-one-half govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="bold">Updated:</span> 18 Jan 2023 - 08:36
+                            </p>
+                    </div>
+                    <div>
+                        <p class="govuk-!-font-size-16">Locavore af vexillologist fashion axe. Bruh heirloom lomo, hoodie helvetica meditation praxis. Pour-over slow-carb chambray, listicle kogi hella gatekeep twee offal JOMO vibecession iPhone tonx. Copper mug jean shorts pork belly blog waistcoat 8-bit craft beer neutra jianbing tattooed viral.</p>
+                    </div>
+                </div>
+                <p class="govuk-!-font-size-16 govuk-!-font-weight-bold govuk-!-margin-bottom-0">Reports</p>
+                    <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="tooltiptext">Can click and view page but not edit</span>You have not selected any intelligence reports</p>
+            </div>
+        </div>
+      </div>
+
+
+          {% endif %}
+
+          <div class="govuk-grid-column-one-half">
+
+          {% if data['template'] == 'readprofile' %}
+              <div style="border: 5px solid orange" class="tooltip govuk-!-margin-bottom-3 nominal-home-panel" data-qa="actions">
+              <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                          Actions, controls and interventions
+              </h2>
+              <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+              <div class="gov govuk-!-margin-bottom-0 thick-underlined-section" data-qa="outstanding">
+                  <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="bold">1</span> in progress, <span class="bold">0</span> paused</p>
+                  <div class="gov govuk-!-margin-bottom-0 govuk-!-padding-bottom-3 underlined-section">
+                  <div class="govuk-grid-row">
+                      <p class="govuk-grid-column-one-third govuk-!-margin-bottom-0 govuk-!-font-size-16 bold">Description</p>
+                      <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16"><span class="tooltiptext">Can view information but not click</span>Lomo bruh chartreuse</p>
+                  </div>
+                  <div class="govuk-grid-row">
+                      <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Date added</p>
+                      <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">09 Dec 2022</p>
+                  </div>
+                  <div class="govuk-grid-row">
+                      <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Person responsible</p>
+                      <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">John Smith</p>
+                  </div>
+                  <div class="govuk-grid-row">
+                      <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Required by</p>
+                      <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">22 Dec 2022</p>
+                  </div>
+                  <div class="govuk-grid-row">
+                      <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Status</p>
+                      <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">In progress</p>
+                  </div>
+              </div>
+              </div>
+              </div>
+            </div>
+            {% elif data['template'] == 'writeall' %}
+            <div class="govuk-!-margin-bottom-3 nominal-home-panel" data-qa="actions">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    <a class="govuk-link block govuk-link--no-visited-state" href="#">
+                        Actions, controls and interventions
+                    </a>
+            </h2>
+            <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+            <div class="gov govuk-!-margin-bottom-0 thick-underlined-section" data-qa="outstanding">
+                <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="bold">1</span> in progress, <span class="bold">0</span> paused</p>
+                <div class="gov govuk-!-margin-bottom-3 govuk-!-padding-bottom-3 underlined-section">
+                <div class="govuk-grid-row">
+                    <p class="govuk-grid-column-one-third govuk-!-margin-bottom-0 govuk-!-font-size-16 bold">Description</p>
+                    <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">Lomo bruh chartreuse</p>
+                </div>
+                <div class="govuk-grid-row">
+                    <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Date added</p>
+                    <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">09 Dec 2022</p>
+                </div>
+                <div class="govuk-grid-row">
+                    <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Person responsible</p>
+                    <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">John Smith</p>
+                </div>
+                <div class="govuk-grid-row">
+                    <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Required by</p>
+                    <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">22 Dec 2022</p>
+                </div>
+                <div class="govuk-grid-row  govuk-!-margin-bottom-0">
+                    <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Status</p>
+                    <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">In progress</p>
+                </div>
+            </div>
+            </div>
+            </div>
+          </div>
+
+
+            {% else %}
+            <div style="border: 5px solid red" class="tooltip govuk-!-margin-bottom-3 nominal-home-panel" data-qa="actions">
+            <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                    <a class="govuk-link block govuk-link--no-visited-state" href="#">
+                        Actions, controls and interventions
+                    </a>
+            </h2>
+            <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+            <div class="gov govuk-!-margin-bottom-0 thick-underlined-section" data-qa="outstanding">
+                <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="bold">1</span> in progress, <span class="bold">0</span> paused</p>
+                <div class="gov govuk-!-margin-bottom-0 govuk-!-padding-bottom-3 underlined-section">
+                <div class="govuk-grid-row">
+                    <p class="govuk-grid-column-one-third govuk-!-margin-bottom-0 govuk-!-font-size-16 bold">Description</p>
+                    <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16"><span class="tooltiptext">Can click and view page but not edit</span>Lomo bruh chartreuse</p>
+                </div>
+                <div class="govuk-grid-row">
+                    <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Date added</p>
+                    <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">09 Dec 2022</p>
+                </div>
+                <div class="govuk-grid-row">
+                    <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Person responsible</p>
+                    <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">John Smith</p>
+                </div>
+                <div class="govuk-grid-row">
+                    <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Required by</p>
+                    <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">22 Dec 2022</p>
+                </div>
+                <div class="govuk-grid-row">
+                    <p class="govuk-grid-column-one-third bold govuk-!-margin-bottom-0 govuk-!-font-size-16">Status</p>
+                    <p class="govuk-grid-column-two-thirds govuk-!-margin-bottom-0 govuk-!-font-size-16">In progress</p>
+                </div>
+            </div>
+            </div>
+            </div>
+          </div>
+
+            {% endif %}
+
+            {% if data['template'] == 'readprofile' %}
+              <div style="border: 5px solid orange" class="tooltip nominal-home-panel govuk-!-margin-bottom-3 " data-qa="caseNotes">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                              Pathfinder case notes
+                  </h2>
+                  <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3 ">
+                          <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">Flagged case
+                              notes</p>
+                              <div class="gov govuk-!-margin-bottom-0 govuk-!-padding-bottom-3 underlined-section">
+                                  <p class="govuk-!-font-size-16 govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="tooltiptext">Can view information but not click</span>Copper mug jean shorts pork belly blog waistcoat 8-bit craft beer neutra jianbing tattooed viral.</p>
+                                  <br>
+                                  <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="govuk-!-font-weight-bold">Occurrence date:</span> Wednesday - 18 Jan 2023 - 08:40
+                                  </p>
+                              </div>
+                  </div>
+              </div>
+              {% elif data['template'] == 'readall' %}
+              <div style="border: 5px solid red" class="tooltip nominal-home-panel govuk-!-margin-bottom-3 " data-qa="caseNotes">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                          <a class="govuk-link block govuk-link--no-visited-state" href="#">
+                              Pathfinder case notes
+                          </a>
+                  </h2>
+                  <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3 ">
+                          <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">Flagged case
+                              notes</p>
+                              <div class="gov govuk-!-margin-bottom-0 govuk-!-padding-bottom-3 underlined-section">
+                                  <p class="govuk-!-font-size-16 govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="tooltiptext">Can click and view page but not edit</span>Copper mug jean shorts pork belly blog waistcoat 8-bit craft beer neutra jianbing tattooed viral.</p>
+                                  <br>
+                                  <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="govuk-!-font-weight-bold">Occurrence date:</span> Wednesday - 18 Jan 2023 - 08:40
+                                  </p>
+                              </div>
+                  </div>
+              </div>
+              {% else %}
+              <div class="nominal-home-panel govuk-!-margin-bottom-3 " data-qa="caseNotes">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                          <a class="govuk-link block govuk-link--no-visited-state" href="#">
+                              Pathfinder case notes
+                          </a>
+                  </h2>
+                  <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                          <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0 govuk-!-font-weight-bold">Flagged case
+                              notes</p>
+                              <div class="gov govuk-!-margin-bottom-3 govuk-!-padding-bottom-3 underlined-section">
+                                  <p class="govuk-!-font-size-16 govuk-!-font-size-16 govuk-!-margin-bottom-0">Copper mug jean shorts pork belly blog waistcoat 8-bit craft beer neutra jianbing tattooed viral.</p>
+                                  <br>
+                                  <p class="govuk-!-font-size-16 govuk-!-margin-bottom-0"><span class="govuk-!-font-weight-bold">Occurrence date:</span> Wednesday - 18 Jan 2023 - 08:40
+                                  </p>
+                              </div>
+                  </div>
+              </div>
+
+              {% endif %}
+
+              {% if data['template'] == 'readprofile' %}
+              <div style="border: 5px solid orange" class="tooltip nominal-home-panel govuk-!-margin-bottom-3 " data-qa="timeline">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                              Timeline
+                  </h2>
+                  <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                          <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="tooltiptext">Can view information but not click</span>You have not flagged any timeline activity for
+                              this nominal</p>
+                  </div>
+              </div>
+              {% elif data['template'] == 'writeall' %}
+              <div class="nominal-home-panel govuk-!-margin-bottom-3 " data-qa="timeline">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                          <a class="govuk-link block govuk-link--no-visited-state" href="">
+                              Timeline
+                          </a>
+                  </h2>
+                  <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                          <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">You have not flagged any timeline activity for
+                              this nominal</p>
+                  </div>
+              </div>
+
+              {% else %}
+              <div style="border: 5px solid red" class="tooltip nominal-home-panel govuk-!-margin-bottom-3 " data-qa="timeline">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                          <a class="govuk-link block govuk-link--no-visited-state" href="">
+                              Timeline
+                          </a>
+                  </h2>
+                  <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                          <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="tooltiptext">Can click and view page but not edit</span>You have not flagged any timeline activity for
+                              this nominal</p>
+                  </div>
+              </div>
+
+              {% endif %}
+
+              {% if data['template'] == 'readprofile' %}
+              <div style="border: 5px solid orange" class="tooltip govuk-!-margin-bottom-3 nominal-home-panel" data-qa="assessments">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                              CIM Assessment
+                  </h2>
+                  <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                              <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">
+                                  <span class="bold">Date previous CIM completed: </span>
+                                  <span class="tooltiptext">Can view information but not click</span>24th November 2022
+                              </p>
+                              <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">
+                                      <span class="bold">Next CIM review date: </span>24th May 2023
+                              </p>
+                  </div>
+              </div>
+              {% elif data['template'] == 'writeall' %}
+              <div class="govuk-!-margin-bottom-3 nominal-home-panel" data-qa="assessments">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                          <a class="govuk-link block govuk-link--no-visited-state" href="">
+                              CIM Assessment
+                          </a>
+                  </h2>
+                  <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                              <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">
+                                  <span class="bold">Date previous CIM completed: </span>
+                                  24th November 2022
+                              </p>
+                              <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">
+                                      <span class="bold">Next CIM review date: </span>24th May 2023
+                              </p>
+                  </div>
+              </div>
+
+              {% else %}
+              <div style="border: 5px solid red" class="tooltip govuk-!-margin-bottom-3 nominal-home-panel" data-qa="assessments">
+                  <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                          <a class="govuk-link block govuk-link--no-visited-state" href="">
+                              CIM Assessment
+                          </a>
+                  </h2>
+                  <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                              <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">
+                                  <span class="bold">Date previous CIM completed: </span>
+                                  <span class="tooltiptext">Can click and view page but not edit</span>24th November 2022
+                              </p>
+                              <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0">
+                                      <span class="bold">Next CIM review date: </span>24th May 2023
+                              </p>
+                  </div>
+              </div>
+
+
+              {% endif %}
+
+              {% if data['template'] == 'readprofile' %}
+              <div style="border: 5px solid orange" class="tooltip nominal-home-panel govuk-!-display-none-print" data-qa="documents">
+                    <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                                Uploaded documents
+                    </h2>
+                    <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                            <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="bold">3</span> <span class="tooltiptext">Can view information but not click</span>documents uploaded</p>
+                    </div>
+                </div>
+                {% elif data['template'] == 'readall' %}
+                <div style="border: 5px solid red" class="tooltip nominal-home-panel govuk-!-display-none-print" data-qa="documents">
+                      <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                              <a class="govuk-link block govuk-link--no-visited-state" href="">
+                                  Uploaded documents
+                              </a>
+                      </h2>
+                      <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                              <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="bold">3</span> <span class="tooltiptext">Can click and view page but not edit</span>documents uploaded</p>
+                      </div>
+                  </div>
+
+                {% else %}
+                <div class="nominal-home-panel govuk-!-display-none-print" data-qa="documents">
+                      <h2 class="govuk-heading-s govuk-!-margin-bottom-0">
+                              <a class="govuk-link block govuk-link--no-visited-state" href="">
+                                  Uploaded documents
+                              </a>
+                      </h2>
+                      <div class="govuk-!-padding-left-3 govuk-!-padding-right-3 govuk-!-padding-top-3">
+                              <p class="govuk-!-font-size-16 govuk-!-padding-bottom-3 govuk-!-margin-bottom-0"><span class="bold">3</span> documents uploaded</p>
+                      </div>
+                  </div>
+
+                {% endif %}
+
+
+
+
+
+          </div>
+      </div>
+
+
+
+</div>
+</div>
+</div>
+{% endblock %}

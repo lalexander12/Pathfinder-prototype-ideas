@@ -1,0 +1,367 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+        {% if data['new'] == 'true' %}
+        {% else %}
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+        </li>
+        {% endif %}
+
+  </ol>
+</div> -->
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+
+{% endblock %}
+
+{% block content %}
+{% if data['permission'] == 'Remove access to Pathfinder'%}
+<form method="post" action="confirmation-removed">
+
+{% else %}
+<form method="post" action="confirmation">
+
+{% endif %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    {% if data['new'] == 'true' %}
+    <h1 class="govuk-heading-l">
+            Check your answers before adding this user</h1>
+
+    {% else %}
+    <h1 class="govuk-heading-l">
+      
+            Check your answers before saving these changes</h1>
+    {% endif %}
+
+    {% if data['deactivated'] == 'true' %}
+
+    <h2 class="govuk-heading-m"></h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        Delete account
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="areyousure">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+    {% elif data['deactivated'] == 'false' %}
+
+    <h2 class="govuk-heading-m"></h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        Activate account
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Yes
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="areyousure">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+    </dl>
+
+
+    {% else %}
+    {% if data['new'] == 'true' %}
+    <h2 class="govuk-heading-m">New user</h2>
+
+    {% else %}
+
+    {% endif %}
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        User details
+        </dt>
+        <dd class="govuk-summary-list__value">
+
+
+
+          {% if data['name'] == null %}
+          Steve Miller<br>
+          {% else %}
+          {{ data['name'] }}<br>
+          {% endif %}
+
+          {% include "../includes/email.html" %}<br>
+            Prison - NOMIS
+
+
+
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          {% if data['new'] == 'true' %}
+
+          <a class="govuk-link" href="edit-search">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+          {% endif %}
+
+        </dd>
+      </div>
+
+
+    </dl>
+
+
+    <!-- <h2 class="govuk-heading-m">Pathfinder role</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        Role
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Pathfinder user
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="edit-permissions0">
+            Change<span class="govuk-visually-hidden"> name</span>
+          </a>
+        </dd>
+      </div>
+    </dl> -->
+
+          <h2 class="govuk-heading-m">Access and groups</h2>
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+              Access
+              </dt>
+              <dd class="govuk-summary-list__value">
+
+                {% if data['permission'] == 'Remove access to Pathfinder'%}
+                <strong class="govuk-tag govuk-tag--red">
+                 Access removed
+                 </strong>
+                 {% else %}
+
+                {{ data['permission'] }}
+                {% endif %}
+
+                {% if data['addon'] == 'Owner' %}
+
+                 <br>User group owner
+                 {% elif data['addon'] == 'CIM Approver'%}
+                 <br>CIM Approver
+                 {% else %}
+
+                 {% endif %}
+
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-permissions">
+                  Change<span class="govuk-visually-hidden"> Access</span>
+                </a>
+              </dd>
+            </div>
+
+
+            {% if data['deactivated'] == 'true' or data['permission'] == 'Remove access to Pathfinder'%}
+            {% else %}
+
+            {% if data['addon'] == 'Owner' %}
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Group (owner)
+              </dt>
+              <dd class="govuk-summary-list__value">
+
+                {% if data['empty'] == 'true'%}
+                No group added
+`
+                {% elif data['group'] == null %}
+                Prison - East Midlands South
+                {% elif data['added'] == 'true'%}
+                Prison - East Midlands South<br>
+                Prison - London South
+
+                {% else %}
+
+
+                {% if data['group'] == 'unsure' %}
+                  I don't know their group
+                {% else %}
+                {{ data['group'] }}
+
+              {% endif %}
+
+                {% endif %}
+
+                              </dd>
+              <dd class="govuk-summary-list__actions">
+                {% if data['group'] == 'unsure' %}
+                <a class="govuk-link" href="edit-group-owner-add">
+                {% else %}
+                <a class="govuk-link" href="edit-group-owner">
+
+              {% endif %}
+
+                  Change<span class="govuk-visually-hidden"> address</span>
+                </a>
+              </dd>
+            </div>
+            {% else %}
+
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Group (member)
+              </dt>
+              <dd class="govuk-summary-list__value">
+
+
+                {% if data['group'] == null %}
+                Prison - North East
+
+
+                {% elseif data['group'] == 'unsure' %}
+                  I don't know their group
+                {% else %}
+
+                              {{ data['group'] }}
+
+
+                {% endif%}
+
+
+
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-group">
+                  Change<span class="govuk-visually-hidden"> address</span>
+                </a>
+              </dd>
+            </div>
+            {% endif %}
+
+            {% endif %}
+        </dl>
+
+  {% endif %}
+      {% if data['new'] == 'true' %}
+          <h2 class="govuk-heading-m">Person who requested the new user</h2>
+          {% else %}
+          <h2 class="govuk-heading-m">Person who requested the change</h2>
+          {% endif %}
+
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                User details
+              </dt>
+              <dd class="govuk-summary-list__value">
+                John Smith<br>
+                <!-- JOHN_SMITH<br> -->
+                john.smith@justice.gov.uk<br>
+                Prison - NOMIS
+
+              <!-- {% if data['ugo-role'] == null %}
+              PCTL (Probation)
+              {% elseif data['ugo-role'] == PCTL %}
+              PCTL (Probation)
+              {% elseif data['ugo-role'] == 'RCTL' %}
+                  RCTL (Prison)
+              {% else %}
+            {LTRCTL (High Security Prison)
+
+              {% endif%} -->
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-permissions2">
+                  Change<span class="govuk-visually-hidden"> previous application number</span>
+                </a>
+              </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+              Date requested
+              </dt>
+              <dd class="govuk-summary-list__value">
+                4 June 2023
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="edit-request-date">
+                  Change<span class="govuk-visually-hidden"> date</span>
+                </a>
+              </dd>
+            </div>
+            <!-- <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+              Notes
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Neutra enamel pin photo booth blog. Tbh kitsch tumblr mlkshk chambray subway tile biodiesel. Meh kogi wolf iPhone air plant ramps quinoa Brooklyn yr.
+              </dd>
+
+            </div> -->
+            <!-- <p class="govuk-body govuk-!-margin-top-4">
+              <a class="govuk-link" href="edit-permissions2">Change authorisation details<span class="govuk-visually-hidden"> licence type</span></a>
+            </p> -->
+          </dl>
+
+
+
+
+
+  <div class="govuk-button-group">
+    <button class="govuk-button" data-module="govuk-button">
+      Save
+    </button>
+    <a class="govuk-link" href="view-user">Cancel</a>
+  </div>
+
+
+</form>
+
+
+
+</div>
+</div>
+{% endblock %}

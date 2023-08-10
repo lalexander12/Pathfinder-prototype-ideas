@@ -1,0 +1,258 @@
+
+{% extends "layout_dps-signedout.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+</div>
+
+<div style="height:120px ; background-color:#e0eef8" class="moj-filter__selected govuk-!-padding-left-5 govuk-!-padding-right-5 govuk-!-padding-top-5  govuk-!-margin-bottom-3">
+
+
+  <div class="govuk-width-container ">
+  <h1 class="govuk-heading-s">Select a template and page to view what users with those permissions can see and do  or <a href="template-addon-approver">view what add ons can do</a>.</h1>
+
+<div style="float:left">
+  <label class="govuk-label" for="sort">
+Template
+  </label>
+  <select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+    {% if data['template'] == 'readprofile' %}
+    <option value="template-tbc?template=readprofile" selected>Limited read</option>
+    <option value="template-tbc?template=readall">Read all but no update</option>
+    <option value="template-tbc?template=writelimited">Read & limited update</option>
+    <option value="template-tbc?template=writeall">Read and write all</option>
+    {% elif data['template'] == 'readall' %}
+    <option value="template-tbc?template=readprofile">Limited read</option>
+    <option value="template-tbc?template=readall" selected>Read all but no update</option>
+    <option value="template-tbc?template=writelimited">Read & limited update</option>
+    <option value="template-tbc?template=writeall">Read and write all</option>
+    {% elif data['template'] == 'writelimited' %}
+    <option value="template-tbc?template=readprofile">Limited read</option>
+    <option value="template-tbc?template=readall" >Read all but no update</option>
+    <option value="template-tbc?template=writelimited" selected>Read & limited update</option>
+    <option value="template-tbc?template=writeall">Read and write all</option>
+    {% else %}
+    <option value="template-tbc?template=readprofile">Limited read</option>
+    <option value="template-tbc?template=readall">Read all but no update</option>
+    <option value="template-tbc?template=writelimited">Read & limited update</option>
+    <option value="template-tbc?template=writeall" selected>Read and write all</option>
+    {% endif %}
+  </select>
+</div>
+
+<div style="float:left" class="govuk-!-margin-left-9">
+<label class="govuk-label" for="sort">
+Page
+</label>
+<select class="govuk-select" id="sort" name="sort" onchange="location = this.value">
+  <option value="template-tiles">Tiles page</option>
+  <option value="template-caseload" >View and manage my caseload</option>
+  <option value="template-profile">Profile</option>
+  <option value="template-tbc"   selected>Uploaded documents</option>
+</select>
+</div>
+</div>
+
+
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container ">
+<div class="govuk-grid-row">
+<div style="clear: both" class="govuk-grid-column-full">
+
+{% if data['template'] == 'readprofile' %}
+
+<p>Users with 'read profile only' access have no access to this page.</p>
+
+{% else %}
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+
+<div class="govuk-grid-row govuk-body">
+    <div class="govuk-grid-column-full">
+        <div class="basic-details">
+            <div class="govuk-!-margin-right-6">
+                <img src="/public/images/image.png" alt="Headshot of Jackander, Onganioon" style="float:left" height="110" width="90" data-qa="offender-image">
+            </div>
+            <div id="basic-details-content">
+                <div>
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Name</span>
+                        <span data-qa="displayName">Jackander, Onganioon</span>
+                    </p>
+                </div>
+
+
+
+                    <div>
+                        <p>
+                            <span class="govuk-!-font-weight-bold">Prison No.</span>
+                            <span data-qa="nomsId">G7005VJ</span>
+                        </p>
+                    </div>
+
+
+
+                <div class="hide-mobile">
+                    <p>
+                        <span class="govuk-!-font-weight-bold">Date of Birth</span>
+                        <span data-qa="dob">02/08/1987</span>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="govuk-!-margin-bottom-0">
+                        <span class="govuk-!-font-weight-bold">Location</span>
+
+                            <span data-qa="prison-description">Outside</span>
+
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <div class="govuk-grid-row govuk-!-margin-bottom-6">
+        <div class="govuk-grid-column-one-half">
+            <h1 class="govuk-heading-l">Uploaded documents</h1>
+        </div>
+
+            <div class="govuk-grid-column-one-half text-align-right">
+
+{% if data['template'] == 'readall' %}
+<a href="#" role="button" disabled draggable="false" class="tooltip govuk-button rightAlignedButton" data-module="govuk-button">
+  Upload new document<span class="tooltiptext">No access</span>
+</a>
+
+{% else %}
+<a href="#" role="button" draggable="false" class="govuk-button rightAlignedButton" data-module="govuk-button">
+  Upload new document
+</a>
+{% endif %}
+
+            </div>
+
+    </div>
+
+    <div class="mobile-x-scroll govuk-!-margin-bottom-9">
+        <table id="caseListBandundefined" class="govuk-table case-list-sort tablesorter">
+            <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Document name</th>
+                <th scope="col" class="govuk-table__header">File type</th>
+                <th scope="col" class="govuk-table__header">Document type</th>
+                <th scope="col" class="govuk-table__header">File size</th>
+                <th scope="col" class="govuk-table__header">Uploaded by</th>
+                <th scope="col" class="govuk-table__header">Date uploaded</th>
+
+                    <th scope="col" class="govuk-table__header"></th>
+
+            </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/225/documents/get?file=DPS.png">DPS Logo</a>
+                    </td>
+                    <td class="govuk-table__cell">Image&nbsp;png</td>
+                    <td class="govuk-table__cell">ERG Review
+                    </td>
+                    <td class="govuk-table__cell">7.04&nbsp;kB</td>
+                    <td class="govuk-table__cell">Alex Hedley</td>
+                    <td class="govuk-table__cell">30/09/2022&nbsp;-&nbsp;12:58</td>
+
+                        <td class="govuk-table__cell">
+                          {% if data['template'] == 'writeall' %}
+                            <a href="#">Delete</a>
+                          {% else %}
+                          <div style="background-color:	#f3f2f1" >
+                            <a style="color: 	#b1b4b6;" class="tooltip" href="#">Delete<span class="tooltiptext">No access</span></a>
+                          </div>
+                          {% endif %}
+                        </td>
+
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/225/documents/get?file=Digital.png">Digital.png</a>
+                    </td>
+                    <td class="govuk-table__cell">Image&nbsp;png</td>
+                    <td class="govuk-table__cell">ERG Initial
+                    </td>
+                    <td class="govuk-table__cell">7.41&nbsp;kB</td>
+                    <td class="govuk-table__cell">Alex Hedley</td>
+                    <td class="govuk-table__cell">30/09/2022&nbsp;-&nbsp;12:57</td>
+
+                        <td class="govuk-table__cell">
+                          {% if data['template'] == 'writeall' %}
+                            <a href="#">Delete</a>
+                          {% else %}
+                          <div style="background-color:	#f3f2f1" >
+                            <a style="color: 	#b1b4b6;" class="tooltip" href="#">Delete<span class="tooltiptext">No access</span></a>
+                          </div>
+                          {% endif %}
+                        </td>
+
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/nominal/225/documents/get?file=hGPgUd4.jpeg">hGPgUd4.jpeg</a>
+                    </td>
+                    <td class="govuk-table__cell">Image&nbsp;jpg</td>
+                    <td class="govuk-table__cell">Other
+                    </td>
+                    <td class="govuk-table__cell">51.77&nbsp;kB</td>
+                    <td class="govuk-table__cell">Lisa Rae</td>
+                    <td class="govuk-table__cell">29/09/2022&nbsp;-&nbsp;09:41</td>
+
+                        <td class="govuk-table__cell">
+                          {% if data['template'] == 'writeall' %}
+                            <a href="#">Delete</a>
+                          {% else %}
+                          <div style="background-color:	#f3f2f1" >
+                            <a style="color: 	#b1b4b6;" class="tooltip" href="#">Delete<span class="tooltiptext">No access</span></a>
+                          </div>
+                          {% endif %}
+                        </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+
+      <a href="#" role="button" draggable="false" class="govuk-button grey-button" data-module="govuk-button">
+        Back to profile
+      </a>
+
+    </div>
+  </div>
+
+        </main>
+  </div>
+
+{% endif %}
+
+</div>
+</div>
+{% endblock %}

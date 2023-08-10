@@ -1,0 +1,439 @@
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+    Categorisation prototype
+{% endblock %}
+
+{% block beforeContent %}
+
+
+<div class="govuk-width-container">
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <span class="govuk-!-margin-right-5">
+      Current role
+    </span>
+
+    <select class="govuk-select govuk-!-margin-right-5" id="roleSwitch" name="roleSwitch" onchange="location = '/v1/' + this.value">
+        <option value="supervisor">Supervisor</option>
+        <option value="recategoriser">Recategoriser</option>
+        <option value="categoriser" selected="">Categoriser</option>
+        <option value="security">Security</option>
+    </select>
+
+    <span class="govuk-phase-banner__text">
+      <strong>Moorland (HMP & YOI)</strong>
+    </span>
+  </p>
+
+
+</div>
+</div>
+
+<div class="govuk-width-container">
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="/v1/dps">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="/v1/categoriser">Categorisation dashboard</a>
+    </li>
+  </ol>
+</div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-width-container">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l">Categorisation task list</h1>
+            <h2 class="govuk-heading-m">Prisoner details</h2>
+        </div>
+
+
+      {% include "includes/header-large-cat.html" %}
+
+      <div class="govuk-grid-column-full">
+        <p class="govuk-!-padding-top-5">Court-issued sentences</p>
+        <hr>
+        <table class="govuk-table" style="font-size: 18px">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Line</th>
+              <th scope="col" class="govuk-table__header">Start</th>
+              <th scope="col" class="govuk-table__header">Length of sentence</th>
+              <th scope="col" class="govuk-table__header">Consecutive to (line)</th>
+              <th scope="col" class="govuk-table__header">Type</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">1</td>
+              <td class="govuk-table__cell">14/04/2015</td>
+              <td class="govuk-table__cell">3 years</td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">CJA03 Standard Determinate Sentence</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">2</td>
+              <td class="govuk-table__cell">01/18/2019</td>
+              <td class="govuk-table__cell">4 years</td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">CJA03 Standard Determinate Sentence</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <hr>
+
+      </div>
+
+      <div class="govuk-grid-column-two-thirds">
+
+        <ol class="app-task-list">
+        <li>
+          <h2 class="app-task-list__section">
+            <span class="app-task-list__section-number"></span>
+          </h2>
+          <ul style="padding-left: 0px" class="app-task-list__items">
+          {% if data['section1complete'] == 'true' %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name govuk-heading-m">
+                  Offending history
+              </span>
+              <span style="float:right">
+                <a class="govuk-button govuk-button--secondary" href="offendinghistory?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                  Edit
+                </a></span>
+              <span class="app-task-list__task-name">
+                Completed
+              </span>
+            </li>
+
+            {% else %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name govuk-heading-m">
+
+                Offending history
+            </span>
+            <span style="float:right">
+              <a class="govuk-button" href="offendinghistory?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                Start
+              </a></span>
+            <span class="app-task-list__task-name">
+              Not yet checked
+            </span>
+          </li>
+          {% endif %}
+
+          {% if data['woman'] == 'true' %}
+
+          {% else %}
+
+          {% if data['section-2-complete'] == 'true' %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name govuk-heading-m">
+                  Further charges
+              </span>
+              <span style="float:right">
+                <a class="govuk-button govuk-button--secondary" href="further-charges?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                  Edit
+                </a></span>
+              <span class="app-task-list__task-name">
+                Completed
+              </span>
+            </li>
+
+            {% else %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name govuk-heading-m">
+                Further charges
+            </span>
+            <span style="float:right">
+              <a class="govuk-button" href="further-charges?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                Start
+              </a></span>
+            <span class="app-task-list__task-name">
+              Not yet checked
+            </span>
+          </li>
+          {% endif %}
+
+          {% endif %}
+
+          {% if data['section3complete'] == 'true' %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name govuk-heading-m">
+                  Safety and good order
+              </span>
+              <span style="float:right">
+                <a class="govuk-button govuk-button--secondary" href="safety?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                  Edit
+                </a></span>
+              <span class="app-task-list__task-name">
+                Completed
+              </span>
+            </li>
+
+            {% else %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name govuk-heading-m">
+                Safety and good order
+            </span>
+            <span style="float:right">
+              <a class="govuk-button" href="safety?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                Start
+              </a></span>
+            <span class="app-task-list__task-name">
+              Not yet checked
+            </span>
+          </li>
+          {% endif %}
+
+          {% if data['section-4-complete'] == 'true' %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name govuk-heading-m">
+                  Risk of escape
+              </span>
+              <span style="float:right">
+                <a class="govuk-button govuk-button--secondary" href="escape?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                  Edit
+                </a></span>
+              <span class="app-task-list__task-name">
+                Completed
+              </span>
+            </li>
+
+            {% else %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name govuk-heading-m">
+                Risk of escape
+            </span>
+            <span style="float:right">
+              <a class="govuk-button" href="escape?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                Start
+              </a></span>
+            <span class="app-task-list__task-name">
+              Not yet checked
+            </span>
+          </li>
+          {% endif %}
+
+          {% if data['section-5-complete'] == 'true' %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name govuk-heading-m">
+                  Extremism
+              </span>
+              <span style="float:right">
+                <a class="govuk-button govuk-button--secondary" href="extremism?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                  Edit
+                </a></span>
+              <span class="app-task-list__task-name">
+                Completed
+              </span>
+            </li>
+
+            {% else %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name govuk-heading-m">
+                Extremism
+            </span>
+            <span style="float:right">
+              <a class="govuk-button" href="extremism?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                Start
+              </a></span>
+            <span class="app-task-list__task-name">
+              Not yet checked
+            </span>
+          </li>
+          {% endif %}
+
+          {% if data['section-6-complete'] == 'sent' %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name govuk-heading-m">
+                  Security information
+              </span>
+              <span style="float:right">
+                <a class="govuk-button" href="#" style="margin-bottom: 0px" disabled data-module="govuk-button">
+                  Start
+                </a></span>
+              <span class="app-task-list__task-name">
+                Referred to Security (28/06/2022)
+              </span>
+            </li>
+
+            {% elif data['section-6-complete'] == 'notsent' %}
+              <li class="app-task-list__item">
+                <span class="app-task-list__task-name govuk-heading-m">
+                    Security information
+                </span>
+                <span style="float:right">
+                  <a class="govuk-button  govuk-button--secondary" href="security?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                    Edit
+                  </a></span>
+                <span class="app-task-list__task-name">
+                  Completed
+                </span>
+              </li>
+
+            {% else %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name govuk-heading-m">
+              Security information
+            </span>
+            <span style="float:right">
+              <a class="govuk-button" href="security?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                Start
+              </a></span>
+            <span class="app-task-list__task-name">
+              Not started
+            </span>
+          </li>
+          {% endif %}
+
+          {% if data['option2'] == 'true' %}
+
+          {% if data['section-decision-complete'] == 'true' %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name govuk-heading-m">
+                  Category decision
+              </span>
+              <span style="float:right">
+                <a class="govuk-button govuk-button--secondary" href="decision?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                  Edit
+                </a></span>
+              <span class="app-task-list__task-name">
+                Completed
+              </span>
+            </li>
+          {% else %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name govuk-heading-m">
+                Category decision
+            </span>
+            <span style="float:right">
+              <a class="govuk-button" href="decision?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                Start
+              </a></span>
+            <span class="app-task-list__task-name">
+              Not yet checked
+            </span>
+          </li>
+          {% endif %}
+
+          {% else %}
+          {% endif %}
+
+          {% if data['open'] == 'false' %}
+
+
+         {% elif data['section-7-complete'] == 'true' %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name govuk-heading-m">
+                  Open conditions
+              </span>
+              <span style="float:right">
+                <a class="govuk-button govuk-button--secondary" href="open/early-release-date?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                  Edit
+                </a></span>
+              <span class="app-task-list__task-name">
+                Completed Security
+              </span>
+            </li>
+            {% elif data['open'] == 'true' %}
+              <li class="app-task-list__item">
+                <span class="app-task-list__task-name govuk-heading-m">
+                    Open conditions
+                </span>
+                <span style="float:right">
+                  <a class="govuk-button" href="open/early-release-date?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                    Start
+                  </a></span>
+                <span class="app-task-list__task-name">
+                  Not yet checked
+                </span>
+              </li>
+
+              {% endif %}
+
+       {% if data['section-date-complete'] == 'true' %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name govuk-heading-m">
+                  Set next category review date
+              </span>
+              <span style="float:right">
+                <a class="govuk-button govuk-button--secondary" href="datedone?cya=false" style="margin-bottom: 0px" data-module="govuk-button">
+                  Edit
+                </a></span>
+              <span class="app-task-list__task-name">
+                Completed
+              </span>
+            </li>
+
+            {% else %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name govuk-heading-m">
+            Set next category review date
+            </span>
+            <span style="float:right">
+              <a class="govuk-button" href="date" style="margin-bottom: 0px" data-module="govuk-button">
+                Start
+              </a></span>
+            <span class="app-task-list__task-name">
+              Not yet checked
+            </span>
+          </li>
+          {% endif %}
+
+          {% if data['section-9-complete'] == 'true' %}
+            <li class="app-task-list__item">
+              <span class="app-task-list__task-name govuk-heading-m">
+                  Check and submit
+              </span>
+              <span style="float:right">
+                <a class="govuk-button govuk-button--secondary" href="#" style="margin-bottom: 0px" data-module="govuk-button">
+                  Edit
+                </a></span>
+              <span class="app-task-list__task-name">
+                Completed
+              </span>
+            </li>
+          {% else %}
+          <li class="app-task-list__item">
+            <span class="app-task-list__task-name govuk-heading-m">
+                Check and submit
+            </span>
+            <span style="float:right">
+              <a class="govuk-button" disabled="disabled" href="#" style="margin-bottom: 0px" data-module="govuk-button">
+                Continue
+              </a></span>
+            <span class="app-task-list__task-name">
+              Tasks not yet complete
+            </span>
+          </li>
+          {% endif %}
+
+
+
+
+          </ul>
+        </li>
+
+      </ol>
+
+
+
+          <p class="govuk-!-padding-top-6">  <a href="/v1/categoriser">Cancel this categorisation</a></p>
+
+      </div>
+
+
+
+
+</div>
+</div>
+{% endblock %}

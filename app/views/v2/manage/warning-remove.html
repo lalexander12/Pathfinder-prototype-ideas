@@ -1,0 +1,83 @@
+{% extends "layout_moj.html" %}
+
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="manage-groups">Manage groups</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="view-group">{{ data['groupname'] }}</a>
+          </li>
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-width-container">
+  <div class="govuk-grid-row govuk-!-display-none-print govuk-!-margin-bottom-4">
+
+        <div class="govuk-grid-column-three-quarters">
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+
+
+                <h1 class="govuk-fieldset__heading">
+                You can't delete user groups that have users
+                </h1>
+                </a>
+              </legend>
+
+              <p>You need to move the users of this group to another group before you can continue.</p>
+
+              <form method="post" action="view-group" class="form">
+
+
+
+
+  <button class="govuk-button" data-module="govuk-button">
+  Go back to the group
+  </button>
+
+
+</form>
+
+
+
+
+</div>
+</div>
+</div>
+
+<!--
+
+<script>
+function setLocation(element) {
+      document.forms[0].action = element.value
+}
+</script>
+-->
+
+
+{% endblock %}

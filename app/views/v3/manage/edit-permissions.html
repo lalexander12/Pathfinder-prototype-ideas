@@ -1,0 +1,824 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<!-- <div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+    {% if data['admin-lite'] == 'Yes' %}
+
+    {% endif %}
+
+    {% if data['role'] == 'groupowner' and data['admin-lite'] == 'Yes' %}
+
+    {% else %}
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+    {% endif %}
+
+
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+          {% if data['new'] == 'true' %}
+          {% else %}
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="view-user">{{ data['name'] }}</a>
+          </li>
+          {% endif %}
+
+  </ol>
+</div> -->
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+<form method="post" action="edit-permissions-answer">
+
+<!-- {% if data['new'] == 'false' and data['addon'] == 'Owner'%}
+<form method="post" action="usergroupowner">
+
+{% elif data['new'] == 'false'%}
+<form method="post" action="edit-cya">
+  {% else %}
+  <form method="post" action="usergroup">
+
+{% endif%} -->
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['new'] == 'true'%}
+  <h1 class="govuk-heading-l">Assign {{ data['name'] }}'s access</h1>
+  {% else %}
+  <h1 class="govuk-heading-l">Change {{ data['name'] }}'s access</h1>
+  {% endif %}
+
+  
+
+  <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+        Access types
+      </h2>
+    </legend>
+    <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-5" name="permission" type="radio" value="Full use" {{ checked("permission", "Full use") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name-5">
+          Full use
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-3" name="permission" type="radio" value="View all, limited update" {{ checked("permission", "Check all and edit some") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name-3">
+          View all, limited edit
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+         <input class="govuk-radios__input" id="changed-name-2" name="permission" Viewed type="radio" value="View all but no edit" {{ checked("permission", "Check all but no edit") }}>
+        
+        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+          View all
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name" name="permission" type="radio" value="View profile only" {{ checked("permission", "check profile only") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name">
+          View profile only
+        </label>
+      </div>
+      
+      {% if data['new'] != 'true'%}
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="changed-name-4" name="permission" type="radio" value="Remove access to Pathfinder" {{ checked("permission", "suspend") }}>
+        <label class="govuk-label govuk-radios__label" for="changed-name-4">
+          Remove access to Pathfinder
+        </label>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </fieldset>
+</div>
+
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+        Additional access
+      </h2>
+    </legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="addon" name="addon" type="checkbox" value="Owner" {{ checked("addon", "Owner") }}>
+        <label class="govuk-label govuk-checkboxes__label" for="organisation-2">
+          Group owner
+        </label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="addon-cim" name="addon-cim" type="checkbox" value="CIM Approver" {{ checked("addon", "CIM Approver") }}>
+        <label class="govuk-label govuk-checkboxes__label" for="organisation">
+          Controls Intervention Matrix (CIM) approver
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<div class="govuk-button-group">
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+  <a class="govuk-link" href="manage-users">Cancel</a>
+</div>
+
+</form>
+
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Help with access types
+    </span>
+  </summary>
+
+  <h3 class="govuk-heading-m">Remove access to Pathfinder</h3>
+    <p>The user account is deactivated but can still be viewed by a Pathfinder admin. The user cannot login to Pathfinder anymore.</p>
+  
+    <h3 class="govuk-heading-m">Group owner</h3>
+    <p>The user manages a group. They can ask to add and remove Pathfinder users.</p> 
+  
+    <h3 class="govuk-heading-m">Controls Intervention Matrix approver</h3>
+    <p></p>The user can approve a Controls Intervention Matrix.</p>
+
+    <h3 class="govuk-heading-m">Access types</h3>
+  <div class="govuk-tabs" data-module="govuk-tabs">
+    <h2 class="govuk-tabs__title">
+      Access types
+    </h2>
+    <ul class="govuk-tabs__list">
+      <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+        <a class="govuk-tabs__tab" href="#View-profile">
+          View profile
+        </a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#View-all">
+          View all
+        </a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#View-all-update">
+          View all, limited update
+        </a>
+      </li>
+      <li class="govuk-tabs__list-item">
+        <a class="govuk-tabs__tab" href="#full-use">
+          Full use
+        </a>
+      </li>
+    </ul>
+    <div class="govuk-tabs__panel" id="View-profile">
+      <h2 class="govuk-heading-l">View profile</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Feature</th>
+            <th scope="col" class="govuk-table__header">Access</th>
+     
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Search Pathfinder</td>
+            <td class="govuk-table__cell">Yes</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Nominal profile information </td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Caseload filters</td>
+            <td class="govuk-table__cell">Yes</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Staff caseloads</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">How release dates are worked out</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Guidance</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Sentence and release date</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Download CSV files</td>
+          <td class="govuk-table__cell">No</td>
+    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Print caseloads</td>
+          <td class="govuk-table__cell">No</td>
+    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Get notifications</td>
+          <td class="govuk-table__cell">No</td>
+    
+        </tr>
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Pre-sentence nominals</td>
+          <td class="govuk-table__cell">No</td>
+  
+        </tr>
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Uploaded documents (for example, ERG and PGF)</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Documents owned by user</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Intelligence reports</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Actions, control and interventions</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Case notes</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Case timeline</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">CIM assessment (Controls Intervention Matrix)</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Meeting notes</td>
+          <td class="govuk-table__cell">No</td>
+      
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">TACT status </td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Referral records (pre adoption) </td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Status and reason for inclusion (post adoption)</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Ideology</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Refer from prison (prison only) </td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Link to DPS profiles (prison only)</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Categorisation and re-categorisation (prison only)</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Refer from community (probation only)</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+      </table>
+    </div>
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="View-all">
+      <h2 class="govuk-heading-l">View all</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Feature</th>
+            <th scope="col" class="govuk-table__header">Access</th>
+       
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Search Pathfinder</td>
+            <td class="govuk-table__cell">Yes</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Nominal profile information </td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Caseload filters</td>
+            <td class="govuk-table__cell">Yes</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Staff caseloads</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">How release dates are worked out</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Guidance</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Sentence and release date</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Download CSV files</td>
+          <td class="govuk-table__cell">Yes</td>
+    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Print caseloads</td>
+          <td class="govuk-table__cell">Yes</td>
+    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Get notifications</td>
+          <td class="govuk-table__cell">Yes</td>
+    
+        </tr>
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Pre-sentence nominals</td>
+          <td class="govuk-table__cell">View</td>
+  
+        </tr>
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Uploaded documents (for example, ERG and PGF)</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Documents owned by user</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Intelligence reports</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Actions, control and interventions</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Case notes</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Case timeline</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">CIM assessment (Controls Intervention Matrix)</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Meeting notes</td>
+          <td class="govuk-table__cell">View</td>
+      
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">TACT status </td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Referral records (pre adoption) </td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Status and reason for inclusion (post adoption)</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Ideology</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Refer from prison (prison only) </td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Link to DPS profiles (prison only)</td>
+          <td class="govuk-table__cell">Yes</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Categorisation and re-categorisation (prison only)</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Refer from community (probation only)</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="View-all-update">
+      <h2 class="govuk-heading-l">View all, limited update</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Feature</th>
+            <th scope="col" class="govuk-table__header">Access</th>
+          
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Search Pathfinder</td>
+            <td class="govuk-table__cell">Yes</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Nominal profile information </td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Caseload filters</td>
+            <td class="govuk-table__cell">Yes</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Staff caseloads</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">How release dates are worked out</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Guidance</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Sentence and release date</td>
+            <td class="govuk-table__cell">View</td>
+      
+          </tr>
+
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Download CSV files</td>
+          <td class="govuk-table__cell">Yes</td>
+    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Print caseloads</td>
+          <td class="govuk-table__cell">Yes</td>
+    
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Get notifications</td>
+          <td class="govuk-table__cell">Yes</td>
+    
+        </tr>
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Pre-sentence nominals</td>
+          <td class="govuk-table__cell">View</td>
+  
+        </tr>
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Uploaded documents (for example, ERG and PGF)</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Documents owned by user</td>
+          <td class="govuk-table__cell">Edit</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Intelligence reports</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Actions, control and interventions</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Case notes</td>
+          <td class="govuk-table__cell">Add</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Case timeline</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">CIM assessment (Controls Intervention Matrix)</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Meeting notes</td>
+          <td class="govuk-table__cell">View</td>
+      
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">TACT status </td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+      
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Referral records (pre adoption) </td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Status and reason for inclusion (post adoption)</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Ideology</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Refer from prison (prison only) </td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Link to DPS profiles (prison only)</td>
+          <td class="govuk-table__cell">Yes</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Categorisation and re-categorisation (prison only)</td>
+          <td class="govuk-table__cell">View</td>
+
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Refer from community (probation only)</td>
+          <td class="govuk-table__cell">No</td>
+
+        </tr>
+  
+        </tbody>
+      </table>
+    </div>
+    <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="full-use">
+      <h2 class="govuk-heading-l">Full use</h2>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Feature</th>
+            <th scope="col" class="govuk-table__header">Access</th>
+            
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Search Pathfinder</td>
+              <td class="govuk-table__cell">Yes</td>
+        
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Nominal profile information </td>
+              <td class="govuk-table__cell">Edit</td>
+        
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Caseload filters</td>
+              <td class="govuk-table__cell">Yes</td>
+        
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Staff caseloads</td>
+              <td class="govuk-table__cell">Edit</td>
+        
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">How release dates are worked out</td>
+              <td class="govuk-table__cell">View</td>
+        
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Guidance</td>
+              <td class="govuk-table__cell">Edit</td>
+        
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Sentence and release date</td>
+              <td class="govuk-table__cell">Edit</td>
+        
+            </tr>
+
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Download CSV files</td>
+            <td class="govuk-table__cell">Yes</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Print caseloads</td>
+            <td class="govuk-table__cell">Yes</td>
+      
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Get notifications</td>
+            <td class="govuk-table__cell">Yes</td>
+      
+          </tr>
+        
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Pre-sentence nominals</td>
+            <td class="govuk-table__cell">Edit</td>
+    
+          </tr>
+        
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Uploaded documents (for example, ERG and PGF)</td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Documents owned by user</td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Intelligence reports</td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Actions, control and interventions</td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Case notes</td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Case timeline</td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">CIM assessment (Controls Intervention Matrix)</td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Meeting notes</td>
+            <td class="govuk-table__cell">Edit</td>
+        
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">TACT status </td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+        
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Referral records (pre adoption) </td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Status and reason for inclusion (post adoption)</td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Ideology</td>
+            <td class="govuk-table__cell">Edit</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Refer from prison (prison only) </td>
+            <td class="govuk-table__cell">Yes</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Link to DPS profiles (prison only)</td>
+            <td class="govuk-table__cell">Yes</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Categorisation and re-categorisation (prison only)</td>
+            <td class="govuk-table__cell">View</td>
+  
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Refer from community (probation only)</td>
+            <td class="govuk-table__cell">Yes</td>
+  
+          </tr>
+     
+        </tbody>
+      </table>
+    
+</div>
+</details>
+
+</div>
+{% endblock %}

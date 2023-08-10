@@ -1,0 +1,136 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+
+
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{{ govukBackLink({
+  text: "Back",
+href: "javascript:history.back()"
+}) }}
+
+
+{% endblock %}
+
+{% block content %}
+
+  <form action="edit-request-date" method="post" novalidate>
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Change user access</span>
+  <h1 class="govuk-heading-l">Who requested this change?</h1>
+
+
+
+  <table class="govuk-table govuk-!-margin-bottom-9" style="font-size: 18px">
+      <caption class="govuk-table__caption govuk-table__caption--m"></caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header"></th>
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Username</th>
+          <th scope="col" class="govuk-table__header">Email address</th>
+          <th scope="col" class="govuk-table__header">Account</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">
+              <div class="govuk-radios__item  govuk-radios--small">
+                <input class="govuk-radios__input" id="select-user" name="select-user" type="radio" value="John Smith">
+                <label class="govuk-label govuk-radios__label" for="select-user">
+                </label>
+              </div>
+        </th>
+          <td class="govuk-table__cell">John Smith<br>
+
+            </td>
+          <td class="govuk-table__cell">JOHN_SMITH</td>
+          <td class="govuk-table__cell">john.smith@justice.gov.uk</td>
+          <td class="govuk-table__cell">Prison - NOMIS</td>
+        </tr>
+
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">
+            <div class="govuk-radios__item  govuk-radios--small">
+              <input class="govuk-radios__input" id="select-user" name="select-user" type="radio" value="Johnny Smith">
+              <label class="govuk-label govuk-radios__label" for="select-user">
+              </label>
+            </div>
+          </th>
+          <td class="govuk-table__cell">John Smyth<br>
+
+            </td>
+          <td class="govuk-table__cell">JOHN_SMITH2</td>
+          <td class="govuk-table__cell">john.smyth2@justice.gov.uk</td>
+          <td class="govuk-table__cell">Prison - NOMIS</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+<!-- <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset" aria-describedby="select-user-hint">
+
+    <div id="select-user-hint" class="govuk-hint">
+
+    </div>
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="select-user" name="select-user" type="radio" value="John Smith" aria-describedby="select-user-item-hint">
+        <label class="govuk-label govuk-radios__label" for="select-user">
+        John Smith - JOHN_SMITH
+        </label>
+        <div id="select-user-item-hint" class="govuk-hint govuk-radios__hint">
+          john.smith@justice.gov.uk<br>
+          Prison - NOMIS
+
+        </div>
+
+      </div>
+
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="select-user-3" name="select-user" type="radio" value="Johnny Smith" aria-describedby="select-user-2-item-hint">
+        <label class="govuk-label govuk-radios__label" for="select-user-3">
+          Johnny Smith - JSMITH_GEN
+        </label>
+        <div id="select-user-3-item-hint" class="govuk-hint govuk-radios__hint">
+            Johnny.smyth2@justice.gov.uk<br>
+            Prison - NOMIS
+
+
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div> -->
+
+
+
+<p><a href="edit-permissions2">Search again</a> if you cannot find the user you're looking for</p>
+
+
+<div class="govuk-button-group">
+  <button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+  <a class="govuk-link" href="search">Cancel</a>
+</div>
+
+
+</form>
+
+
+
+</div>
+</div>
+{% endblock %}

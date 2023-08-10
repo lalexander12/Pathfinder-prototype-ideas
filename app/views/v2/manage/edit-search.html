@@ -1,0 +1,92 @@
+
+{% extends "layout_moj.html" %}
+
+{% block pageTitle %}
+  Pathfinder
+{% endblock %}
+
+{% block beforeContent %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Digital Prison Services</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../index">Pathfinder</a>
+    </li>
+
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="manage-home">Pathfinder admin</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="search">Manage users</a>
+        </li>
+
+  </ol>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="edit-select?name=Bob+Brown">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <h1 class="govuk-heading-l">Search for the user you want to add to Pathfinder</h1>
+
+
+  <div class="govuk-form-group">
+      <label class="govuk-label" for="sort">
+        Location
+      </label>
+      <select class="govuk-select" id="sort" name="sort">
+        <option value="updated" selected>Prison - NOMIS</option>
+        <option value="views">Probation - nDelius</option>
+        <option value="comments">External - AUTH</option>
+      </select>
+    </div>
+
+
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="search">
+        Username or email address
+      </label>
+
+  <!--    <div id="search-hint" class="govuk-hint moj-search__hint ">
+        You can search by username or email address
+      </div>-->
+
+      <input class="govuk-input  govuk-input--width-30" id="search" name="search" type="search" aria-describedby="search-hint">
+
+    </div>
+
+
+
+
+<div class="moj-button-menu">
+<div class="moj-button-menu__wrapper">
+
+
+
+  <button role="button" draggable="false" class="govuk-button moj-button-menu__item  " data-module="govuk-button">
+    Search
+  </button>
+
+  <a href="search" role="button" draggable="false" class="govuk-button moj-button-menu__item govuk-button--secondary " data-module="govuk-button">
+    Cancel
+  </a>
+
+</form>
+
+
+</div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}
